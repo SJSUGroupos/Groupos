@@ -7,7 +7,7 @@ var app = express();
 var router = express.Router();
 var path = __dirname + '/views/';
 
-const PORT = 80;
+const PORT = 5000;
 
 router.use(function (req,res,next) {
   console.log("/" + req.method);
@@ -20,7 +20,6 @@ router.get("/",function(req,res){
 
 
 app.use("/",router);
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use("*",function(req,res){
   res.sendFile(path + "404.html");
 });
