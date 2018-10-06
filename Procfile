@@ -1,1 +1,1 @@
-web: node index.js
+web: node groupos-app/index.js

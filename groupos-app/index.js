@@ -8,7 +8,7 @@ const assert = require('assert');
 //var bootstrap = require('bootstrap');
 var app = express();
 var router = express.Router();
-var path = __dirname + '/views/';
+var path = __dirname + 'views/';
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,6 +20,7 @@ const dbName = 'heroku_25s7vd7q';
 // Create a new MongoClient
 const client = new MongoClient(mongoURL);
 
+console.log(__dirname)
 // Use connect method to connect to the Server
 client.connect(function(err) {
 	assert.equal(null, err);
