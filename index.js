@@ -8,7 +8,7 @@ const assert = require('assert');
 //var bootstrap = require('bootstrap');
 var app = express();
 var router = express.Router();
-var path = __dirname + 'src/';
+var path = __dirname + '/src';
 
 const PORT = process.env.PORT || 5000;
 
@@ -43,6 +43,7 @@ router.get("/",function(req,res){
 
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/views'));
+app.use(express.static(path + '/app/profile/'));
 app.use("/",router);
 app.use("*",function(req,res){
 	res.sendFile(path + "404.html");
