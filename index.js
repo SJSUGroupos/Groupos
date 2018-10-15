@@ -1,4 +1,8 @@
 var express = require("express");
+const pathmod = require('path');
+const http = require('http');
+const bodyParser = require('body-parser');
+
 global.jquery = global.$ = require('jquery');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
@@ -8,8 +12,8 @@ const assert = require('assert');
 //var bootstrap = require('bootstrap');
 var app = express();
 var router = express.Router();
-var path = __dirname + 'src/';
-
+var path = __dirname + '/src/';
+var dbFuncs = require("./database");
 const PORT = process.env.PORT || 5000;
 
 const mongoURL = 'mongodb://groupos_user:Groupos1234@ds121753.mlab.com:21753/heroku_25s7vd7q';
@@ -18,7 +22,8 @@ const mongoURL = 'mongodb://groupos_user:Groupos1234@ds121753.mlab.com:21753/her
 const dbName = 'heroku_25s7vd7q';
 
 // Create a new MongoClient
-const client = new MongoClient(mongoURL);
+const client = new MongoClient(mongoURL, {useNewUrlParser : true});
+let user = new dbFuncs("asdf");
 
 console.log(__dirname)
 // Use connect method to connect to the Server
@@ -28,24 +33,19 @@ client.connect(function(err) {
 
 	const db = client.db(dbName);
 
+	//dbFuncs.createUserDocument("asdf", "asdf", db, assert);
+	//user.createUserDocument("asdf", "asdf", db, assert);
+
 	client.close();
-});
+} );
 
 
-router.use(function (req,res,next) {
-	console.log("/" + req.method);
-	next();
-});
 
-router.get("/",function(req,res){
-	res.sendFile(path + "index.html");
-});
+app.use(express.static(__dirname + '/dist/groupos-app'));
+app.use(express.static(__dirname));
 
-app.use(express.static(__dirname + '/node_modules'));
-app.use(express.static(__dirname + '/views'));
-app.use("/",router);
 app.use("*",function(req,res){
-	res.sendFile(path + "404.html");
+	res.sendFile(__dirname + "/dist/groupos-app/index.html");
 });
 
 app.listen(PORT,function(){
