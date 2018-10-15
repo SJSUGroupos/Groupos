@@ -1,44 +1,27 @@
-var express = require("express");
-const pathmod = require('path');
-const http = require('http');
+require('rootpath')();
+const express = require('express');
+const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
+const jwt = require('_helpers/jwt');
+const errorHandler = require('_helpers/error-handler');
 
-global.jquery = global.$ = require('jquery');
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-//var jquery = require('./node_modules/jquery/dist/jquery.js');
-//var popper = require("popper.js");
-//var bootstrap = require('./node_modules/bootstrap/dist/js/bootstrap.min.js')
-//var bootstrap = require('bootstrap');
-var app = express();
 var router = express.Router();
-var path = __dirname + '/src/';
-var dbFuncs = require("./database");
 const PORT = process.env.PORT || 5000;
 
-const mongoURL = 'mongodb://groupos_user:Groupos1234@ds121753.mlab.com:21753/heroku_25s7vd7q';
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
-// Database Name
-const dbName = 'heroku_25s7vd7q';
+// use JWT auth to secure the api
+//app.use('/users', jwt());
+app.use('/users', jwt());
 
-// Create a new MongoClient
-const client = new MongoClient(mongoURL, {useNewUrlParser : true});
-let user = new dbFuncs("asdf");
+// api routes
+app.use('/users', require('./users/users.controller'));
 
-console.log(__dirname)
-// Use connect method to connect to the Server
-client.connect(function(err) {
-	assert.equal(null, err);
-	console.log("Connected successfully to mongodb server");
-
-	const db = client.db(dbName);
-
-	//dbFuncs.createUserDocument("asdf", "asdf", db, assert);
-	//user.createUserDocument("asdf", "asdf", db, assert);
-
-	client.close();
-} );
-
+// global error handler
+app.use(errorHandler);
 
 
 app.use(express.static(__dirname + '/dist/groupos-app'));
