@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb://groupos_user:Groupos1234@ds121753.mlab.com:21753/heroku_25s7vd7q",
+    "secret": "aslkdsdwejk"
+}
