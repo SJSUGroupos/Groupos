@@ -2,35 +2,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
-import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+
 import { AlertService, AuthenticationService, UserService } from './_services';
+
+import { AppComponent }  from './app.component';
+import { AlertComponent } from './_directives';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
+import { RegisterComponent } from './register';;
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        routing
+        routing,
+        FlexLayoutModule,
+        MatListModule
     ],
     declarations: [
         AppComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
-    ],
+        RegisterComponent,
+        ProfileComponent
+      ],
     providers: [
         AuthGuard,
         AlertService,
