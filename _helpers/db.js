@@ -12,4 +12,5 @@ db.once('open', function() {
 
 module.exports = {
 	User: require('../users/user.model')
+	Groups: require('../users/groups.model')
 };
