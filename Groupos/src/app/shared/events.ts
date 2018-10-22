@@ -8,7 +8,8 @@ export const EVENTS: Event[] = [
     class: 'CMPE 131',
     time: 'Monday 2/29 at 14:00',
     location: 'Library',
-    organizer: PROFILES[0]
+    organizer: PROFILES[0],
+    members: null
   },
   {
     id: '1',
@@ -16,6 +17,7 @@ export const EVENTS: Event[] = [
     class: 'CMPE 146',
     time: 'Tuesday 4/30 at 16:00',
     location: 'Library',
-    organizer: PROFILES[0]
+    organizer: PROFILES[0],
+    members: null
   }
 ];

@@ -4,11 +4,12 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
@@ -26,7 +27,8 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';;
 import { ProfileComponent } from './profile/profile.component';
-import { FeedComponent } from './feed/feed.component';
+import { FeedComponent } from './feed/feed.component';;
+import { FooterComponent } from './footer/footer.component'
 
 @NgModule({
     imports: [
@@ -39,7 +41,9 @@ import { FeedComponent } from './feed/feed.component';
         MatTabsModule,
         BrowserAnimationsModule,
         MatInputModule,
-        FormsModule
+        FormsModule,
+        AngularFontAwesomeModule,
+        MatToolbarModule
     ],
     declarations: [
         AppComponent,
@@ -48,7 +52,8 @@ import { FeedComponent } from './feed/feed.component';
         LoginComponent,
         RegisterComponent,
         ProfileComponent,
-        FeedComponent
+        FeedComponent,
+        FooterComponent
     ],
     providers: [
         AuthGuard,

@@ -7,4 +7,5 @@ export class Event {
   time: string;
   location: string;
   organizer: Profile;
+  members: Profile[];
 }

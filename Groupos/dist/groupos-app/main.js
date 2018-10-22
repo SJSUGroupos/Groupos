@@ -653,7 +653,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- main app container -->\n<alert></alert>\n<router-outlet></router-outlet>\n"
+module.exports = "<!-- main app container -->\n<alert></alert>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -707,26 +707,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
 /* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
-/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_helpers */ "./src/app/_helpers/index.ts");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _directives__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_directives */ "./src/app/_directives/index.ts");
-/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
-/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
-/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_helpers */ "./src/app/_helpers/index.ts");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _directives__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_directives */ "./src/app/_directives/index.ts");
+/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -751,6 +756,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 ;
 
 
+;
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -760,32 +767,35 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                _app_routing__WEBPACK_IMPORTED_MODULE_9__["routing"],
+                _app_routing__WEBPACK_IMPORTED_MODULE_11__["routing"],
                 _angular_flex_layout__WEBPACK_IMPORTED_MODULE_4__["FlexLayoutModule"],
                 _angular_material_list__WEBPACK_IMPORTED_MODULE_5__["MatListModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__["MatTabsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["BrowserAnimationsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_9__["MatInputModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                angular_font_awesome__WEBPACK_IMPORTED_MODULE_10__["AngularFontAwesomeModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_6__["MatToolbarModule"]
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"],
-                _directives__WEBPACK_IMPORTED_MODULE_14__["AlertComponent"],
-                _home__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"],
-                _login__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
-                _register__WEBPACK_IMPORTED_MODULE_17__["RegisterComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__["ProfileComponent"],
-                _feed_feed_component__WEBPACK_IMPORTED_MODULE_19__["FeedComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
+                _directives__WEBPACK_IMPORTED_MODULE_16__["AlertComponent"],
+                _home__WEBPACK_IMPORTED_MODULE_17__["HomeComponent"],
+                _login__WEBPACK_IMPORTED_MODULE_18__["LoginComponent"],
+                _register__WEBPACK_IMPORTED_MODULE_19__["RegisterComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_20__["ProfileComponent"],
+                _feed_feed_component__WEBPACK_IMPORTED_MODULE_21__["FeedComponent"],
+                _footer_footer_component__WEBPACK_IMPORTED_MODULE_22__["FooterComponent"]
             ],
             providers: [
-                _guards__WEBPACK_IMPORTED_MODULE_10__["AuthGuard"],
-                _services__WEBPACK_IMPORTED_MODULE_12__["AlertService"],
-                _services__WEBPACK_IMPORTED_MODULE_12__["AuthenticationService"],
-                _services__WEBPACK_IMPORTED_MODULE_12__["UserService"],
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_11__["JwtInterceptor"], multi: true },
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_11__["ErrorInterceptor"], multi: true },
+                _guards__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"],
+                _services__WEBPACK_IMPORTED_MODULE_14__["AlertService"],
+                _services__WEBPACK_IMPORTED_MODULE_14__["AuthenticationService"],
+                _services__WEBPACK_IMPORTED_MODULE_14__["UserService"],
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["JwtInterceptor"], multi: true },
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["ErrorInterceptor"], multi: true },
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -884,6 +894,69 @@ var FeedComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], FeedComponent);
     return FeedComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/footer/footer.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/footer/footer.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n"
+
+/***/ }),
+
+/***/ "./src/app/footer/footer.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/footer/footer.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar color=\"accent\"\n             fxLayoutAlign=\"center\"\n             fxLayoutGap=\"20px\">\n  <a mat-button><span class=\"fa fa-user\"></span> Profile</a>\n  <a mat-button><span class=\"fa fa-calendar\"></span> Feed</a>\n  <a mat-button><span class=\"fa fa-plus-square\"></span> Create Group</a>\n</mat-toolbar>\n"
+
+/***/ }),
+
+/***/ "./src/app/footer/footer.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/footer/footer.component.ts ***!
+  \********************************************/
+/*! exports provided: FooterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FooterComponent = /** @class */ (function () {
+    function FooterComponent() {
+    }
+    FooterComponent.prototype.ngOnInit = function () {
+    };
+    FooterComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-footer',
+            template: __webpack_require__(/*! ./footer.component.html */ "./src/app/footer/footer.component.html"),
+            styles: [__webpack_require__(/*! ./footer.component.css */ "./src/app/footer/footer.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], FooterComponent);
+    return FooterComponent;
 }());
 
 
@@ -1097,7 +1170,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.header {\n  width: 100%;\n  background: #73C1FF!important;\n  text-align: center;\n  color: floralwhite;\n}\n"
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.header {\n  width: 100%;\n  background: #73C1FF!important;\n  text-align: center;\n  color: white;\n}\n"
 
 /***/ }),
 
@@ -1108,7 +1181,7 @@ module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"\n     fxLayout=\"column\"\n     fxLayoutGap=\"10px\"\n     fxLayoutAlign.xs=\"start center\"\n     fxLayoutAlign.sm=\"start center\"\n     fxLayoutAlign.gt-sm=\"center center\">\n\n    <div fxFlex class=\"header\">\n      <h2>Profile</h2>\n    </div>\n\n    <div fxFlex=\"60\" fxFlex.gt-sm=\"50\">\n        <div fxLayout=\"column\"\n             fxLayoutAlign=\"center\">\n          <mat-tab-group>\n            <mat-tab label=\"Profile\">\n              <mat-list-item>\n                <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>\n              </mat-list-item>\n              <mat-list-item>\n                <h3>{{profile.name}}</h3>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Major</h6>\n                <p> {{profile.major}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Classes</h6>\n                <p> {{profile.classes}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Availability</h6>\n                <p> {{profile.availability}} </p>\n              </mat-list-item>\n            </mat-tab>\n            <mat-tab label=\"Edit\">\n              <form class=\"example-form\">\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Name\" value={{profile.name}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Major\" value={{profile.major}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Classes\" value={{profile.classes}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Availability\" value={{profile.availability}}>\n                </mat-form-field>\n              </form>\n            </mat-tab>\n          </mat-tab-group>\n        </div>\n      </div>\n  </div>\n"
+module.exports = "<div class=\"container\"\n     fxLayout=\"column\"\n     fxLayoutGap=\"10px\"\n     fxLayoutAlign.xs=\"start center\"\n     fxLayoutAlign.sm=\"start center\"\n     fxLayoutAlign.gt-sm=\"center center\">\n\n    <div fxFlex class=\"header\">\n      <h2>Profile</h2>\n    </div>\n\n    <div fxFlex=\"60\" fxFlex.gt-sm=\"50\">\n        <div fxLayout=\"column\"\n             fxLayoutAlign=\"center\">\n          <mat-tab-group>\n            <mat-tab label=\"Profile\">\n              <mat-list-item fxLayoutAlign=\"center\">\n                <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>\n              </mat-list-item>\n              <mat-list-item>\n                <h3>{{profile.name}}</h3>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Major</h6>\n                <p> {{profile.major}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Classes</h6>\n                <p> {{profile.classes}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Availability</h6>\n                <p> {{profile.availability}} </p>\n              </mat-list-item>\n            </mat-tab>\n            <mat-tab label=\"Edit\">\n              <form class=\"example-form\">\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Name\" value={{profile.name}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Major\" value={{profile.major}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Classes\" value={{profile.classes}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Availability\" value={{profile.availability}}>\n                </mat-form-field>\n              </form>\n            </mat-tab>\n          </mat-tab-group>\n        </div>\n      </div>\n  </div>\n"
 
 /***/ }),
 
