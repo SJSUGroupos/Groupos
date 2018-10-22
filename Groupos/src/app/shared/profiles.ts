@@ -3,8 +3,8 @@ import { Profile } from './profile';
 export const PROFILES: Profile[] = [
   {
     id: '0',
-    name: 'paco',
-    avatar: 'image',
+    name: 'Paco',
+    avatar: '/assets/images/alberto.png',
     major: 'Computer Science',
     classes: [
       'CMPE 131',
@@ -13,7 +13,7 @@ export const PROFILES: Profile[] = [
       'MA 161A'
     ],
     availability: [
-      'Monday & Wednesday: 2-6 PM',
+      'Monday & Wednesday: 2-6 PM ',
       'Tuesday & Thursday: 1-5 PM'
     ]
   }

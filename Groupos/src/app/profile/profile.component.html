@@ -1,44 +1,55 @@
-<h2>Profile</h2>
-<div class="container" fxFlex>
-  <div class="row my-2">
-    <div class="col-lg-8 order-lg-2">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
-        </li>
-      </ul>
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px"
+     fxLayoutAlign.xs="start center"
+     fxLayoutAlign.sm="start center"
+     fxLayoutAlign.gt-sm="center center">
 
-      <div fxFlex="100" fxFlex.gt-sm="50">
-          <div fxLayout="row">
-            <div>
+    <div fxFlex class="header">
+      <h2>Profile</h2>
+    </div>
+
+    <div fxFlex="60" fxFlex.gt-sm="50">
+        <div fxLayout="column"
+             fxLayoutAlign="center">
+          <mat-tab-group>
+            <mat-tab label="Profile">
+              <mat-list-item fxLayoutAlign="center">
+                <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>
+              </mat-list-item>
               <mat-list-item>
                 <h3>{{profile.name}}</h3>
               </mat-list-item>
               <mat-list-item>
                 <h6>Major</h6>
-              </mat-list-item>
-              <mat-list-item>
                 <p> {{profile.major}} </p>
               </mat-list-item>
               <mat-list-item>
                 <h6>Classes</h6>
-              </mat-list-item>
-              <mat-list-item>
                 <p> {{profile.classes}} </p>
               </mat-list-item>
               <mat-list-item>
                 <h6>Availability</h6>
-              </mat-list-item>
-              <mat-list-item>
                 <p> {{profile.availability}} </p>
               </mat-list-item>
-              <!--/row-->
-          </div>
+            </mat-tab>
+            <mat-tab label="Edit">
+              <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Name" value={{profile.name}}>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Major" value={{profile.major}}>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Classes" value={{profile.classes}}>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Availability" value={{profile.availability}}>
+                </mat-form-field>
+              </form>
+            </mat-tab>
+          </mat-tab-group>
         </div>
       </div>
-    </div>
   </div>
-</div>

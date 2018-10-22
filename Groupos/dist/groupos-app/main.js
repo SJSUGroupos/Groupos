@@ -653,7 +653,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- main app container -->\n<link rel=\"stylesheet\" type=\"text/css\" href=\"app.component.css\">\n<div class=\"jumbotron\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-sm-6 offset-sm-3\">\n                <alert></alert>\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<!-- main app container -->\n<alert></alert>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -707,22 +707,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
 /* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
-/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_helpers */ "./src/app/_helpers/index.ts");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _directives__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_directives */ "./src/app/_directives/index.ts");
-/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
-/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
-/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_helpers */ "./src/app/_helpers/index.ts");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _directives__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_directives */ "./src/app/_directives/index.ts");
+/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home */ "./src/app/home/index.ts");
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -742,6 +750,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 ;
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -751,27 +760,32 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                _app_routing__WEBPACK_IMPORTED_MODULE_6__["routing"],
+                _app_routing__WEBPACK_IMPORTED_MODULE_9__["routing"],
                 _angular_flex_layout__WEBPACK_IMPORTED_MODULE_4__["FlexLayoutModule"],
-                _angular_material_list__WEBPACK_IMPORTED_MODULE_5__["MatListModule"]
+                _angular_material_list__WEBPACK_IMPORTED_MODULE_5__["MatListModule"],
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
             ],
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
-                _directives__WEBPACK_IMPORTED_MODULE_11__["AlertComponent"],
-                _home__WEBPACK_IMPORTED_MODULE_12__["HomeComponent"],
-                _login__WEBPACK_IMPORTED_MODULE_13__["LoginComponent"],
-                _register__WEBPACK_IMPORTED_MODULE_14__["RegisterComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_15__["ProfileComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"],
+                _directives__WEBPACK_IMPORTED_MODULE_14__["AlertComponent"],
+                _home__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"],
+                _login__WEBPACK_IMPORTED_MODULE_16__["LoginComponent"],
+                _register__WEBPACK_IMPORTED_MODULE_17__["RegisterComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__["ProfileComponent"],
+                _feed_feed_component__WEBPACK_IMPORTED_MODULE_19__["FeedComponent"]
             ],
             providers: [
-                _guards__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"],
-                _services__WEBPACK_IMPORTED_MODULE_9__["AlertService"],
-                _services__WEBPACK_IMPORTED_MODULE_9__["AuthenticationService"],
-                _services__WEBPACK_IMPORTED_MODULE_9__["UserService"],
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_8__["JwtInterceptor"], multi: true },
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_8__["ErrorInterceptor"], multi: true },
+                _guards__WEBPACK_IMPORTED_MODULE_10__["AuthGuard"],
+                _services__WEBPACK_IMPORTED_MODULE_12__["AlertService"],
+                _services__WEBPACK_IMPORTED_MODULE_12__["AuthenticationService"],
+                _services__WEBPACK_IMPORTED_MODULE_12__["UserService"],
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_11__["JwtInterceptor"], multi: true },
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_11__["ErrorInterceptor"], multi: true },
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -809,6 +823,69 @@ var appRoutes = [
     { path: '**', redirectTo: '' }
 ];
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(appRoutes);
+
+
+/***/ }),
+
+/***/ "./src/app/feed/feed.component.css":
+/*!*****************************************!*\
+  !*** ./src/app/feed/feed.component.css ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/feed/feed.component.html":
+/*!******************************************!*\
+  !*** ./src/app/feed/feed.component.html ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  feed works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/feed/feed.component.ts":
+/*!****************************************!*\
+  !*** ./src/app/feed/feed.component.ts ***!
+  \****************************************/
+/*! exports provided: FeedComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedComponent", function() { return FeedComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FeedComponent = /** @class */ (function () {
+    function FeedComponent() {
+    }
+    FeedComponent.prototype.ngOnInit = function () {
+    };
+    FeedComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-feed',
+            template: __webpack_require__(/*! ./feed.component.html */ "./src/app/feed/feed.component.html"),
+            styles: [__webpack_require__(/*! ./feed.component.css */ "./src/app/feed/feed.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], FeedComponent);
+    return FeedComponent;
+}());
+
 
 
 /***/ }),
@@ -1020,7 +1097,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.header {\n  width: 100%;\n  background: #73C1FF!important;\n  text-align: center;\n  color: floralwhite;\n}\n"
 
 /***/ }),
 
@@ -1031,7 +1108,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Profile</h2>\n<div class=\"container\" fxFlex>\n    <div class=\"row my-2\">\n        <div class=\"col-lg-8 order-lg-2\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"nav-item\">\n                    <a href=\"\" data-target=\"#profile\" data-toggle=\"tab\" class=\"nav-link active\">Profile</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a href=\"\" data-target=\"#edit\" data-toggle=\"tab\" class=\"nav-link\">Edit</a>\n                </li>\n            </ul>\n            <div fxFlex=\"100\" fxFlex.gt-sm=\"50\">\n                <div fxLayout=\"row\">\n                  <div>\n                    <mat-list-item>\n                      <h3>{{profile.name}}</h3>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <h6>Major</h6>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <p> {{profile.major}} </p>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <h6>Classes</h6>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <p> {{profile.classes}} </p>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <h6>Availability</h6>\n                    </mat-list-item>\n                    <mat-list-item>\n                      <p> {{profile.availability}} </p>\n                    </mat-list-item>\n                    <!--/row-->\n                </div>\n              </div>\n\n                <!--><div class=\"tab-pane\" id=\"edit\">\n                    <form role=\"form\">\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">First name</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"text\" value=\"Jane\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Last name</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"text\" value=\"Bishop\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Email</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"email\" value=\"email@gmail.com\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Company</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"text\" value=\"\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Website</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"url\" value=\"\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Address</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"text\" value=\"\" placeholder=\"Street\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\"></label>\n                            <div class=\"col-lg-6\">\n                                <input class=\"form-control\" type=\"text\" value=\"\" placeholder=\"City\">\n                            </div>\n                            <div class=\"col-lg-3\">\n                                <input class=\"form-control\" type=\"text\" value=\"\" placeholder=\"State\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Time Zone</label>\n                            <div class=\"col-lg-9\">\n                                <select id=\"user_time_zone\" class=\"form-control\" size=\"0\">\n                                    <option value=\"Hawaii\">(GMT-10:00) Hawaii</option>\n                                    <option value=\"Alaska\">(GMT-09:00) Alaska</option>\n                                    <option value=\"Pacific Time (US &amp; Canada)\">(GMT-08:00) Pacific Time (US &amp; Canada)</option>\n                                    <option value=\"Arizona\">(GMT-07:00) Arizona</option>\n                                    <option value=\"Mountain Time (US &amp; Canada)\">(GMT-07:00) Mountain Time (US &amp; Canada)</option>\n                                    <option value=\"Central Time (US &amp; Canada)\" selected=\"selected\">(GMT-06:00) Central Time (US &amp; Canada)</option>\n                                    <option value=\"Eastern Time (US &amp; Canada)\">(GMT-05:00) Eastern Time (US &amp; Canada)</option>\n                                    <option value=\"Indiana (East)\">(GMT-05:00) Indiana (East)</option>\n                                </select>\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Username</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"text\" value=\"janeuser\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Password</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"password\" value=\"11111122333\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\">Confirm password</label>\n                            <div class=\"col-lg-9\">\n                                <input class=\"form-control\" type=\"password\" value=\"11111122333\">\n                            </div>\n                        </div>\n                        <div class=\"form-group row\">\n                            <label class=\"col-lg-3 col-form-label form-control-label\"></label>\n                            <div class=\"col-lg-9\">\n                                <input type=\"reset\" class=\"btn btn-secondary\" value=\"Cancel\">\n                                <input type=\"button\" class=\"btn btn-primary\" value=\"Save Changes\">\n                            </div>\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-lg-4 order-lg-1 text-center\">\n            <img src=\"//placehold.it/150\" class=\"mx-auto img-fluid img-circle d-block\" alt=\"avatar\">\n            <h6 class=\"mt-2\">Upload a different photo</h6>\n            <label class=\"custom-file\">\n                <input type=\"file\" id=\"file\" class=\"custom-file-input\">\n                <span class=\"custom-file-control\">Choose file</span>\n            </label><-->\n        </div>\n    </div>\n</div>\n</div>\n"
+module.exports = "<div class=\"container\"\n     fxLayout=\"column\"\n     fxLayoutGap=\"10px\"\n     fxLayoutAlign.xs=\"start center\"\n     fxLayoutAlign.sm=\"start center\"\n     fxLayoutAlign.gt-sm=\"center center\">\n\n    <div fxFlex class=\"header\">\n      <h2>Profile</h2>\n    </div>\n\n    <div fxFlex=\"60\" fxFlex.gt-sm=\"50\">\n        <div fxLayout=\"column\"\n             fxLayoutAlign=\"center\">\n          <mat-tab-group>\n            <mat-tab label=\"Profile\">\n              <mat-list-item>\n                <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>\n              </mat-list-item>\n              <mat-list-item>\n                <h3>{{profile.name}}</h3>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Major</h6>\n                <p> {{profile.major}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Classes</h6>\n                <p> {{profile.classes}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Availability</h6>\n                <p> {{profile.availability}} </p>\n              </mat-list-item>\n            </mat-tab>\n            <mat-tab label=\"Edit\">\n              <form class=\"example-form\">\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Name\" value={{profile.name}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Major\" value={{profile.major}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Classes\" value={{profile.classes}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Availability\" value={{profile.availability}}>\n                </mat-form-field>\n              </form>\n            </mat-tab>\n          </mat-tab-group>\n        </div>\n      </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1204,8 +1281,8 @@ __webpack_require__.r(__webpack_exports__);
 var PROFILES = [
     {
         id: '0',
-        name: 'paco',
-        avatar: 'image',
+        name: 'Paco',
+        avatar: '/assets/images/alberto.png',
         major: 'Computer Science',
         classes: [
             'CMPE 131',
@@ -1214,7 +1291,7 @@ var PROFILES = [
             'MA 161A'
         ],
         availability: [
-            'Monday & Wednesday: 2-6 PM',
+            'Monday & Wednesday: 2-6 PM ',
             'Tuesday & Thursday: 1-5 PM'
         ]
     }

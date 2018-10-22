@@ -5,5 +5,4 @@ export class Profile {
   major: string;
   classes: string[];
   availability: string[];
-  
 }

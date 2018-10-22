@@ -4,6 +4,12 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
 
@@ -19,7 +25,8 @@ import { AlertComponent } from './_directives';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';;
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
     imports: [
@@ -28,7 +35,11 @@ import { ProfileComponent } from './profile/profile.component'
         HttpClientModule,
         routing,
         FlexLayoutModule,
-        MatListModule
+        MatListModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,
@@ -36,8 +47,9 @@ import { ProfileComponent } from './profile/profile.component'
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        ProfileComponent
-      ],
+        ProfileComponent,
+        FeedComponent
+    ],
     providers: [
         AuthGuard,
         AlertService,

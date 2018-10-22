@@ -1,3 +1,5 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 .background-primary {
   background-color: #FFED2E !important;
 }
