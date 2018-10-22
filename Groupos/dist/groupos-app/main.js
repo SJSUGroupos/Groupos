@@ -653,7 +653,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- main app container -->\n<alert></alert>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
+module.exports = "<!-- main app container -->\n<app-header></app-header>\n<alert></alert>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -724,6 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
 /* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
 /* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
+/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./header/header.component */ "./src/app/header/header.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -756,7 +757,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 ;
 
 
-;
+
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -785,7 +786,8 @@ var AppModule = /** @class */ (function () {
                 _register__WEBPACK_IMPORTED_MODULE_19__["RegisterComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_20__["ProfileComponent"],
                 _feed_feed_component__WEBPACK_IMPORTED_MODULE_21__["FeedComponent"],
-                _footer_footer_component__WEBPACK_IMPORTED_MODULE_22__["FooterComponent"]
+                _footer_footer_component__WEBPACK_IMPORTED_MODULE_22__["FooterComponent"],
+                _header_header_component__WEBPACK_IMPORTED_MODULE_23__["HeaderComponent"]
             ],
             providers: [
                 _guards__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"],
@@ -819,16 +821,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login */ "./src/app/login/index.ts");
 /* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register */ "./src/app/register/index.ts");
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
+/* harmony import */ var _feed_feed_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./feed/feed.component */ "./src/app/feed/feed.component.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
+
 
 
 
 
 
 var appRoutes = [
-    { path: '', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_3__["ProfileComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+    { path: '', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_3__["ProfileComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_5__["AuthGuard"]] },
     { path: 'login', component: _login__WEBPACK_IMPORTED_MODULE_1__["LoginComponent"] },
     { path: 'register', component: _register__WEBPACK_IMPORTED_MODULE_2__["RegisterComponent"] },
+    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_3__["ProfileComponent"] },
+    { path: 'feed', component: _feed_feed_component__WEBPACK_IMPORTED_MODULE_4__["FeedComponent"] },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
@@ -907,7 +913,7 @@ var FeedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n"
+module.exports = ".mat-toolbar {\n  color: #9A9A9A;\n  background-color: #FFE92E!important;\n  position: fixed;\n  left: 0;\n  bottom: 0;\n  height: 50px;\n}\n\n.mat-button {\n  color: #9A9A9A!important;\n}\n\n.active{\n  font-weight: bold;\n}\n"
 
 /***/ }),
 
@@ -918,7 +924,7 @@ module.exports = "\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"accent\"\n             fxLayoutAlign=\"center\"\n             fxLayoutGap=\"20px\">\n  <a mat-button><span class=\"fa fa-user\"></span> Profile</a>\n  <a mat-button><span class=\"fa fa-calendar\"></span> Feed</a>\n  <a mat-button><span class=\"fa fa-plus-square\"></span> Create Group</a>\n</mat-toolbar>\n"
+module.exports = "<div class=\"footer\">\n  <mat-toolbar fxLayout=\"row\"\n               fxLayoutAlign=\"center\"\n               fxLayoutGap=\"20px\">\n    <a mat-button routerLink='/profile' routerLinkActive='active'><span class=\"fa fa-user\"></span> Profile</a>\n    <a mat-button routerLink='/feed' routerLinkActive='active'><span class=\"fa fa-calendar\"></span> Feed</a>\n    <a mat-button><span class=\"fa fa-plus-square\"></span> Create Group</a>\n  </mat-toolbar>\n</div>\n"
 
 /***/ }),
 
@@ -957,6 +963,69 @@ var FooterComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], FooterComponent);
     return FooterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/header/header.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".header {\n  width: 100%;\n  background-color: #73C1FF!important;\n  text-align: center;\n  color: white;\n}\n"
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/header/header.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"header\" fxFlex>\n  <h2>Profile</h2>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/header/header.component.ts ***!
+  \********************************************/
+/*! exports provided: HeaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent() {
+    }
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-header',
+            template: __webpack_require__(/*! ./header.component.html */ "./src/app/header/header.component.html"),
+            styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/header/header.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HeaderComponent);
+    return HeaderComponent;
 }());
 
 
@@ -1170,7 +1239,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.header {\n  width: 100%;\n  background: #73C1FF!important;\n  text-align: center;\n  color: white;\n}\n"
+module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n}\n\n.example-full-width {\n  width: 100%;\n}\n\n.mat-tab-group {\n  height: 80%;\n}\n"
 
 /***/ }),
 
@@ -1181,7 +1250,7 @@ module.exports = ".example-form {\n  min-width: 150px;\n  max-width: 500px;\n  w
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\"\n     fxLayout=\"column\"\n     fxLayoutGap=\"10px\"\n     fxLayoutAlign.xs=\"start center\"\n     fxLayoutAlign.sm=\"start center\"\n     fxLayoutAlign.gt-sm=\"center center\">\n\n    <div fxFlex class=\"header\">\n      <h2>Profile</h2>\n    </div>\n\n    <div fxFlex=\"60\" fxFlex.gt-sm=\"50\">\n        <div fxLayout=\"column\"\n             fxLayoutAlign=\"center\">\n          <mat-tab-group>\n            <mat-tab label=\"Profile\">\n              <mat-list-item fxLayoutAlign=\"center\">\n                <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>\n              </mat-list-item>\n              <mat-list-item>\n                <h3>{{profile.name}}</h3>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Major</h6>\n                <p> {{profile.major}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Classes</h6>\n                <p> {{profile.classes}} </p>\n              </mat-list-item>\n              <mat-list-item>\n                <h6>Availability</h6>\n                <p> {{profile.availability}} </p>\n              </mat-list-item>\n            </mat-tab>\n            <mat-tab label=\"Edit\">\n              <form class=\"example-form\">\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Name\" value={{profile.name}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Major\" value={{profile.major}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Classes\" value={{profile.classes}}>\n                </mat-form-field>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Availability\" value={{profile.availability}}>\n                </mat-form-field>\n              </form>\n            </mat-tab>\n          </mat-tab-group>\n        </div>\n      </div>\n  </div>\n"
+module.exports = "<div class=\"container\"\n     fxLayout=\"column\"\n     fxLayoutGap=\"10px\"\n     fxLayoutAlign.xs=\"start center\"\n     fxLayoutAlign.sm=\"start center\"\n     fxLayoutAlign.gt-sm=\"center center\">\n\n    <mat-tab-group fxLayout=\"column\"\n                   fxLayoutAlign=\"space-evenly center\">\n      <mat-tab label=\"Profile\">\n        <mat-list-item fxLayoutAlign=\"center\">\n          <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>\n        </mat-list-item>\n        <mat-list-item>\n          <h3>{{profile.name}}</h3>\n        </mat-list-item>\n        <mat-list-item>\n          <h6>Major</h6>\n          <p> {{profile.major}} </p>\n        </mat-list-item>\n        <mat-list-item>\n          <h6>Classes</h6>\n          <p> {{profile.classes}} </p>\n        </mat-list-item>\n        <mat-list-item>\n          <h6>Availability</h6>\n          <p> {{profile.availability}} </p>\n        </mat-list-item>\n      </mat-tab>\n      <mat-tab label=\"Edit\">\n        <form class=\"example-form\">\n          <mat-form-field class=\"example-full-width\">\n            <input matInput placeholder=\"Name\" value={{profile.name}}>\n          </mat-form-field>\n          <mat-form-field class=\"example-full-width\">\n            <input matInput placeholder=\"Major\" value={{profile.major}}>\n          </mat-form-field>\n          <mat-form-field class=\"example-full-width\">\n            <input matInput placeholder=\"Classes\" value={{profile.classes}}>\n          </mat-form-field>\n          <mat-form-field class=\"example-full-width\">\n            <input matInput placeholder=\"Availability\" value={{profile.availability}}>\n          </mat-form-field>\n        </form>\n      </mat-tab>\n    </mat-tab-group>\n  </div>\n"
 
 /***/ }),
 

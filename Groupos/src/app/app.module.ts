@@ -18,7 +18,6 @@ import { routing }        from './app.routing';
 
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-
 import { AlertService, AuthenticationService, UserService } from './_services';
 
 import { AppComponent }  from './app.component';
@@ -27,8 +26,10 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';;
 import { ProfileComponent } from './profile/profile.component';
-import { FeedComponent } from './feed/feed.component';;
-import { FooterComponent } from './footer/footer.component'
+import { FeedComponent } from './feed/feed.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { FooterComponent } from './footer/footer.component'
         RegisterComponent,
         ProfileComponent,
         FeedComponent,
-        FooterComponent
+        FooterComponent,
+        HeaderComponent
     ],
     providers: [
         AuthGuard,
