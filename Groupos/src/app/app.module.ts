@@ -4,6 +4,8 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,7 +46,9 @@ import { HeaderComponent } from './header/header.component';
         MatInputModule,
         FormsModule,
         AngularFontAwesomeModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatDividerModule,
+        MatCardModule
     ],
     declarations: [
         AppComponent,
