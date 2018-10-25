@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.background-primary {
+  background-color: #FFED2E !important;
+}
+.text-floral-white {
+  color: floralwhite !important;
+}
+.flex-spacer {
+  flex: 1 1 auto;
+}

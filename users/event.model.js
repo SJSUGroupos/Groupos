@@ -9,7 +9,8 @@ const schema = new Schema({
     eventName: { type: String, required: true },
     eventDate: { type: Date, required: true},
     eventTime: { type: Date, required: false},
-    eventPlace: { type: Date, required: false},
+    eventPlace: { type: String, required: false},
+    eventCourse: { type: String, required: false},
     createdDate: { type: Date, default: Date.now }
 });
 

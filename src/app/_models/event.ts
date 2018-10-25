@@ -5,6 +5,9 @@ export class Event {
 	description: string;
 	eventName: string;
 	eventDate: string;
+	eventPlace: string;
+	eventTime: Date;
+	eventCourse: string;
 	createdDate: string;
 
 

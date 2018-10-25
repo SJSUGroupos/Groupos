@@ -19,6 +19,8 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { CreateEventComponent } from './create.event';
+import { ProfileComponent } from './profile';
+import { FeedComponent } from './feed';
 
 @NgModule({
     imports: [
@@ -37,7 +39,9 @@ import { CreateEventComponent } from './create.event';
         HomeComponent,
         LoginComponent,
 		RegisterComponent,
-		CreateEventComponent
+		CreateEventComponent,
+		ProfileComponent,
+		FeedComponent,
     ],
     providers: [
         AuthGuard,
@@ -47,8 +51,6 @@ import { CreateEventComponent } from './create.event';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		EventService
-        // provider used to create fake backend
-		//fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

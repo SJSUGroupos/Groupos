@@ -1,0 +1,23 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="15px">
+
+  <div fxFlex>
+      <h3>Events</h3>
+  </div>
+
+  <mat-card *ngFor="let event of events">
+    <mat-card-title>
+      <h2> {{event.eventName | uppercase}} </h2>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <h5> {{event.eventCourse}} </h5>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <p> {{event.eventTime}} </p>
+      <hr>
+      <p> {{event.eventPlace}} </p>
+      <p> by {{event.creator}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

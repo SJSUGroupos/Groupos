@@ -6,7 +6,6 @@ import { first } from 'rxjs/operators';
 import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
 
-import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({templateUrl: 'create.event.component.html'})
 export class CreateEventComponent implements OnInit {
@@ -24,6 +23,7 @@ export class CreateEventComponent implements OnInit {
 		this.eventForm = this.formBuilder.group({
 			eventName: ['', Validators.required],
 			eventDate: ['', Validators.required],
+			course: [''],
 			public: [false, Validators.required],
 			description: ['']
 		});
@@ -44,6 +44,7 @@ export class CreateEventComponent implements OnInit {
 		let currentUser = JSON.parse(localStorage.getItem("currentUser")).username;
 
 		obj.eventName = this.f.eventName.value;
+		obj.eventCourse = this.f.course.value;
 		obj.eventDate = this.f.eventDate.value;
 		obj.creator = currentUser;
 		obj.public = this.f.public.value;

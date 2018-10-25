@@ -1,0 +1,61 @@
+<div class="container"
+	 fxLayout="column"
+  fxLayoutGap="10px"
+  fxLayoutAlign.xs="start center"
+  fxLayoutAlign.sm="start center"
+  fxLayoutAlign.gt-sm="center center">
+
+	<mat-tab-group fxLayout="column"
+				fxLayoutAlign="space-evenly center">
+		<mat-tab label="Profile">
+			<mat-list-item fxLayoutAlign="center">
+				<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}>
+			</mat-list-item>
+			<mat-list-item>
+				<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
+			</mat-list-item>
+			<mat-list-item>
+				<h6>Major</h6>
+				<p> {{currentUser.major}} </p>
+			</mat-list-item>
+			<mat-list-item>
+				<h6>Classes</h6>
+				<p> {{currentUser.coursework}} </p>
+			</mat-list-item>
+			<mat-list-item>
+				<h6>Availability</h6>
+				<p> {{currentUser.availabilities}} </p>
+			</mat-list-item>
+		</mat-tab>
+		<mat-tab label="Edit">
+			<form class="example-form"  >
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit First Name" value={{currentUser.firstName}}>
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit Last Name" value={{currentUser.lastName}}>
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit Major" value={{currentUser.major}}>
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Availability" value={{currentUser.availability}}>
+				</mat-form-field>
+			</form>
+
+
+			<form class="example-form" [formGroup]="updateCourseworkForm" (ngSumbit)="onSubmit()">
+				<h6>Current Coursework:</h6>
+				<mat-list-item *ngFor="let course of currentUser.coursework">
+					<p> {{course}} </p>
+				</mat-list-item>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Add a course" formControlName="addCourse" type="text">
+				</mat-form-field>
+				<div class="form-group">
+					<button [disabled]="loading" class="btn btn-primary" >Create</button>
+				</div>
+			</form>
+		</mat-tab>
+	</mat-tab-group>
+</div>
