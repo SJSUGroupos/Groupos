@@ -1,3 +1,6 @@
+#Branch Description
+This branch is for development of the middleware that will setup the necessary routing and api for querying the website database.
+
 # GrouposApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
