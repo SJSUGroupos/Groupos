@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 import { MaterialModule } from './material-module';
-//import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -28,13 +28,13 @@ import { HeaderComponent } from './header';
     imports: [
         BrowserModule,
 		BrowserAnimationsModule,
+		FlexLayoutModule,
 		FormsModule,
         HttpClientModule,
 		routing,
 		MaterialModule,
 		MatNativeDateModule,
         ReactiveFormsModule,
-		//FlexLayoutModule,
     ],
     declarations: [
         AppComponent,
