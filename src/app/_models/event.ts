@@ -4,7 +4,7 @@ export class Event {
 	public: boolean;
 	description: string;
 	eventName: string;
-	scheduledDate: string;
+	eventDate: string;
 	createdDate: string;
 
 
