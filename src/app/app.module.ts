@@ -22,6 +22,7 @@ import { CreateEventComponent } from './create.event';
 import { ProfileComponent } from './profile';
 import { FeedComponent } from './feed';
 import { FooterComponent } from './footer';
+import { HeaderComponent } from './header';
 
 @NgModule({
     imports: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './footer';
 		ProfileComponent,
 		FeedComponent,
 		FooterComponent,
+		HeaderComponent,
     ],
     providers: [
         AuthGuard,
