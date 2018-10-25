@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 import { MaterialModule } from './material-module';
-
+//import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -21,6 +21,7 @@ import { RegisterComponent } from './register';
 import { CreateEventComponent } from './create.event';
 import { ProfileComponent } from './profile';
 import { FeedComponent } from './feed';
+import { FooterComponent } from './footer';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import { FeedComponent } from './feed';
 		MaterialModule,
 		MatNativeDateModule,
         ReactiveFormsModule,
+		//FlexLayoutModule,
     ],
     declarations: [
         AppComponent,
@@ -42,6 +44,7 @@ import { FeedComponent } from './feed';
 		CreateEventComponent,
 		ProfileComponent,
 		FeedComponent,
+		FooterComponent,
     ],
     providers: [
         AuthGuard,

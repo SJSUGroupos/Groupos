@@ -12,7 +12,7 @@ import { UserService, AlertService, EventService } from '../_services';
 	styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	updateProfileForm: FormGroup;
+	//updateProfileForm: FormGroup;
 	updateCourseworkForm: FormGroup;
 	currentUser: User;
 	users: User[] = [];
@@ -30,35 +30,34 @@ export class ProfileComponent implements OnInit {
 		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		//this.updateProfileForm = this.formBuilder.group({
 		//});
+	}
+
+
+	ngOnInit() {
+		//this.loadUserInfo();
+		alert(JSON.stringify(this.currentUser));
 		this.updateCourseworkForm = this.formBuilder.group({
 			addCourse: [''],
 		});
 	}
 
 
-	ngOnInit() {
-		this.loadUserInfo();
-		alert(JSON.stringify(this.currentUser));
-	}
+	//private loadUserInfo() {
 
+	//}
 
-	private loadUserInfo() {
+	get c() { return this.updateCourseworkForm.controls; }
 
-	}
-
-	get coursework() { return this.updateCourseworkForm.controls; }
-
-	onSubmit() {
+	onCourseworkSubmit() {
 		this.courseworkSubmitted = true;
 		// stop here if form is invalid
-		alert(this.coursework.addCourse.value);
 		if (this.updateCourseworkForm.invalid) {
-			//return;
+			return;
 		}
 
 		var obj = new User();
 		obj = this.currentUser;
-		obj.coursework.push(this.coursework.addCourse.value)
+		obj.coursework.push(this.c.addCourse.value)
 
 
 		alert(JSON.stringify(obj));
@@ -68,6 +67,17 @@ export class ProfileComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.alertService.success('Coursework Updated', true);
+				},
+				error => {
+					this.alertService.error(error);
+					this.loading = false;
+				});
+		this.userService.getById(obj._id)
+			.pipe(first())
+			.subscribe(
+				data => {
+					//this.
+					//this.alertService.success('Coursework Updated', true);
 				},
 				error => {
 					this.alertService.error(error);

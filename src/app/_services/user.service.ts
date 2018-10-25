@@ -12,7 +12,7 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
-    getById(id: number) {
+    getById(id: string) {
         return this.http.get(`${environment.apiUrl}/users/` + id);
     }
 
@@ -21,7 +21,7 @@ export class UserService {
     }
 
     update(user: User) {
-        return this.http.put(`${environment.apiUrl}/users/` + user.id, user);
+        return this.http.put(`${environment.apiUrl}/users/` + user._id, user);
     }
 
     delete(id: number) {

@@ -1,10 +1,10 @@
 .mat-toolbar {
-  color: #9A9A9A;
+  color: #E5A823;
   background-color: #FFE92E!important;
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 50px;
+  height: 40px;
 }
 
 .mat-button {

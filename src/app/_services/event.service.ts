@@ -12,7 +12,7 @@ export class EventService {
         return this.http.get<Event[]>(`${environment.apiUrl}/events`);
     }
 
-    getById(id: number) {
+    getById(id: string) {
         return this.http.get(`${environment.apiUrl}/events/` + id);
     }
 

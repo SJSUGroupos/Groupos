@@ -20,7 +20,7 @@
 			</mat-list-item>
 			<mat-list-item>
 				<h6>Classes</h6>
-				<p> {{currentUser.coursework}} </p>
+				<p *ngFor="let course of currentUser.coursework"> {{course}} </p>
 			</mat-list-item>
 			<mat-list-item>
 				<h6>Availability</h6>
@@ -44,7 +44,7 @@
 			</form>
 
 
-			<form class="example-form" [formGroup]="updateCourseworkForm" (ngSumbit)="onSubmit()">
+			<form class="example-form" [formGroup]="updateCourseworkForm" (ngSubmit)="onCourseworkSubmit()">
 				<h6>Current Coursework:</h6>
 				<mat-list-item *ngFor="let course of currentUser.coursework">
 					<p> {{course}} </p>
