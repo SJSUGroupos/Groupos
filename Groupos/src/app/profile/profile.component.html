@@ -1,0 +1,47 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px"
+     fxLayoutAlign.xs="start center"
+     fxLayoutAlign.sm="start center"
+     fxLayoutAlign.gt-sm="center center">
+
+    <mat-tab-group fxLayout="column"
+                   fxLayoutAlign="space-evenly center">
+      <mat-tab label="Profile">
+        <mat-list-item fxLayoutAlign="center">
+          <img matListAvatar src={{profile.avatar}} alt={{profile.name}}>
+        </mat-list-item>
+        <mat-list-item>
+          <h3>{{profile.name}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h6>Major</h6>
+          <p> {{profile.major}} </p>
+        </mat-list-item>
+        <mat-list-item>
+          <h6>Classes</h6>
+          <p> {{profile.classes}} </p>
+        </mat-list-item>
+        <mat-list-item>
+          <h6>Availability</h6>
+          <p> {{profile.availability}} </p>
+        </mat-list-item>
+      </mat-tab>
+      <mat-tab label="Edit">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name" value={{profile.name}}>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Major" value={{profile.major}}>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Classes" value={{profile.classes}}>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Availability" value={{profile.availability}}>
+          </mat-form-field>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
