@@ -1,6 +1,3 @@
-# Branch Description
-This branch is for development of the middleware that will setup the necessary routing and api for querying the website database.
-
 # GrouposApp
 
 This app is an event scheduling app designed to facilitate study groups between students of SJSU. The event will allow events to be created for particular courses that the users have assigned to their accounts. A user will be able to create events that are public or private and send invites to potential subscribers of the event. The app will also make suggestions for users to invite based on available time slots the users have attributed to their account. The available hours will play a pivotal role in process of creating successfull events, as it will give the opportunity for users to be automatically notified of study group events that fit their schedules. It is also intended for the app to support linking to the students Canvas accounts so as the allow for the convenience of updating their profile automatically with course work data, and to allow for other Canvas data and facilities to be accessed from within the app.
