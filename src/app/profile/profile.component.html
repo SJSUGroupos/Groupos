@@ -82,10 +82,9 @@
 
 			<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}>
 			<form novalidate [formGroup]="updateAvatarForm" (ngSubmit)="onAvatarSubmit()" enctype="multipart/form-data">
-				<input formControlName="avatar" type="file" name="avatar" (change)="onFileChange($event)"/>
+				<input type="file" name="avatar" (change)="onFileChange($event)"/>
 				<button type="submit">Send</button>
 			</form>
-
 
 			<form class="example-form" [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
 

@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
+const fs = require('fs');
+const dir = require('path').dirname(require.main.filename);
 
 module.exports = {
 	uploadAvatar,
@@ -14,19 +16,18 @@ module.exports = {
 	delete: _delete
 };
 
-async function uploadAvatar(file) {
-	//if (Object.keys(file).length == 0) {
-	//	return res.status(400).json({ message: 'No files were uploaded.' });
-	//}
-
-	let avatar = file.files.data;
-	throw {message: JSON.stringify(file.files)};
-	//Use the mv() method to place the file somewhere on your server
-	avatar.mv('http://localhost:5000/src/assets/images/test.jpg', function(err) {
-		//avatar.mv('/src/assets/images/'+filename+'.png', function(err) {
-		//if (err)
-		//return res.status(500).(err);
+async function uploadAvatar(data) {
+	console.log(data);
+	var str = data['avatar'];
+	var fen = str.substring(str.indexOf(","),str.length-1);
+	var buf = Buffer.from(fen,'base64');
+	await fs.writeFile(dir +'/src/assets/images/test.jpg',buf, function (err) {
+		if (err) {
+			console.log("error writing file");
+			return console.error(err);
+		}
 	});
+
 
 }
 

@@ -2,14 +2,14 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FileUploader } from 'ng2-file-upload';
 import { User } from '../_models';
 import { UserService, AlertService, EventService } from '../_services';
-
-//declare var $:any;
-
+import { Ng2ImgMaxService } from 'ng2-img-max';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+
+const URL = 'users/avatar';
 
 @Component({
 	selector: 'app-profile',
@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
 
 	loading = false;
 	submitted = false;
+	public uploader:FileUploader = new FileUploader({url: URL});
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -34,7 +35,8 @@ export class ProfileComponent implements OnInit {
 		private eventService: EventService,
 		private userService: UserService,
 		private alertService: AlertService,
-		private cd: ChangeDetectorRef
+		private cd: ChangeDetectorRef,
+		private ng2ImgMax: Ng2ImgMaxService,
 	) { 
 		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		this.avail = (this.currentUser.availabilities);
@@ -55,7 +57,7 @@ export class ProfileComponent implements OnInit {
 		});
 		this.updateAvatarForm = this.formBuilder.group({
             avatar: [null, Validators.required],
-
+			filename: [this.currentUser._id],
 		});
 	}
 
@@ -115,22 +117,25 @@ export class ProfileComponent implements OnInit {
 			return;
 		}
 
-		alert(this.a.avatar.value);
+		alert(typeof(this.a.avatar.value));
 
 		let fd = new FormData();
+		//fd.append('avatar', this.updateAvatarForm.value);
 		fd.append('avatar', this.a.avatar.value);
-
+		fd.append('filename', this.a.filename.value);
 		this.loading = true;
 		this.userService.uploadAvatar(fd)
 			.pipe(first())
 			.subscribe(
 				data => {
+					this.currentUser.avatar='/src/assets/images/'+this.a.filename.value+'.jpg'
 					console.log("avatar submitted");
 				},
 				error => {
 					this.alertService.error(error);
 					this.loading = false;
 				});
+		//$.post('users/avatar', {avatar: this.a.avatar.value}, function(res){alert("success")}).fail(function(){alert("fail")});
 
 	}
 
@@ -222,21 +227,33 @@ export class ProfileComponent implements OnInit {
 
 	onFileChange(event) {
 		const reader = new FileReader();
+		var resizedImg = new Blob();
 
 		alert("got here");
 		if(event.target.files && event.target.files.length) {
 			const [file] = event.target.files;
-			reader.readAsDataURL(file);
-			alert(event.target.files);
-			reader.onload = () => {
-				alert(reader.result);
-				this.updateAvatarForm.patchValue({
-					avatar: reader.result
-				});
 
-				// need to run CD since file load runs outside of zone
-				this.cd.markForCheck();
-			};
+			this.ng2ImgMax.resizeImage(file, 100, 10000).subscribe(
+				result => {
+					//resizedImg = new File([result], result.name);
+					resizedImg = (result);
+					reader.readAsDataURL(resizedImg);
+					alert(JSON.stringify(resizedImg));
+					reader.onload = () => {
+						alert(reader.result);
+						this.updateAvatarForm.patchValue({
+							avatar: reader.result
+						});
+
+						// need to run CD since file load runs outside of zone
+						this.cd.markForCheck();
+					};
+				},
+				error => {
+					console.log('Oh no!', error);
+				}
+			);
+
 		}
 	}
 

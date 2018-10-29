@@ -24,7 +24,7 @@ router.post('/avatar', upload.single('avatar'), [
 
 	console.log("got here");
 	//console.log(req.file);
-	//console.log('body',req.body);
+	console.log('body',req.body);
 	if (req.files) {
 
     console.log('Uploaded: ', req.files);
@@ -40,7 +40,7 @@ router.post('/avatar', upload.single('avatar'), [
 	//console.log(fen);
 	var buf = Buffer.from(fen,'base64');
 	console.log(buf);
-	fs.writeFileSync(dir +'/src/assets/images/test.jpg',buf);
+	fs.writeFileSync(dir +'/src/assets/images/'+req.body['filename']+'.jpg',buf);
 	res.json({message: "done"});
 	//fs.rename(buf,'/src/assets/images/test.jpg', function(err) { console.log(err);  });
 
@@ -51,11 +51,11 @@ router.post('/avatar', upload.single('avatar'), [
 
 function uploadAvatar(req, res, next) {
 
-	console.log("got here");
-	res.json("hello");
-	//userService.uploadAvatar(req.files)
-		//.then(avatar => avatar ? res.json(avatar) : res.status(500).json({ message: 'Error uploading image' }))
-		//.catch(err => next(err));
+	console.log(req.file);
+	console.log(req.files);
+	userService.uploadAvatar(req.body)
+		.then(avatar => avatar ? res.json(avatar) : res.status(500).json({ message: 'Error uploading image' }))
+		.catch(err => next(err));
 }
 
 function authenticate(req, res, next) {
