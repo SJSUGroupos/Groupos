@@ -7,54 +7,253 @@
 
 	<mat-tab-group fxLayout="column"
 				fxLayoutAlign="space-evenly center">
-		<mat-tab label="Profile">
-			<mat-list-item fxLayoutAlign="center">
-				<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}>
-			</mat-list-item>
-			<mat-list-item>
-				<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
-			</mat-list-item>
-			<mat-list-item>
-				<h6>Major</h6>
-				<p> {{currentUser.major}} </p>
-			</mat-list-item>
-			<mat-list-item>
-				<h6>Classes</h6>
-				<p *ngFor="let course of currentUser.coursework"> {{course}} </p>
-			</mat-list-item>
-			<mat-list-item>
+		<mat-tab label="Profile" style="width:30%;"> 
+			<mat-list> 
+				<mat-list-item>
+					<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}>
+				</mat-list-item>
+				<mat-list-item>
+					<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
+				</mat-list-item>
+				<mat-list-item> 
+					<h6 mat-line>Major</h6>
+					<p mat-line> {{currentUser.major}} </p>
+				</mat-list-item>
+				<mat-list-item>
+					<h6 mat-line>Classes</h6>
+					<p mat-line *ngFor="let course of currentUser.coursework"> {{course}} </p>
+				</mat-list-item>
 				<h6>Availability</h6>
-				<p> {{currentUser.availabilities}} </p>
-			</mat-list-item>
+				<mat-list> 
+					<div *ngIf="avail.monday != ''">
+					<h3 mat-subheader>Monday:</h3>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.monday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.tuesday != ''">
+					<p mat-subheader>Tuesday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item  *ngFor="let times of avail.tuesday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.wednesday != ''">
+					<p mat-subheader>Wednesday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.wednesday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.thursday != ''">
+					<p mat-subheader>Thursday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.thursday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.friday != ''">
+					<p mat-subheader>Friday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.friday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.saturday != ''">
+					<p mat-subheader>Saturday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.saturday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+					<div *ngIf="avail.sunday != ''">
+					<p mat-subheader>Sunday:</p>
+					<mat-divider></mat-divider>
+					<mat-list-item *ngFor="let times of avail.sunday">
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+					</mat-list-item>
+					</div>
+				</mat-list>
+			</mat-list>
 		</mat-tab>
+
 		<mat-tab label="Edit">
-			<form class="example-form"  >
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Edit First Name" value={{currentUser.firstName}}>
-				</mat-form-field>
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Edit Last Name" value={{currentUser.lastName}}>
-				</mat-form-field>
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Edit Major" value={{currentUser.major}}>
-				</mat-form-field>
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Availability" value={{currentUser.availabilities}}>
-				</mat-form-field>
+
+			<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}>
+			<form novalidate [formGroup]="updateAvatarForm" (ngSubmit)="onAvatarSubmit()" enctype="multipart/form-data">
+				<input formControlName="avatar" type="file" name="avatar" (change)="onFileChange($event)"/>
+				<button type="submit">Send</button>
 			</form>
 
 
-			<form class="example-form" [formGroup]="updateCourseworkForm" (ngSubmit)="onCourseworkSubmit()">
+			<form class="example-form" [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
+
+
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit First Name" value={{currentUser.firstName}} formControlName="firstName">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit Last Name" value={{currentUser.lastName}} formControlName="lastName">
+				</mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Edit Major" value={{currentUser.major}} formControlName="major">
+				</mat-form-field>
+
+				<h6>Availability</h6>
+				<mat-list style="text-align:left;">
+					<div *ngIf="avail.monday != ''">
+						<h3 mat-subheader>Monday:</h3>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.monday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'monday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.tuesday != ''">
+						<p mat-subheader>Tuesday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.tuesday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'tuesday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.wednesday != ''">
+						<p mat-subheader>Wednesday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.wednesday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'wednesday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.thursday != ''">
+						<p mat-subheader>Thursday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.thursday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'thursday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.friday != ''">
+						<p mat-subheader>Friday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.friday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'friday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.saturday != ''">
+						<p mat-subheader>Saturday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.saturday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'saturday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail.sunday != ''">
+						<p mat-subheader>Sunday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail.sunday">
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							- <a (click)="deleteTimeSlot(times,'sunday')" class="text-danger">Delete</a></p>
+						</mat-list-item>
+					</div>
+				</mat-list>
+
+				<mat-form-field>
+					<mat-select #dayAvail value="monday" >
+						<mat-option value="monday">Monday</mat-option>
+						<mat-option value="tuesday">Tuesday</mat-option>
+						<mat-option value="wednesday">Wednesday</mat-option>
+						<mat-option value="thursday">Thursday</mat-option>
+						<mat-option value="friday">Friday</mat-option>
+						<mat-option value="saturday">Saturday</mat-option>
+						<mat-option value="sunday">Sunday</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<h5>Start Time</h5>
+				<table class="example-full-width" cellspacing="0">
+					<tr>
+						<td>
+							<mat-form-field>
+								<mat-select #startTimeH value="1">
+									<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+						<td> : </td>
+						<td>
+							<mat-form-field>
+								<mat-select #startTimeM value="00">
+									<mat-option *ngFor="let min of minutes" value="{{min}}">{{min}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+
+						<td>
+							<mat-form-field>
+								<mat-select #periodS value="AM" >
+									<mat-option value="AM">AM</mat-option>
+									<mat-option value="PM">PM</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+					</tr>
+				</table>
+
+
+				<h5>End Time</h5>
+				<table class="example-full-width" cellspacing="0">
+					<tr>
+						<td>
+							<mat-form-field>
+								<mat-select #endTimeH value="1">
+									<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+						<td> : </td>
+						<td>
+							<mat-form-field>
+								<mat-select #endTimeM value="00">
+									<mat-option *ngFor="let min of minutes" value="{{min}}">{{min}}</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+
+						<td>
+							<mat-form-field>
+								<mat-select #periodE value="AM" >
+									<mat-option value="AM">AM</mat-option>
+									<mat-option value="PM">PM</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</td>
+					</tr>
+				</table>
+
+
+
+				<div class="form-group">
+					<button type="button" [disabled]="loading" mat-button (click)="addAvail(dayAvail.value, startTimeH.value + ':' + startTimeM.value, endTimeH.value + ':' + endTimeM.value, periodS.value, periodE.value);">Add Availability</button>
+				</div>
+
+
 				<h6>Current Coursework:</h6>
 				<mat-list-item *ngFor="let course of currentUser.coursework">
-					<p> {{course}} </p>
+					<p> {{course}} 
+					- <a (click)="deleteCourse(course)" class="text-danger">Delete</a>
+					</p>
 				</mat-list-item>
 				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Add a course" formControlName="addCourse" type="text">
+					<input #courseToAdd (keyup.enter)="addClass(courseToAdd.value); courseToAdd.value=''" matInput placeholder="Add a course" type="text">
 				</mat-form-field>
 				<div class="form-group">
-					<button [disabled]="loading" class="btn btn-primary" >Create</button>
+					<button type="button" [disabled]="loading" mat-button (click)="addClass(courseToAdd.value); courseToAdd.value='';">Add Class</button>
 				</div>
+				<button [disabled]="updateProfileForm.invalid && !updateProfileForm.dirty && !updateProfileForm" mat-button type='submit' >Save</button>
+				<a mat-button (click)="reset()">Cancel</a>
 			</form>
 		</mat-tab>
 	</mat-tab-group>

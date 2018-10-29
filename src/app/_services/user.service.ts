@@ -8,6 +8,10 @@ import { User } from '../_models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
+	uploadAvatar(filename: any) {
+		return this.http.post(`${environment.apiUrl}/users/avatar`, filename)
+	}
+
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
