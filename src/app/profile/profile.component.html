@@ -141,7 +141,7 @@
 			</form>
 
 
-			<form class="example-form" [formGroup]="updateAvailForm" (ngSubmit)="addAvail()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
+			<form class="example-form" [formGroup]="updateAvailForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
 				<h6>Availability</h6>
 				<mat-list style="text-align:left;">
 					<div *ngIf="avail['monday'] != ''">
