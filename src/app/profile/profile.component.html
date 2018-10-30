@@ -25,52 +25,52 @@
 				</mat-list-item>
 				<h6>Availability</h6>
 				<mat-list> 
-					<div *ngIf="avail.monday != ''">
+					<div *ngIf="avail['monday'] != ''">
 					<h3 mat-subheader>Monday:</h3>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.monday">
+					<mat-list-item *ngFor="let times of avail['monday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.tuesday != ''">
+					<div *ngIf="avail['tuesday'] != ''">
 					<p mat-subheader>Tuesday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item  *ngFor="let times of avail.tuesday">
+					<mat-list-item  *ngFor="let times of avail['tuesday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.wednesday != ''">
+					<div *ngIf="avail['wednesday'] != ''">
 					<p mat-subheader>Wednesday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.wednesday">
+					<mat-list-item *ngFor="let times of avail['wednesday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.thursday != ''">
+					<div *ngIf="avail['thursday'] != ''">
 					<p mat-subheader>Thursday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.thursday">
+					<mat-list-item *ngFor="let times of avail['thursday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.friday != ''">
+					<div *ngIf="avail['friday'] != ''">
 					<p mat-subheader>Friday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.friday">
+					<mat-list-item *ngFor="let times of avail['friday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.saturday != ''">
+					<div *ngIf="avail['saturday'] != ''">
 					<p mat-subheader>Saturday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.saturday">
+					<mat-list-item *ngFor="let times of avail['saturday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
-					<div *ngIf="avail.sunday != ''">
+					<div *ngIf="avail['sunday'] != ''">
 					<p mat-subheader>Sunday:</p>
 					<mat-divider></mat-divider>
-					<mat-list-item *ngFor="let times of avail.sunday">
+					<mat-list-item *ngFor="let times of avail['sunday']">
 						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 					</mat-list-item>
 					</div>
@@ -141,61 +141,61 @@
 			</form>
 
 
-			<form class="example-form" [formGroup]="updateAvailForm" (ngSubmit)="onAvailSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
+			<form class="example-form" [formGroup]="updateAvailForm" (ngSubmit)="addAvail()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
 				<h6>Availability</h6>
 				<mat-list style="text-align:left;">
-					<div *ngIf="avail.monday != ''">
+					<div *ngIf="avail['monday'] != ''">
 						<h3 mat-subheader>Monday:</h3>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.monday">
+						<mat-list-item *ngFor="let times of avail['monday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'monday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.tuesday != ''">
+					<div *ngIf="avail['tuesday'] != ''">
 						<p mat-subheader>Tuesday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.tuesday">
+						<mat-list-item *ngFor="let times of avail['tuesday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'tuesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.wednesday != ''">
+					<div *ngIf="avail['wednesday'] != ''">
 						<p mat-subheader>Wednesday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.wednesday">
+						<mat-list-item *ngFor="let times of avail['wednesday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'wednesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.thursday != ''">
+					<div *ngIf="avail['thursday'] != ''">
 						<p mat-subheader>Thursday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.thursday">
+						<mat-list-item *ngFor="let times of avail['thursday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'thursday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.friday != ''">
+					<div *ngIf="avail['friday'] != ''">
 						<p mat-subheader>Friday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.friday">
+						<mat-list-item *ngFor="let times of avail['friday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'friday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.saturday != ''">
+					<div *ngIf="avail['saturday'] != ''">
 						<p mat-subheader>Saturday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.saturday">
+						<mat-list-item *ngFor="let times of avail['saturday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'saturday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
-					<div *ngIf="avail.sunday != ''">
+					<div *ngIf="avail['sunday'] != ''">
 						<p mat-subheader>Sunday:</p>
 						<mat-divider></mat-divider>
-						<mat-list-item *ngFor="let times of avail.sunday">
+						<mat-list-item *ngFor="let times of avail['sunday']">
 							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
 							- <a (click)="deleteTimeSlot(times,'sunday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
