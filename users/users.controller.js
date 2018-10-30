@@ -21,28 +21,18 @@ router.post('/avatar', upload.single('avatar'), [
   // validation ...
 ], (req, res) => {
   // error handling ...
+	var str = req.body['avatar'].split(",");
 
-	console.log("got here");
-	//console.log(req.file);
-	console.log('body',req.body);
-	if (req.files) {
+	var fen = str[1];
 
-    console.log('Uploaded: ', req.files);
-    // Homework: Upload file to S3
-	}
-	else if(req.file) {
-		console.log('file: ', req.file);
-	}
-	var str = req.body['avatar'];
-	console.log(str.indexOf(","));
-	var fen = str.substring(str.indexOf(","),str.length-1);
-
-	//console.log(fen);
+	//extract [filetype];base64
+	var exf = str[0].split("/");
+	var exf = exf[1];
+	var exf = exf.split(";");
+	var ft = exf[0];
 	var buf = Buffer.from(fen,'base64');
-	console.log(buf);
-	fs.writeFileSync(dir +'/src/assets/images/'+req.body['filename']+'.jpg',buf);
-	res.json({message: "done"});
-	//fs.rename(buf,'/src/assets/images/test.jpg', function(err) { console.log(err);  });
+	fs.writeFileSync(dir +'/src/assets/images/'+req.body['filename']+'.' + ft,buf);
+	res.json({src: '/src/assets/images/'+req.body['filename']+'.' + ft });
 
 
 

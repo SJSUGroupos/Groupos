@@ -2,6 +2,7 @@
 	_id: string;
 	avatar: string;
 	username: string;
+	email: string;
 	password: string;
 	firstName: string;
 	lastName: string;

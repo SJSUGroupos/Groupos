@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { User } from '../_models';
 import { UserService, AlertService, EventService } from '../_services';
@@ -11,6 +11,18 @@ import * as moment from 'moment';
 
 const URL = 'users/avatar';
 
+function stringExistsInMem(arr: any): ValidatorFn {
+	return (control: AbstractControl): {[key: string]: any} | null => {
+		if($.inArray($.trim(control.value), arr) >= 0) {
+			//alert(arr);
+			return {'invalid': true } 
+		}
+		else {
+			return null;
+		}
+	};
+}
+
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
@@ -19,6 +31,7 @@ const URL = 'users/avatar';
 export class ProfileComponent implements OnInit {
 	updateProfileForm: FormGroup;
 	updateAvatarForm: FormGroup;
+	updateAvailForm: FormGroup;
 	currentUser: User;
 	users: User[] = [];
 	avail: Object;
@@ -47,24 +60,74 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit() {
 		//this.loadUserInfo();
-		alert(JSON.stringify(this.currentUser));
-		alert(this.avail['monday']);
+		//alert(JSON.stringify(this.currentUser));
+		//alert(this.avail['monday']);
 		this.updateProfileForm = this.formBuilder.group({
 			firstName: [this.currentUser.firstName, Validators.required],
-            lastName: [this.currentUser.lastName, Validators.required],
-            major: [this.currentUser.major, Validators.required],
-
+			lastName: [this.currentUser.lastName, Validators.required],
+			major: [this.currentUser.major, Validators.required],
+			email: [this.currentUser.email, [Validators.required,Validators.email] ],
+			addCourse: ['', stringExistsInMem(this.currentUser.coursework)],
 		});
+
 		this.updateAvatarForm = this.formBuilder.group({
-            avatar: [null, Validators.required],
+			avatar: [null, Validators.required],
 			filename: [this.currentUser._id],
 		});
+
+		this.updateAvailForm = this.formBuilder.group({
+			startTime: [new Date('1/1/1970 01:00:00')],
+			endTime: [new Date('1/1/1970 01:00:00')],
+			eTHSent: ['1'], 
+			eTMSent: ['00'], 
+			sTHSent: ['1'], 
+			sTMSent: ['00'], 
+			ePer: ['AM'], 
+			sPer: ['AM'], 
+		},{validator: this.availableTimeValidator});
 	}
 
 	get f() { return this.updateProfileForm.controls; }
 	get a() { return this.updateAvatarForm.controls; }
+	get availForm() { return this.updateAvailForm.controls; }
+
+
+
+	availableTimeValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+		const start = control.get('startTime');
+		const end = control.get('endTime');
+		if(start.value > end.value) {
+			Object.keys(control.controls).forEach(key => {
+				control.controls[key].setErrors({'invalid': true});
+				control.controls[key].markAsTouched();
+			});
+			//control.controls.eTHSent.setErrors({'invalid': true});
+			//control.controls.eTHSent.markAsTouched();
+		}
+		else {
+			Object.keys(control.controls).forEach(key => {
+				control.controls[key].setErrors(null);
+				control.controls[key].markAsTouched();
+			});
+			//control.controls['eTHSent'].setErrors(null);
+			//control.controls.eTHSent.markAsTouched();
+		}
+
+		return start.value > end.value ? { 'invalidTimeRange': true } : null;
+	};
+
+	timeSentinel(): ValidatorFn {
+		return (control: AbstractControl): {[key: string]: any} | null => {
+			//alert(control.hasError('invalid'));
+			let form = control.parent;
+			alert(form.hasError('invalid'));
+			return form.hasError('invalid') ? {'invalid': true } : null;
+		};
+	}
 
 	onSubmit() {
+
+		this.onAvatarSubmit();
 
 		var userRef = new User();
 
@@ -82,6 +145,8 @@ export class ProfileComponent implements OnInit {
 		obj.firstName = this.f.firstName.value;
 		obj.lastName = this.f.lastName.value;
 		obj.major = this.f.major.value;
+		obj.email = this.f.email.value;
+
 
 		userRef = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -117,7 +182,6 @@ export class ProfileComponent implements OnInit {
 			return;
 		}
 
-		alert(typeof(this.a.avatar.value));
 
 		let fd = new FormData();
 		//fd.append('avatar', this.updateAvatarForm.value);
@@ -128,8 +192,9 @@ export class ProfileComponent implements OnInit {
 			.pipe(first())
 			.subscribe(
 				data => {
-					this.currentUser.avatar='/src/assets/images/'+this.a.filename.value+'.jpg'
+					this.currentUser.avatar=data['src'];
 					console.log("avatar submitted");
+					this.loading = false;
 				},
 				error => {
 					this.alertService.error(error);
@@ -141,43 +206,22 @@ export class ProfileComponent implements OnInit {
 
 	test(event) { console.log(event);}
 
-	fileUploadTest(event) {
-
-		//var selectedFile = <HTMLInputElement>document.getElementById('avatar').files[0];
-		var selectedFile = event.target.files;
-		if(!selectedFile) {
-			console.log("No files")
+	addClass(value: string) { 
+		value = $.trim(value); 
+		if(value ==''){
+			return;
 		}
-		else {
-			for(var i = 0; i < selectedFile.length; i++){
-				console.log(selectedFile[i]);
-			}
+		else if($.inArray(value, this.currentUser.coursework) < 0) { 
+			this.currentUser.coursework.push(value); 
 		}
-
-		var formData: FormData = new FormData();
-
-		formData.append("files", selectedFile[0], "avatar");
-
-		console.log(formData.get("files"));
-
-		this.userService.uploadAvatar(formData)
-			.pipe(first())
-			.subscribe(
-				data => {
-					//this.alertService.success('Avatar Updated');
-				},
-				error => {
-					this.alertService.error(error);
-					this.loading = false;
-				});
-	}	
-
-	addClass(value: string) { this.currentUser.coursework.push(value); }
-
+	}
+		
 	addAvail(day: string, startTime: string, endTime: string, periodS: string, periodE) { 
-		var st = new Date('1/1/1970 '+ moment(startTime+' '+periodS, ["h:mm A"]).format("HH:mm") +':00');
-		var et = new Date('1/1/1970 '+ moment(endTime+' '+periodE, ["h:mm A"]).format("HH:mm") +':00'); 
-		this.currentUser.availabilities[day].push([st,et]); 
+		//var st = new Date('1/1/1970 '+ moment(startTime+' '+periodS, ["h:mm A"]).format("HH:mm") +':00');
+		//var et = new Date('1/1/1970 '+ moment(endTime+' '+periodE, ["h:mm A"]).format("HH:mm") +':00'); 
+		//this.currentUser.availabilities[day].push([st,et]); 
+		//alert(this.f.startTime.value);
+		this.currentUser.availabilities[day].push([this.availForm.startTime.value,this.availForm.endTime.value]); 
 	}
 
 	reset() { 
@@ -186,6 +230,7 @@ export class ProfileComponent implements OnInit {
 		this.f.firstName.setValue(this.currentUser.firstName);
 		this.f.lastName.setValue(this.currentUser.lastName);
 		this.f.major.setValue(this.currentUser.major);
+		this.a.avatar.setValue(null);
 	}
 
 
@@ -229,18 +274,15 @@ export class ProfileComponent implements OnInit {
 		const reader = new FileReader();
 		var resizedImg = new Blob();
 
-		alert("got here");
 		if(event.target.files && event.target.files.length) {
 			const [file] = event.target.files;
-
 			this.ng2ImgMax.resizeImage(file, 100, 10000).subscribe(
 				result => {
 					//resizedImg = new File([result], result.name);
 					resizedImg = (result);
 					reader.readAsDataURL(resizedImg);
-					alert(JSON.stringify(resizedImg));
 					reader.onload = () => {
-						alert(reader.result);
+						this.currentUser.avatar = reader.result;
 						this.updateAvatarForm.patchValue({
 							avatar: reader.result
 						});
@@ -250,12 +292,20 @@ export class ProfileComponent implements OnInit {
 					};
 				},
 				error => {
-					console.log('Oh no!', error);
+					console.log('ng2ImgMax: ', error);
 				}
 			);
 
 		}
 	}
 
+	startTimeChange(startTimeH: string, startTimeM: string, periodS: string) {
+		var st = new Date('1/1/1970 '+ moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]).format("HH:mm") +':00');
+		this.availForm.startTime.setValue(st);
+	}
 
+	endTimeChange(endTimeH, endTimeM, period) {
+		var et = new Date('1/1/1970 '+ moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]).format("HH:mm") +':00');
+		this.availForm.endTime.setValue(et);
+	}
 }

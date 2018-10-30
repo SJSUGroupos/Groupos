@@ -8,7 +8,7 @@ const schema = new Schema({
     major: { type: String, required: false },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    email: { type: String, required: true },
 	availabilities: { 
 		monday: [[Date]],
 		tuesday: [[Date]],
@@ -20,7 +20,7 @@ const schema = new Schema({
 	},
 	coursework: [String],
     createdDate: { type: Date, default: Date.now }
-});
+}, { versionKey: false });
 
 schema.set('toJSON', { virtuals: true });
 
