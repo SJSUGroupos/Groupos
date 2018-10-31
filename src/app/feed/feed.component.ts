@@ -16,14 +16,20 @@ import { Event } from '../_models';
 export class FeedComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
-	events: Event[] = [];
+	  events: Event[] = [];
+    selectedEvent: Event;
 
-    constructor(private userService: UserService, private eventService: EventService) {
+    constructor(private userService: UserService,
+        private eventService: EventService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
         this.loadAllEvents();
+    }
+
+    onSelect(event: Event) {
+      this.selectedEvent = event;
     }
 
     deleteEvent(id: number) {

@@ -11,9 +11,9 @@
 				fxLayoutAlign="space-evenly center">
 		<mat-tab label="Profile" style="">
 			<mat-list>
-				<mat-list-item style="width:100px;height:100px">
+				<mat-list-item style="width:100px; height:100px; aligncenter">
 					<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}
-							 fxLayoutAlign="center" style="width:100px;height:100px">
+					 		 style="width:100px;height:100px; padding:10px; aligncenter"> 
 				</mat-list-item>
 				<mat-list-item>
 					<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
@@ -295,5 +295,6 @@
 			</div>
 		</mat-tab>
 	</mat-tab-group>
-</div>
+
 <app-footer></app-footer>
+</div>

@@ -6,7 +6,7 @@
       <h2>Events</h2>
   </div>
 
-  <mat-card *ngFor="let event of events">
+  <mat-card *ngFor="let event of events" [routerLink]="['/event', event.id]">
     <mat-card-title>
       <h2> {{event.eventName | uppercase}} </h2>
     </mat-card-title>

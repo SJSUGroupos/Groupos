@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { Params, ActivatedRoute } from '@angular/router';
+import { User } from '../_models';
+import { UserService } from '../_services';
+import { AlertService, EventService } from '../_services';
+import { Event } from '../_models';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-view-event',
@@ -7,9 +15,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewEventComponent implements OnInit {
 
-  constructor() { }
+  event: Event;
+  currentUser: User;
+
+  constructor(private userService: UserService,
+      private eventService: EventService,
+      private alertService: AlertService,
+      private location: Location,
+      private route: ActivatedRoute) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
+    let id = this.route.snapshot.params['id'];
+    this.eventService.getAll().pipe(first()).subscribe(() => {
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
