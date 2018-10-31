@@ -6,6 +6,8 @@ import { UserService } from '../_services';
 
 import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
+
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -25,14 +27,14 @@ export class FeedComponent implements OnInit {
     }
 
     deleteEvent(id: number) {
-        this.eventService.delete(id).pipe(first()).subscribe(() => { 
-            this.loadAllEvents() 
+        this.eventService.delete(id).pipe(first()).subscribe(() => {
+            this.loadAllEvents()
         });
     }
 
     private loadAllEvents() {
-        this.eventService.getAll().pipe(first()).subscribe(events => { 
-            this.events = events; 
+        this.eventService.getAll().pipe(first()).subscribe(events => {
+            this.events = events;
         });
     }
 

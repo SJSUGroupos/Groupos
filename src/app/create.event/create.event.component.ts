@@ -7,7 +7,12 @@ import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
 
 
-@Component({templateUrl: 'create.event.component.html'})
+@Component({
+	templateUrl: 'create.event.component.html',
+	selector: 'app-create.event',
+	styleUrls: ['./create.event.component.css']
+})
+
 export class CreateEventComponent implements OnInit {
 	eventForm: FormGroup;
 	loading = false;
