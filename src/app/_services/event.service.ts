@@ -13,7 +13,7 @@ export class EventService {
     }
 
     getById(id: string) {
-        return this.http.get(`${environment.apiUrl}/events/` + id);
+        return this.http.get<Event>(`${environment.apiUrl}/events/` + id);
     }
 
     createEvent(event: Event) {

@@ -3,7 +3,8 @@
   fxLayoutGap="10px"
   fxLayoutAlign.xs="start center"
   fxLayoutAlign.sm="start center"
-  fxLayoutAlign.gt-sm="center center">
+  fxLayoutAlign.gt-sm="center center"
+	style="z-index=1">
 
 	<h2>Profile</h2>
 
@@ -13,7 +14,7 @@
 			<mat-list>
 				<mat-list-item style="width:100px; height:100px; aligncenter">
 					<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}
-					 		 style="width:100px;height:100px; padding:10px; aligncenter"> 
+					 		 style="width:100px;height:100px; padding:10px; aligncenter">
 				</mat-list-item>
 				<mat-list-item>
 					<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
@@ -296,5 +297,5 @@
 		</mat-tab>
 	</mat-tab-group>
 
-<app-footer></app-footer>
+<app-footer fxFlexAlign="end" style="z-index=10"></app-footer>
 </div>

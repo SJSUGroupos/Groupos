@@ -28,7 +28,8 @@ export class ViewEventComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
-    this.eventService.getAll().pipe(first()).subscribe(() => {
+    this.eventService.getById(id).pipe(first()).subscribe(event => {
+      this.event = event;
     });
   }
 

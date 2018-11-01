@@ -1,38 +1,42 @@
 <div class="container"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
 
-     <h3>Event</h3>
+     <h3><i>Event</i></h3>
 
      <mat-list *ngIf="event">
        <mat-list-item>
-         <h2> {{event.eventName | uppercase}} </h2>
+         <h1 mat-line> {{event.eventName | uppercase}} </h1>
        </mat-list-item>
        <mat-list-item>
-         <h5> {{event.eventCourse}} </h5>
-         <h6> {{event.eventTime | date: "MM/dd/yyyy 'at' h:mma"}} </h6>
+         <h5 mat-line> {{event.eventCourse}} </h5>
        </mat-list-item>
        <mat-list-item>
-         <p> {{event.description}} </p>
+         <h6 mat-line> {{event.eventDate | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
+       </mat-list-item>
+       <mat-list-item>
+         <h6 mat-line><i>Description</i></h6>
+         <p mat-line> {{event.description}} </p>
          <hr>
-         <p> {{event.eventPlace}} </p>
+         <p mat-line> {{event.eventPlace}} </p>
        </mat-list-item>
        <mat-list-item>
 <!-->Change image to creator's avatar -> creator must be changed to :User<-->
-         <div mat-card-avatar src="/assets/images/alberto.png"></div>
+         <div mat-card-avatar src="/assets/images/alberto.png" style="aligncenter"></div>
          <p> by {{event.creator}}</p>
        </mat-list-item>
-       <h6> Subscribers </h6>
+       <h6> <i><u>Subscribers</u></i> </h6>
        <mat-list-item>
        </mat-list-item>
      </mat-list>
 
-     <button mat-button>JOIN</button>
-     <button mat-button (click)="goBack()">BACK</button>
+  <div fxFlex fxLayout="row"
+       fxLayoutAlign="center"
+       fxLayoutGap="10px">
+    <button mat-button>JOIN</button>
+    <button mat-button (click)="goBack()">BACK</button>
+  </div>
 
 </div>
 
