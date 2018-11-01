@@ -3,19 +3,23 @@
   fxLayoutGap="10px"
   fxLayoutAlign.xs="start center"
   fxLayoutAlign.sm="start center"
-  fxLayoutAlign.gt-sm="center center">
+  fxLayoutAlign.gt-sm="center center"
+	style="z-index=1">
+
+	<h2>Profile</h2>
 
 	<mat-tab-group fxLayout="column"
 				fxLayoutAlign="space-evenly center">
 		<mat-tab label="Profile" style="">
-			<mat-list> 
-				<mat-list-item fxLayoutAlign="center" style="width:100px;height:100px">
-					<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}} style="width:100px;height:100px">
+			<mat-list>
+				<mat-list-item style="width:100px; height:100px; aligncenter">
+					<img matListAvatar src={{currentUser.avatar}} alt={{currentUser.firstName}}
+					 		 style="width:100px;height:100px; padding:10px; aligncenter">
 				</mat-list-item>
 				<mat-list-item>
 					<h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
 				</mat-list-item>
-				<mat-list-item> 
+				<mat-list-item>
 					<h6 mat-line>Major</h6>
 					<p mat-line> {{currentUser.major}} </p>
 				</mat-list-item>
@@ -24,54 +28,54 @@
 					<p mat-line *ngFor="let course of currentUser.coursework"> {{course}} </p>
 				</mat-list-item>
 				<h6>Availability</h6>
-				<mat-list> 
+				<mat-list>
 					<div *ngIf="avail['monday'] != ''">
 					<h3 mat-subheader>Monday:</h3>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['monday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['tuesday'] != ''">
 					<p mat-subheader>Tuesday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item  *ngFor="let times of avail['tuesday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['wednesday'] != ''">
 					<p mat-subheader>Wednesday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['wednesday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['thursday'] != ''">
 					<p mat-subheader>Thursday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['thursday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['friday'] != ''">
 					<p mat-subheader>Friday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['friday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['saturday'] != ''">
 					<p mat-subheader>Saturday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['saturday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 					<div *ngIf="avail['sunday'] != ''">
 					<p mat-subheader>Sunday:</p>
 					<mat-divider></mat-divider>
 					<mat-list-item *ngFor="let times of avail['sunday']">
-						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+						<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 					</mat-list-item>
 					</div>
 				</mat-list>
@@ -122,7 +126,7 @@
 
 				<h6>Current Coursework:</h6>
 				<mat-list-item *ngFor="let course of currentUser.coursework">
-					<p> {{course}} 
+					<p> {{course}}
 					- <a (click)="deleteCourse(course)" class="text-danger">Delete</a>
 					</p>
 				</mat-list-item>
@@ -148,7 +152,7 @@
 						<h3 mat-subheader>Monday:</h3>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['monday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'monday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -156,7 +160,7 @@
 						<p mat-subheader>Tuesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['tuesday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'tuesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -164,7 +168,7 @@
 						<p mat-subheader>Wednesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['wednesday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'wednesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -172,7 +176,7 @@
 						<p mat-subheader>Thursday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['thursday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'thursday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -180,7 +184,7 @@
 						<p mat-subheader>Friday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['friday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'friday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -188,7 +192,7 @@
 						<p mat-subheader>Saturday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['saturday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'saturday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -196,7 +200,7 @@
 						<p mat-subheader>Sunday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['sunday']">
-							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}} 
+							<p mat-line >{{times[0] | date : 'shortTime'}} - {{times[1] | date : 'shortTime'}}
 							- <a (click)="deleteTimeSlot(times,'sunday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -220,7 +224,7 @@
 					<tr>
 						<td>
 							<mat-form-field>
-								<mat-select #startTimeH value="1" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTHSent"> 
+								<mat-select #startTimeH value="1" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTHSent">
 									<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
 								</mat-select>
 							</mat-form-field>
@@ -251,7 +255,7 @@
 					<tr>
 						<td>
 							<mat-form-field>
-								<mat-select #endTimeH value="1" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="eTHSent"> 
+								<mat-select #endTimeH value="1" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="eTHSent">
 									<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
 								</mat-select>
 							</mat-form-field>
@@ -292,5 +296,6 @@
 			</div>
 		</mat-tab>
 	</mat-tab-group>
+
+<app-footer fxFlexAlign="end" style="z-index=10"></app-footer>
 </div>
-<app-footer></app-footer>
