@@ -1,4 +1,5 @@
 export class Event {
+	_id: string;
 	creator: string;
 	subscribers: [string];
 	public: boolean;
@@ -6,13 +7,8 @@ export class Event {
 	eventName: string;
 	eventDate: string;
 	eventPlace: string;
-	eventTime: Date;
+	eventStartTime: Date;
+	eventEndTime: Date;
 	eventCourse: string;
 	createdDate: string;
-
-
-	/*constructor(eventId:number) 
-	{
-		this.eventId = eventId;
-	}*/
 }
