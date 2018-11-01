@@ -16,14 +16,15 @@
 		<mat-datepicker #picker></mat-datepicker>
 	<mat-error *ngIf="f.eventDate.errors">{{getDateError()}}</mat-error>
 	</mat-form-field>
-	<h5 mat-subheader>Start Time</h5>
+
+	<h5 mat-subheader class="left-text">Start Time</h5>
 	<div style="display:flex:flex-direction:row;">
 		<mat-form-field style="width:30%;">
 			<mat-select #startTimeH value="1" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTHSent"> 
 				<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
 			</mat-select>
 		</mat-form-field>
-		<div style="display:inline;"> : </div>
+		<div style="display:inline"> : </div>
 		<mat-form-field style="width:30%;">
 			<mat-select #startTimeM value="00" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTMSent">
 				<mat-option *ngFor="let min of minutes" value="{{min}}">{{min}}</mat-option>
@@ -38,7 +39,7 @@
 		</mat-form-field>
 	</div>
 
-	<h5 mat-subheader>End Time</h5>
+	<h5 mat-subheader class="left-text">End Time</h5>
 	<div style="display:flex:flex-direction:row;">
 		<mat-form-field style="width:30%;">
 			<mat-select #endTimeH value="1" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="eTHSent"> 
@@ -59,7 +60,7 @@
 		</mat-form-field>
 	</div>
 	<span *ngIf="eventForm.hasError('invalidTimeRange')" style="text-align:center;color:red;">Start time must be before end time</span>
-	<section>
+	<section style="margin-bottom:20px">
 		<mat-checkbox [labelPosition]="before" formControlName="public">Public</mat-checkbox>
 	</section>
 	<div class="form-group">

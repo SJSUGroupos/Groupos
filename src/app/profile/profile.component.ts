@@ -15,6 +15,7 @@ function stringExistsInMem(arr: any): ValidatorFn {
 	return (control: AbstractControl): {[key: string]: any} | null => {
 		if($.inArray($.trim(control.value), arr) >= 0) {
 			//alert(arr);
+			control.markAsTouched();
 			return {'invalid': true } 
 		}
 		else {

@@ -2,3 +2,6 @@
 	width:100%;
 	display: inline-block;
 }
+.left-text {
+	text-align:left;
+}
