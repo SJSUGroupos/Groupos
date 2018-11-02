@@ -44,4 +44,8 @@ export class FeedComponent implements OnInit {
         });
     }
 
+    private loadAllEventsDescription() {
+      
+    }
+
 }
