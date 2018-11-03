@@ -5,9 +5,18 @@ This app is an event scheduling app designed to facilitate study groups between 
 ## Authors
 Bradley Kreager, Miguel Gonzalez Fernandez, Lee-Yu Lai, Isabelle Low (Group 18)
 
-## Development server
+## Heroku Development
+Code pushed to master branch is automatically deployed to the heroku development serves. To view the most current build go to url: (https://groupos.herokuapp.com).
 
+## Development server
+### Angular CLI Interface
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Node.js
+This code can also be ran using the node.js by using the cm `node index.js`. When using this command navigate to `http://localhost:5000/` in your web browser.
+
+### NOTE: NPM Install
+This repository ingnores the node_modules folder, and so before running locally `npm install` must be ran in the repo directory to download all necessary dependencies.
 
 ## Code scaffolding
 
