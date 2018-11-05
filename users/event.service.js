@@ -15,7 +15,7 @@ module.exports = {
 };
 
 async function getAll() {
-    return await Event.find().select('-eventId');
+    return await Event.find().select('-eventId').sort({eventDate: 1});
 }
 
 async function getById(id) {

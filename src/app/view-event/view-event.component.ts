@@ -58,7 +58,7 @@ export class ViewEventComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.loadEventData();
-					this.alertService.success('Subscribed!', true);
+					this.alertService.success('Subscribed!');
 					//this.router.navigate(['/']);
 				},
 				error => {
@@ -75,13 +75,7 @@ export class ViewEventComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.loadEventData();
-					this.alertService.success('Unsubscribed!', true);
-					//this.router.navigate(['/']);
-				},
-				error => {
-					this.alertService.error(error);
-					//this.loading = false;
-				});
+					this.alertService.success('Unsubscribed!');
 
 	}
 
