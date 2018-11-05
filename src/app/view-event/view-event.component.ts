@@ -77,6 +77,7 @@ export class ViewEventComponent implements OnInit {
 					this.loadEventData();
 					this.alertService.success('Unsubscribed!');
 
+				});
 	}
 
 	loadEventData() {
