@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
 	creator: { type: String, unique: false, required: true },
-	subscribers: { type: [String], required: false },
+	subscribers: { type: Array, required: false },
 	public: { type: Boolean, unique: false, required: true },
 	description: { type: String, required: false },
     eventName: { type: String, required: true },
@@ -13,7 +13,7 @@ const schema = new Schema({
     eventPlace: { type: String, required: false},
     eventCourse: { type: String, required: false},
     createdDate: { type: Date, default: Date.now }
-});
+}, { versionKey: false });
 
 schema.set('toJSON', { virtuals: true });
 

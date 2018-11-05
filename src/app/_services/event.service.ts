@@ -24,6 +24,14 @@ export class EventService {
         return this.http.put(`${environment.apiUrl}/events/` + id, event);
     }
 
+    subscribe(id, userInfo) {
+		return this.http.put(`${environment.apiUrl}/events/sub/` + id, userInfo);
+    }
+
+    unsubscribe(id, userId) {
+		return this.http.put(`${environment.apiUrl}/events/unsub/` + id, userId);
+    }
+
     delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/events/` + id);
     }

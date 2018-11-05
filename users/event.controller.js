@@ -8,6 +8,8 @@ router.get('/', getAll);
 router.get('/userevents', getUserEvents);
 router.get('/:id', getById);
 router.put('/:id', update);
+router.put('/sub/:id', subscribe)
+router.put('/unsub/:id', unsubscribe)
 router.delete('/:id', _delete);
 
 module.exports = router;
@@ -37,7 +39,20 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
+	eventService.subscribe(req.params.id, req.body)
 	eventService.update(req.params.id, req.body)
+		.then(() => res.json({}))
+		.catch(err => next(err));
+}
+
+function subscribe(req, res, next) {
+	eventService.subscribe(req.params.id, req.body)
+		.then(() => res.json({}))
+		.catch(err => next(err));
+}
+
+function unsubscribe(req, res, next) {
+	eventService.unsubscribe(req.params.id, req.body)
 		.then(() => res.json({}))
 		.catch(err => next(err));
 }

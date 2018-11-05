@@ -117,14 +117,7 @@ export class ProfileComponent implements OnInit {
 		return start.value > end.value ? { 'invalidTimeRange': true } : null;
 	};
 
-	timeSentinel(): ValidatorFn {
-		return (control: AbstractControl): {[key: string]: any} | null => {
-			//alert(control.hasError('invalid'));
-			let form = control.parent;
-			alert(form.hasError('invalid'));
-			return form.hasError('invalid') ? {'invalid': true } : null;
-		};
-	}
+
 
 	onSubmit() {
 

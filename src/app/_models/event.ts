@@ -1,7 +1,9 @@
+import {Event_Subscriber} from './event_subscriber';
+
 export class Event {
 	_id: string;
 	creator: string;
-	subscribers: [string];
+	subscribers: Array<Event_Subscriber>; 
 	public: boolean;
 	description: string;
 	eventName: string;
