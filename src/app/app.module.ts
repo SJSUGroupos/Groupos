@@ -24,44 +24,46 @@ import { FeedComponent } from './feed';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { ViewEventComponent } from './view-event/view-event.component';
+import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
 
 @NgModule({
-    imports: [
-      BrowserModule,
-  		BrowserAnimationsModule,
-  		FlexLayoutModule,
-  		FormsModule,
-      HttpClientModule,
-  		routing,
-  		MaterialModule,
-  		MatNativeDateModule,
-      ReactiveFormsModule,
-  		FileUploadModule,
-  		Ng2ImgMaxModule,
-    ],
-    declarations: [
-      AppComponent,
-      AlertComponent,
-      HomeComponent,
-      LoginComponent,
-  		RegisterComponent,
-  		CreateEventComponent,
-  		ProfileComponent,
-  		FeedComponent,
-  		FooterComponent,
-  		HeaderComponent,
-  		ViewEventComponent,
-    ],
-    providers: [
-        AuthGuard,
-        AlertService,
-        AuthenticationService,
-        UserService,
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		FlexLayoutModule,
+		FormsModule,
+		HttpClientModule,
+		routing,
+		MaterialModule,
+		MatNativeDateModule,
+		ReactiveFormsModule,
+		FileUploadModule,
+		Ng2ImgMaxModule,
+	],
+	declarations: [
+		AppComponent,
+		AlertComponent,
+		HomeComponent,
+		LoginComponent,
+		RegisterComponent,
+		CreateEventComponent,
+		ProfileComponent,
+		FeedComponent,
+		FooterComponent,
+		HeaderComponent,
+		ViewEventComponent,
+		ViewUserEventsComponent,
+	],
+	providers: [
+		AuthGuard,
+		AlertService,
+		AuthenticationService,
+		UserService,
+		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		EventService
-    ],
-    bootstrap: [AppComponent]
+	],
+	bootstrap: [AppComponent]
 })
 
 export class AppModule { }

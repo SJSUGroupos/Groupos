@@ -16,6 +16,10 @@ export class EventService {
         return this.http.get<Event>(`${environment.apiUrl}/events/` + id);
     }
 
+	getByUserId(id: string) {
+		return this.http.put<any>(`${environment.apiUrl}/events/currUser`, { id: id });
+    }
+
     createEvent(event: Event) {
         return this.http.post(`${environment.apiUrl}/events/new`, event);
     }
