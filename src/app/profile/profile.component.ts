@@ -121,11 +121,15 @@ export class ProfileComponent implements OnInit {
 
 	onSubmit() {
 
-		this.onAvatarSubmit();
+		this.submitted = true;
+		this.onAvatarSubmit(() => this.updateProfile());
+
+	}
+
+
+	updateProfile() {
 
 		var userRef = new User();
-
-		this.submitted = true;
 		// stop here if form is invalid
 		if (this.updateProfileForm.invalid) {
 			return;
@@ -167,7 +171,7 @@ export class ProfileComponent implements OnInit {
 
 	}
 
-	onAvatarSubmit() {
+	onAvatarSubmit(cb?: () => void) {
 
 
 		//this.submitted = true;
@@ -187,8 +191,7 @@ export class ProfileComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.currentUser.avatar=data['src'];
-					console.log("avatar submitted");
-					this.loading = false;
+					cb();
 				},
 				error => {
 					this.alertService.error(error);

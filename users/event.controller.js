@@ -7,6 +7,7 @@ router.post('/new', createEvent);
 router.get('/', getAll);
 router.get('/userevents', getUserEvents);
 router.get('/:id', getById);
+router.put('/currUser', getByUserId);
 router.put('/:id', update);
 router.put('/sub/:id', subscribe)
 router.put('/unsub/:id', unsubscribe)
@@ -38,8 +39,13 @@ function getById(req, res, next) {
 		.catch(err => next(err));
 }
 
+function getByUserId(req, res, next) {
+	eventService.getByUserId(req.body)
+		.then(user => user ? res.json(user) : res.sendStatus(404))
+		.catch(err => next(err));
+}
+
 function update(req, res, next) {
-	eventService.subscribe(req.params.id, req.body)
 	eventService.update(req.params.id, req.body)
 		.then(() => res.json({}))
 		.catch(err => next(err));

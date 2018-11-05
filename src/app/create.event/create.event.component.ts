@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { User } from '../_models';
 
+import { Event_Subscriber } from '../_models';
 import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -24,6 +26,7 @@ export class CreateEventComponent implements OnInit {
 	minDate = new Date();
 	hours: number[] = [];
 	minutes: number[] = [];
+	currentUser: User;
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -32,6 +35,7 @@ export class CreateEventComponent implements OnInit {
 		private alertService: AlertService) { 
 		this.hours = this.retRange(1,12,false);
 		this.minutes = this.retRange(0,59,true);
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	ngOnInit() {
@@ -63,12 +67,21 @@ export class CreateEventComponent implements OnInit {
 
 		var obj = new Event();
 
-		let currentUser = JSON.parse(localStorage.getItem("currentUser")).username;
+		let creator = new Event_Subscriber();
+		creator.id = this.currentUser._id;
+		creator.avatar = this.currentUser.avatar;
+		creator.email = this.currentUser.email;
+		creator.firstName = this.currentUser.firstName;
+		creator.lastName = this.currentUser.lastName;
+		creator.major = this.currentUser.major;
+
 
 		obj.eventName = this.f.eventName.value;
 		obj.eventCourse = this.f.course.value;
 		obj.eventDate = this.f.eventDate.value;
-		obj.creator = currentUser;
+		obj.eventStartTime = this.f.startTime.value;
+		obj.eventEndTime = this.f.endTime.value;
+		obj.creator = creator;
 		obj.public = this.f.public.value;
 		obj.description = this.f.description.value;
 
@@ -124,23 +137,22 @@ export class CreateEventComponent implements OnInit {
 	timeRangeValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
 		const start = control.get('startTime');
 		const end = control.get('endTime');
-		//if(start.value > end.value) {
-			//		Object.keys(control.controls).forEach(key => {
-			//	control.controls[key].setErrors({'invalid': true});
-			//	control.controls[key].markAsTouched();
-		//		});
-			//control.controls.eTHSent.setErrors({'invalid': true});
-			//control.controls.eTHSent.markAsTouched();
-		//	}
-		//	else {
-			//Object.keys(control.controls).forEach(key => {
-			//	control.controls[key].setErrors(null);
-			//	control.controls[key].markAsTouched();
-		//		});
-			//control.controls['eTHSent'].setErrors(null);
-			//control.controls.eTHSent.markAsTouched();
-		//	}
-		//alert(start.value > end.value);
+		if(start.value > end.value) {
+			Object.keys(control.controls).forEach(key => {
+				control.controls[key].setErrors({'invalid': true});
+				control.controls[key].markAsTouched();
+			});
+			control.controls.eTHSent.setErrors({'invalid': true});
+			control.controls.eTHSent.markAsTouched();
+		}
+		else {
+			Object.keys(control.controls).forEach(key => {
+				control.controls[key].setErrors(null);
+				control.controls[key].markAsTouched();
+			});
+			control.controls['eTHSent'].setErrors(null);
+			control.controls.eTHSent.markAsTouched();
+		}
 		return start.value > end.value ? { 'invalidTimeRange': true } : null;
 	};
 

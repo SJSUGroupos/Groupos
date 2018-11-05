@@ -8,15 +8,15 @@ import { Event } from '../_models';
 import { Event_Subscriber } from '../_models';
 import { Location } from '@angular/common';
 
-
 @Component({
-	selector: 'app-view-event',
-	templateUrl: './view-event.component.html',
-	styleUrls: ['./view-event.component.css']
+  selector: 'app-view-user-events',
+  templateUrl: './view-user-events.component.html',
+  styleUrls: ['./view-user-events.component.css']
 })
-export class ViewEventComponent implements OnInit {
+export class ViewUserEventsComponent implements OnInit {
 
 	event: Event;
+	events: Event[];
 	currentUser: User;
 	currentSubscribers: Event_Subscriber[];
 	eventId: string;
@@ -34,7 +34,7 @@ export class ViewEventComponent implements OnInit {
 
 	ngOnInit() {
 		this.loading = true;
-		this.eventId = this.route.snapshot.params['id'];
+		//this.eventId = this.route.snapshot.params['id'];
 		this.loadEventData();
 	}
 
@@ -44,6 +44,7 @@ export class ViewEventComponent implements OnInit {
 
 	subscribe() {
 
+		this.loading = true;
 		let newSubscriber = new Event_Subscriber;
 
 		newSubscriber.id = this.currentUser._id;
@@ -57,8 +58,7 @@ export class ViewEventComponent implements OnInit {
 			.pipe(first())
 			.subscribe(
 				data => {
-					this.loadEventData();
-					this.alertService.success('Subscribed!');
+					this.loadEventData(() => { this.alertService.success('Subscribed!'); this.loading = false; } );
 					//this.router.navigate(['/']);
 				},
 				error => {
@@ -70,25 +70,23 @@ export class ViewEventComponent implements OnInit {
 
 	unsubscribe() {
 
+		this.loading = true;
 		this.eventService.unsubscribe(this.event._id, { id: this.currentUser._id })
 			.pipe(first())
 			.subscribe(
 				data => {
-					this.loadEventData();
-					this.alertService.success('Unsubscribed!');
-				},
-				error => {
-					this.alertService.error(error);
-					//this.loading = false;
+					this.loadEventData(() => { this.alertService.success('Unsubscribed!'); this.loading = false;  });
+
 				});
 	}
 
-
-	loadEventData() {
-		this.eventService.getById(this.eventId).pipe(first()).subscribe(event => {
-			this.event = event;
-			this.currentSubscribers = this.event.subscribers;
-			this.subscribed = this.isSubscribed();
+	loadEventData(cb?: () => void) {
+		this.eventService.getByUserId(this.currentUser._id).pipe(first()).subscribe(events => {
+			this.events = events;
+			//alert(JSON.stringify(events.select('-subscribers')));
+			//this.currentSubscribers = this.event.subscribers;
+			//this.subscribed = this.isSubscribed();
+			cb();
 			this.loading = false;
 		});
 	}

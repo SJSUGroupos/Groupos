@@ -7,6 +7,7 @@ const Event = db.Event;
 module.exports = {
     getAll,
     getById,
+    getByUserId,
     create,
     update,
 	subscribe,
@@ -15,7 +16,7 @@ module.exports = {
 };
 
 async function getAll() {
-    return await Event.find().select('-eventId').sort({eventDate: 1});
+    return await Event.find({ "public": true }).select('-eventId').sort({eventDate: 1});
 }
 
 async function getById(id) {
@@ -33,6 +34,11 @@ async function create(eventParam) {
 	}
   });
 }
+
+async function getByUserId({ id }) {
+    return await Event.find({ $or: [ { 'subscribers.id': id }, { 'creator.id': id } ] });
+}
+
 
 async function update(id, eventParam) {
     const event = await Event.findById(id);
@@ -54,7 +60,6 @@ async function subscribe(id, userInfo) {
 	//if (event.subscribers.indexOf(userInfo['id']) > -1) {
 	//	throw 'Already subscribed to this event'; 
 	//}
-	console.log(event.subscribers);
 	if(exists(event.subscribers, 'id', userInfo['id'])) {
 		throw 'Already subscribed to this event'; 
 	}
@@ -74,27 +79,42 @@ function exists(arr, prop, value) {
 }
 
 async function unsubscribe(id, userId) {
-    const event = await Event.findById(id);
+    var event = await Event.findById(id);
 
     // validate
     if (!event) throw 'Event not found';
 	//if (event.subscribers.indexOf(userInfo['id']) > -1) {
 	//	throw 'Already subscribed to this event'; 
 	//}
-	console.log(event.subscribers);
+	//console.log(event.subscribers);
 	
-
+	//console.log(userId['id']);
+/*
 	event.subscribers.find((o,i) => {
-		if(o['id'] === userId['id']) {
+		if(o.i === userId['id']) {
+			//console.log(event.subscribers);
 			event.subscribers.splice(i,1);
+			//console.log(event.subscribers);
 		}
 		else {
-			throw 'You are not subscribed to this event'; 
+			//throw 'You are not subscribed to this event'; 
 		}
 	});
+*/
+	var index = -1;
+	for (var i = 0; i < event.subscribers.length; i++) {
+		if(event.subscribers[i].id == userId.id) {
+			index = i;
+			break;
+			//continue;
+		}
+	}
+	if (index > -1) {
+		event.subscribers.splice(index,1);
+	}
 	await event.save();
 }
 
 async function _delete(id) {
-    await Event.findByIdAndRemove(id);
+	await Event.findByIdAndRemove(id);
 }
