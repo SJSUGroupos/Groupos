@@ -36,7 +36,7 @@ export class EventService {
 		return this.http.put(`${environment.apiUrl}/events/unsub/` + id, userId);
     }
 
-    delete(id: number) {
+    delete(id: string) {
         return this.http.delete(`${environment.apiUrl}/events/` + id);
     }
 }

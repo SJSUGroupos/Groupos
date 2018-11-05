@@ -69,9 +69,6 @@ async function subscribe(id, userInfo) {
     await event.save();
 }
 
-async function _delete(id) {
-    await Event.findByIdAndRemove(id);
-}
 
 
 function exists(arr, prop, value) {

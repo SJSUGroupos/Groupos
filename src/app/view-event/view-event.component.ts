@@ -22,6 +22,7 @@ export class ViewEventComponent implements OnInit {
 	eventId: string;
 	loading = false;
 	subscribed = false;
+	userIsCreator = false;
 
 	constructor(private userService: UserService,
 		private eventService: EventService,
@@ -43,6 +44,9 @@ export class ViewEventComponent implements OnInit {
 	}
 
 	subscribe() {
+		if(this.currentUser._id == this.event.creator['id']) {
+			return;
+		}
 
 		let newSubscriber = new Event_Subscriber;
 
@@ -84,17 +88,36 @@ export class ViewEventComponent implements OnInit {
 	}
 
 
-	loadEventData() {
+	loadEventData(cb?: () => void) {
 		this.eventService.getById(this.eventId).pipe(first()).subscribe(event => {
 			this.event = event;
 			this.currentSubscribers = this.event.subscribers;
 			this.subscribed = this.isSubscribed();
+			this.userIsCreator = this.isCreator();
 			this.loading = false;
 		});
 	}
 
 	private isSubscribed() {
 		return this.currentSubscribers.find(o => o['id'] === this.currentUser._id) ? true : false;
+	}
+
+	isCreator() {
+		//return this.currentUser._id == input ? true : false;
+		return this.currentUser._id == this.event.creator['id'] ? true : false;
+
+	}
+
+	deleteEvent(eventId: string) {
+		this.loading = true;
+		this.eventService.delete(eventId)
+			.pipe(first())
+			.subscribe(
+				data => {
+					//this.loadEventData(() => { this.alertService.success('Event Deleted'); this.loading = false;  });
+					this.goBack();
+				});
+
 	}
 
 }

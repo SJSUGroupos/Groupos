@@ -35,7 +35,7 @@ export class ViewUserEventsComponent implements OnInit {
 	ngOnInit() {
 		this.loading = true;
 		//this.eventId = this.route.snapshot.params['id'];
-		this.loadEventData();
+		this.loadEventData(() => { this.loading = false; });
 	}
 
 	goBack(): void {
@@ -68,16 +68,28 @@ export class ViewUserEventsComponent implements OnInit {
 
 	}
 
-	unsubscribe() {
+	unsubscribe(eventId: string) {
 
 		this.loading = true;
-		this.eventService.unsubscribe(this.event._id, { id: this.currentUser._id })
+		this.eventService.unsubscribe(eventId, { id: this.currentUser._id })
 			.pipe(first())
 			.subscribe(
 				data => {
 					this.loadEventData(() => { this.alertService.success('Unsubscribed!'); this.loading = false;  });
 
 				});
+	}
+
+	deleteEvent(eventId: string) {
+		this.loading = true;
+		this.eventService.delete(eventId)
+			.pipe(first())
+			.subscribe(
+				data => {
+					this.loadEventData(() => { this.alertService.success('Event Deleted'); this.loading = false;  });
+
+				});
+
 	}
 
 	loadEventData(cb?: () => void) {
@@ -87,12 +99,15 @@ export class ViewUserEventsComponent implements OnInit {
 			//this.currentSubscribers = this.event.subscribers;
 			//this.subscribed = this.isSubscribed();
 			cb();
-			this.loading = false;
 		});
 	}
 
 	private isSubscribed() {
 		return this.currentSubscribers.find(o => o['id'] === this.currentUser._id) ? true : false;
+	}
+
+	isCreator(input: string) {
+		return this.currentUser._id == input ? true : false;
 	}
 
 }

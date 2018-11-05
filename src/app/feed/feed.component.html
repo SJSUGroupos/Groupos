@@ -1,25 +1,27 @@
 <div class="container"
-     fxLayout="column"
-     fxLayoutGap="15px">
+	 fxLayout="column"
+  fxLayoutGap="15px">
 
-  <div fxFlex>
-      <h2>Events</h2>
-  </div>
+	<div fxFlex>
+		<h2>Events</h2>
+	</div>
 
-  <mat-card *ngFor="let event of events" [routerLink]="['/event', event.id]">
-    <mat-card-title>
-      <h2> {{event.eventName | uppercase}} </h2>
-    </mat-card-title>
-    <mat-card-subtitle>
-      <h5> {{event.eventCourse}} </h5>
-      <h6> {{event.description}} </h6>
-    </mat-card-subtitle>
-    <mat-card-content style="text-align:center;">
-      <p> {{event.eventTime}} </p>
-      <hr>
-      <p> {{event.eventPlace}} </p>
-      <p> by {{event.creator}}</p>
-    </mat-card-content>
-  </mat-card>
+	<mat-card *ngFor="let event of events" [routerLink]="['/event', event.id]">
+		<mat-card-title>
+			<h2> {{event.eventName | uppercase}} </h2>
+		</mat-card-title>
+		<mat-card-subtitle>
+			<h5> {{event.eventCourse}} </h5>
+			<h6> {{event.description}} </h6>
+		</mat-card-subtitle>
+		<mat-card-content style="text-align:center;">
+			<hr>
+			<p mat-line>{{event.eventDate | date}}</p>
+			<p mat-line >{{event.eventStartTime | date : 'shortTime'}} - {{event.eventEndTime | date : 'shortTime'}}</p>
+			<hr>
+			<p> {{event.eventPlace}} </p>
+			<p> by {{event.creator['firstName']}} {{event.creator['lastName']}}</p>
+		</mat-card-content>
+	</mat-card>
 </div>
 <app-footer></app-footer>

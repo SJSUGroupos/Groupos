@@ -60,7 +60,6 @@ export class CreateEventComponent implements OnInit {
 
 	onSubmit() {
 		this.submitted = true;
-		alert(this.f.eventDate.value)
 		if (this.eventForm.invalid) {
 			return;
 		}
@@ -85,7 +84,6 @@ export class CreateEventComponent implements OnInit {
 		obj.public = this.f.public.value;
 		obj.description = this.f.description.value;
 
-		alert(JSON.stringify(obj));
 		this.loading = true;
 		//this.eventService.createEvent(this.eventForm.value)
 		this.eventService.createEvent(obj)

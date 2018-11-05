@@ -32,7 +32,7 @@ export class FeedComponent implements OnInit {
       this.selectedEvent = event;
     }
 
-    deleteEvent(id: number) {
+    deleteEvent(id: string) {
         this.eventService.delete(id).pipe(first()).subscribe(() => {
             this.loadAllEvents()
         });

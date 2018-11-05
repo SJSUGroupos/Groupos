@@ -1,52 +1,56 @@
 <div class="container"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxLayoutGap="10px">
+	 fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px">
 
-     <h3><i>Event</i></h3>
+	<h3><i>Event</i></h3>
 
-     <mat-list *ngIf="event">
-       <mat-list-item>
-         <h1 mat-line> {{event.eventName | uppercase}} </h1>
-       </mat-list-item>
-       <mat-list-item>
-         <h5 mat-line> {{event.eventCourse}} </h5>
-       </mat-list-item>
-       <mat-list-item>
-         <h6 mat-line> {{event.eventDate | date:"MM/dd/yyyy 'at' h:mma"}} </h6>
-       </mat-list-item>
-       <mat-list-item>
-         <h6 mat-line><i>Description</i></h6>
-         <p mat-line> {{event.description}} </p>
-         <hr>
-         <p mat-line> {{event.eventPlace}} </p>
-       </mat-list-item>
-       <mat-list-item>
-<!-->Change image to creator's avatar -> creator must be changed to :User<-->
-<div mat-card-avatar src="" style="aligncenter"></div>
-         <p> by {{event.creator}}</p>
-       </mat-list-item>
-       <h6> <i><u>Subscribers</u></i> </h6>
-	   <div *ngFor="let user of currentSubscribers" style="text-align:center">
+	<mat-list *ngIf="event">
+		<mat-list-item>
+			<h1 mat-line> {{event.eventName | uppercase}} </h1>
+		</mat-list-item>
+		<mat-list-item>
+			<h5 mat-line> {{event.eventCourse}} </h5>
+		</mat-list-item>
+		<mat-list-item>
+			<h6 mat-line> {{event.eventDate | date:"MM/dd/yyyy" }} </h6>
+		</mat-list-item>
+		<mat-list-item>
+			<p mat-line >{{event.eventStartTime | date : 'shortTime'}} - {{event.eventEndTime | date : 'shortTime'}}</p>
+		</mat-list-item>
+		<mat-list-item>
+			<h6 mat-line><i>Description</i></h6>
+			<p mat-line> {{event.description}} </p>
+			<hr>
+			<p mat-line> {{event.eventPlace}} </p>
+		</mat-list-item>
+		<mat-list-item>
+			<!-->Change image to creator's avatar -> creator must be changed to :User<-->
+			<div mat-card-avatar src="" style="aligncenter"></div>
+			<p> by {{event.creator['firstName']}} {{event.creator['lastName']}}</p>
+		</mat-list-item>
+		<h6> <i><u>Subscribers</u></i> </h6>
+		<div *ngFor="let user of currentSubscribers" style="text-align:center">
 
-		   <mat-list-item style="width:100px; height:100px; aligncenter">
-			   <img matListAvatar src={{user.avatar}} alt={{user.firstName}}
-					style="width:100px;height:100px; padding:10px; aligncenter">
-		   </mat-list-item>
+			<mat-list-item style="width:100px; height:100px; aligncenter">
+				<img matListAvatar src={{user.avatar}} alt={{user.firstName}}
+				  style="width:100px;height:100px; padding:10px; aligncenter">
+			</mat-list-item>
 
-		   <mat-list-item>
-			   {{user.firstName}} {{user.lastName}}
-		   </mat-list-item>
-	   </div>
-	 </mat-list>
+			<mat-list-item>
+				{{user.firstName}} {{user.lastName}}
+			</mat-list-item>
+		</div>
+	</mat-list>
 
-	 <div fxFlex fxLayout="row"
-			  fxLayoutAlign="center"
-	 fxLayoutGap="10px">
-		 <button *ngIf="subscribed && loading == false" mat-button (click)="unsubscribe()">LEAVE</button>
-		 <button *ngIf="!subscribed && loading == false" mat-button (click)="subscribe()">JOIN</button>
-		 <button mat-button (click)="goBack()">BACK</button>
-	 </div>
+	<div fxFlex fxLayout="row"
+			 fxLayoutAlign="center"
+	fxLayoutGap="10px">
+		<button *ngIf="userIsCreator" [disabled]="loading == true" mat-button (click)="deleteEvent(eventId)">DELETE</button>
+		<button *ngIf="subscribed && !userIsCreator" [disabled]="loading == true" mat-button (click)="unsubscribe()">LEAVE</button>
+		<button *ngIf="!subscribed && !userIsCreator" [disabled]="loading == true" mat-button (click)="subscribe()">JOIN</button>
+		<button mat-button (click)="goBack()">BACK</button>
+	</div>
 
 </div>
 
