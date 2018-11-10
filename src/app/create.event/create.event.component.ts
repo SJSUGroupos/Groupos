@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { User } from '../_models';
-
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { Event_Subscriber } from '../_models';
 import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
@@ -115,6 +115,10 @@ export class CreateEventComponent implements OnInit {
 			}
 		}
 		return range;
+	}
+
+	changeFormDate(event: MatDatepickerInputEvent<Date>) {
+		this.f.eventDate.setValue(+moment(event.value));
 	}
 
 	startTimeChange(startTimeH: string, startTimeM: string, periodS: string) {
