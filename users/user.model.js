@@ -11,32 +11,32 @@ const schema = new Schema({
     email: { type: String, required: true },
 	availabilities: { 
 		monday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		tuesday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		wednesday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		thursday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		friday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		saturday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}],
 		sunday: [{
-			startTime: Date,
-			endTime: Date
+			startTime: Number,
+			endTime: Number
 		}]
 	},
 	coursework: [String],

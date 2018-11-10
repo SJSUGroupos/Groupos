@@ -7,9 +7,9 @@ const schema = new Schema({
 	public: { type: Boolean, unique: false, required: true },
 	description: { type: String, required: false },
     eventName: { type: String, required: true },
-    eventDate: { type: Date, required: true},
-    eventStartTime: { type: Date, required: false},
-    eventEndTime: { type: Date, required: false},
+    eventDate: { type: Number, required: true},
+    eventStartTime: { type: Number, required: false},
+    eventEndTime: { type: Number, required: false},
     eventPlace: { type: String, required: false},
     eventCourse: { type: String, required: false},
     createdDate: { type: Date, default: Date.now }
