@@ -25,6 +25,8 @@ import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 
 @NgModule({
 	imports: [
@@ -61,6 +63,8 @@ import { ViewUserEventsComponent } from './view-user-events/view-user-events.com
 		UserService,
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+		{provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
 		EventService
 	],
 	bootstrap: [AppComponent]

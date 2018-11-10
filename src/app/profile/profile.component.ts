@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, AbstractControl, FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { User } from '../_models';
+import { Availabilities } from '../_models';
+import { TimeRange } from '../_models';
 import { UserService, AlertService, EventService } from '../_services';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import * as $ from 'jquery';
@@ -77,8 +79,8 @@ export class ProfileComponent implements OnInit {
 		});
 
 		this.updateAvailForm = this.formBuilder.group({
-			startTime: [new Date('1/1/1970 01:00:00')],
-			endTime: [new Date('1/1/1970 01:00:00')],
+			startTime: [+moment("01:00:00", "HH:mm:ss")],
+			endTime: [+moment("01:00:00", "HH:mm:ss")],
 			eTHSent: ['1'], 
 			eTMSent: ['00'], 
 			sTHSent: ['1'], 
@@ -177,6 +179,7 @@ export class ProfileComponent implements OnInit {
 		//this.submitted = true;
 		// stop here if form is invalid
 		if (this.updateAvatarForm.invalid) {
+			cb();
 			return;
 		}
 
@@ -212,13 +215,20 @@ export class ProfileComponent implements OnInit {
 			this.currentUser.coursework.push(value); 
 		}
 	}
-		
+
 	addAvail(day: string, startTime: string, endTime: string, periodS: string, periodE) { 
 		//var st = new Date('1/1/1970 '+ moment(startTime+' '+periodS, ["h:mm A"]).format("HH:mm") +':00');
 		//var et = new Date('1/1/1970 '+ moment(endTime+' '+periodE, ["h:mm A"]).format("HH:mm") +':00'); 
 		//this.currentUser.availabilities[day].push([st,et]); 
 		//alert(this.f.startTime.value);
-		this.currentUser.availabilities[day].push([this.availForm.startTime.value,this.availForm.endTime.value]); 
+		//this.currentUser.availabilities[day].push([this.availForm.startTime.value,this.availForm.endTime.value]); 
+		var avail = new Availabilities();
+		avail = this.currentUser.availabilities;
+		var timeRange = new TimeRange();
+		timeRange.startTime = this.availForm.startTime.value;
+		timeRange.endTime = this.availForm.endTime.value;
+		avail[day].push(timeRange);
+		this.currentUser.availabilities = avail; 
 	}
 
 	reset() { 
@@ -242,7 +252,7 @@ export class ProfileComponent implements OnInit {
 	}
 
 	private reloadUserData(obj: User) {
-		this.userService.getById(obj._id)
+		this.userService.getById(this.currentUser._id)
 			.pipe(first())
 			.subscribe(
 				data => {
@@ -297,12 +307,12 @@ export class ProfileComponent implements OnInit {
 	}
 
 	startTimeChange(startTimeH: string, startTimeM: string, periodS: string) {
-		var st = new Date('1/1/1970 '+ moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]).format("HH:mm") +':00');
-		this.availForm.startTime.setValue(st);
+		var st = moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]);
+		this.availForm.startTime.setValue(+st);
 	}
 
 	endTimeChange(endTimeH, endTimeM, period) {
-		var et = new Date('1/1/1970 '+ moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]).format("HH:mm") +':00');
-		this.availForm.endTime.setValue(et);
+		var et = moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]);
+		this.availForm.endTime.setValue(+et);
 	}
 }

@@ -14,10 +14,6 @@ import * as moment from 'moment';
 
 @Component({templateUrl: 'create.event.component.html',
 	styleUrls: ['./create.event.component.css'],
-	providers: [
-		{provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-		{provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-	],
 })
 export class CreateEventComponent implements OnInit {
 	eventForm: FormGroup;
@@ -51,8 +47,8 @@ export class CreateEventComponent implements OnInit {
 			eTHSent: ['1'],
 			eTMSent: ['00'],
 			ePer: ['AM'],
-			startTime: [moment('01:00:00','HH:mm:ss'), Validators.required],
-			endTime: [moment('01:00:00','HH:mm:ss'), Validators.required],
+			startTime: [+moment('01:00:00','HH:mm:ss'), Validators.required],
+			endTime: [+moment('01:00:00','HH:mm:ss'), Validators.required],
 		},{ validator: this.timeRangeValidator });
 	}
 
@@ -123,12 +119,12 @@ export class CreateEventComponent implements OnInit {
 
 	startTimeChange(startTimeH: string, startTimeM: string, periodS: string) {
 		var nt = moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]);
-		this.f.startTime.setValue(nt);
+		this.f.startTime.setValue(+nt);
 	}
 
 	endTimeChange(endTimeH, endTimeM, period) {
 		var nt = moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]);
-		this.f.endTime.setValue(nt);
+		this.f.endTime.setValue(+nt);
 	}
 
 

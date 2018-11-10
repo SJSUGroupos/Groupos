@@ -7,14 +7,36 @@
 	firstName: string;
 	lastName: string;
 	major: string;
-	availabilities: {
-		monday: [[Date]],
-			tuesday: [[Date]],
-			wednesday: [[Date]],
-			thursday: [[Date]],
-			friday: [[Date]],
-			saturday: [[Date]],
-			sunday: [[Date]]
+	availabilities: 
+	{ 
+		monday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		tuesday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		wednesday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		thursday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		friday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		saturday: [{
+			startTime: Date,
+			endTime: Date
+		}],
+		sunday: [{
+			startTime: Date,
+			endTime: Date
+		}]
 	};
-		coursework: [String];
+	coursework: [String];
 }

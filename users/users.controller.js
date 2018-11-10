@@ -7,6 +7,7 @@ const fs = require('fs');
 const dir = require('path').dirname(require.main.filename);
 // routes
 //router.post('/avatar', uploadAvatar);
+router.get('/usersbytime', getUsersByTime);
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
@@ -38,6 +39,13 @@ router.post('/avatar', upload.single('avatar'), [
 
 });
 
+
+
+function getUsersByTime(req, res, next) {
+	userService.getUsersByTime(req.body)
+		.then(users => users ? res.json(users) : res.sendStatus(404))
+		.catch(err => next(err));
+}
 
 function uploadAvatar(req, res, next) {
 

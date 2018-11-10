@@ -20,6 +20,10 @@ export class UserService {
         return this.http.get(`${environment.apiUrl}/users/` + id);
     }
 
+    getByCriteria(criteria: object) {
+		return this.http.get<User[]>(`${environment.apiUrl}/users/search`, criteria);
+    }
+
     register(user: User) {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }

@@ -13,7 +13,8 @@ module.exports = {
 	getById,
 	create,
 	update,
-	delete: _delete
+	delete: _delete,
+	getUsersByTime
 };
 
 async function uploadAvatar(data) {
@@ -95,4 +96,31 @@ async function update(id, userParam) {
 
 async function _delete(id) {
 	await User.findByIdAndRemove(id);
+}
+
+async function getUsersByTime(criteria) {
+	const day = criteria.day+'.endTime';
+	const time = criteria.time;
+	const test = new Date('1971-01-02T00:00:00.000Z');
+	//const users = await User.find({ availabilities: { day: { $gte: time } } });
+	//const users = await User.find({ availabilities: { "monday.endTime": { $gte: test } } });
+	//return users;
+	//return await User.find({ availabilities: { "monday.endTime": { $lte: test } } });
+	return await User.find(
+		{ $and: [
+			{
+				_id: "5bca8d68a237bf0015e131f8"
+			},
+			{ availabilities:
+				{ "friday": 
+					{
+						$elemMatch:
+						{
+							_id: "5be4dcf52d9d55d5b47d7b76"
+						}
+					}
+				}
+			}]
+		}
+	);
 }
