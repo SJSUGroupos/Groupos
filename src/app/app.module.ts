@@ -25,6 +25,7 @@ import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
+import { NgAisModule } from 'angular-instantsearch';
 
 @NgModule({
 	imports: [
@@ -39,6 +40,7 @@ import { ViewUserEventsComponent } from './view-user-events/view-user-events.com
 		ReactiveFormsModule,
 		FileUploadModule,
 		Ng2ImgMaxModule,
+		NgAisModule.forRoot(),
 	],
 	declarations: [
 		AppComponent,

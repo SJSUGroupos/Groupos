@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "angular-in-memory-web-api": "^0.6.1",
+    "angular-instantsearch": "^2.1.0",
     "bcryptjs": "^2.4.3",
     "blueimp-canvas-to-blob": "^3.14.0",
     "body-parser": "^1.18.3",
@@ -55,7 +56,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.8.0",
+    "@angular-devkit/build-angular": "^0.8.7",
     "@angular/cli": "^6.2.4",
     "@angular/compiler-cli": "^6.1.9",
     "@angular/language-service": "^6.1.0",

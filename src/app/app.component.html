@@ -4,9 +4,57 @@
      style = "width:200px;height:75px;">
  </p>
 
+
+
 <div class = "jumbotron myJumbotron">
   <alert></alert>
   <router-outlet></router-outlet>
+
+   <h1>Search</h1>
+<ais-instantsearch
+  [config]="{
+    apiKey: '6632c867fad54044bdd8ddf692a374a6',
+    appId: 'TTUELO2QMO',
+    indexName: 'groups',
+    routing: true
+  }"
+>
+  <ais-search-box></ais-search-box>
+
+  <ais-refinement-list attribute="eventCourse"></ais-refinement-list>
+
+  <ais-hits-per-page
+  [items]="[
+    { value: 3, label: '3 per page' },
+    { value: 20, label: '25 per page' },
+    { value: 50, label: '50 per page' }
+  ]"
+>
+</ais-hits-per-page>
+
+<ais-hits>
+    <ng-template let-hits="hits" let-results="results">
+        <!-- no results message -->
+        <p
+            class="info"
+            *ngIf="hits.length === 0"
+        >
+            No results were found for the query: {{results.query}}.
+            Try to remove some filters or change the search query.
+        </p>
+
+        <!-- hit template -->
+        <div *ngFor="let hit of hits">
+              <a href="https://www.google.com/search?q={{hit.eventCourse}}">{{hit.eventName}}</a>
+              <p></p>
+        </div>
+    </ng-template>
+</ais-hits>
+
+  <ais-pagination></ais-pagination>
+
+</ais-instantsearch>
+
 </div>
 
 <div class="text-center">

@@ -81,3 +81,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  */
 import 'hammerjs';
 import 'web-animations-js';
+
+(window as any).process = {
+  env: { DEBUG: undefined },
+};
