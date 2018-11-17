@@ -51,6 +51,9 @@ function courseSelected(myArray: any[]): ValidatorFn {
 
 	return (c: AbstractControl): { [key: string]: boolean } | null => {
 		let selectboxValue = c.value;
+		if(c.value == ''){
+			return null;
+		}
 		let pickedOrNot = myArray.filter(alias => alias.label+' - '+alias.title === selectboxValue);
 
 		if (pickedOrNot.length > 0) {
@@ -107,11 +110,12 @@ export class ProfileComponent implements OnInit {
 		//this.loadUserInfo();
 		//alert(JSON.stringify(this.currentUser));
 		//alert(this.avail['monday']);
+		this.reloadUserData(()=>{});
 		this.updateProfileForm = this.formBuilder.group({
 			firstName: [this.currentUser.firstName, Validators.required],
 			lastName: [this.currentUser.lastName, Validators.required],
 			major: [this.currentUser.major, Validators.compose([ Validators.required, valueSelected(this.options) ]) ],
-			email: [this.currentUser.email, [Validators.required,Validators.email] ],
+			email: [this.currentUser.email, Validators.compose([Validators.required,Validators.email])],
 		});
 
 		this.updateCourseForm = this.formBuilder.group({
@@ -231,9 +235,10 @@ export class ProfileComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.alertService.success('Profile Updated');
-					this.reloadUserData(obj);
-					this.loading = false;
-					setTimeout(()=>{ this.alertService.clear() }, 3000);
+					this.reloadUserData(() => {
+						this.loading = false;
+						setTimeout(()=>{ this.alertService.clear() }, 3000);
+					});
 				},
 				error => {
 					this.alertService.error(error);
@@ -309,6 +314,7 @@ export class ProfileComponent implements OnInit {
 		this.f.firstName.setValue(this.currentUser.firstName);
 		this.f.lastName.setValue(this.currentUser.lastName);
 		this.f.major.setValue(this.currentUser.major);
+		this.f.email.setValue(this.currentUser.email);
 		this.a.avatar.setValue(null);
 	}
 
@@ -323,12 +329,14 @@ export class ProfileComponent implements OnInit {
 		arr.splice($.inArray(times, arr),1);
 	}
 
-	private reloadUserData(obj: User) {
+	private reloadUserData(cb?: () => void) {
 		this.userService.getById(this.currentUser._id)
 			.pipe(first())
 			.subscribe(
 				data => {
 					localStorage.setItem('currentUser', JSON.stringify(data));
+					this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+					cb();
 				},
 				error => {
 					this.alertService.error(error);

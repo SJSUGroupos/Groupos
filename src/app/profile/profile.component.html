@@ -119,9 +119,8 @@
 							{{option}}
 						</mat-option>
 					</mat-autocomplete>
-					<div *ngIf="submitted && f.major.errors" class="invalid-feedback">
-						<div *ngIf="f.major.errors.required">Major is required</div>
-					</div>
+					<mat-error *ngIf="f.major.hasError('required')">Major is required</mat-error>
+					<mat-error *ngIf="f.major.hasError('match') && !f.major.hasError('required')">Enter a valid degree</mat-error>
 				</mat-form-field>
 				<mat-form-field class="example-full-width">
 					<input matInput placeholder="Edit Email" value={{currentUser.email}} formControlName="email">
@@ -138,6 +137,7 @@
 
 
 
+
 			<form class="example-form" [formGroup]="updateCourseForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
 				<h6>Current Coursework:</h6>
 				<mat-list-item *ngFor="let course of currentUser.coursework">
@@ -146,18 +146,21 @@
 					</p>
 				</mat-list-item>
 				<mat-form-field class="example-full-width">
-					<input #courseToAdd (keyup.enter)="addClass(courseToAdd.value); courseToAdd.value=''" matInput placeholder="Add a course" type="text" formControlName="addCourse" [matAutocomplete]="autoCourse">
+					<input matInput #courseToAdd (keyup.enter)="addClass(courseToAdd.value); courseToAdd.value=''" placeholder="Add a course" type="text" formControlName="addCourse" [matAutocomplete]="autoCourse">
 					<mat-autocomplete #autoCourse="matAutocomplete">
 						<mat-option *ngFor="let option of filteredCourseOptions | async" [value]="option['label'] +' - '+ option['title']">
 							{{option['label'] +' - '+ option['title']}}
 						</mat-option>
 					</mat-autocomplete>
 					<mat-error *ngIf="c.addCourse.hasError('invalid')">Course is already listed</mat-error>
+					<mat-error *ngIf="c.addCourse.hasError('match')">Enter a valid course</mat-error>
 				</mat-form-field>
 				<div class="form-group">
 					<button type="button" [disabled]="loading || c.addCourse.hasError('invalid') || c.addCourse.hasError('match')" mat-stroked-button (click)="addClass(courseToAdd.value); courseToAdd.value='';">Add Class</button>
 				</div>
 			</form>
+
+
 
 
 			<form class="example-form" [formGroup]="updateAvailForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
