@@ -1,0 +1,582 @@
+[
+    {
+        "degree": "BS",
+        "title": "Aerospace Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Aerospace Engineering"
+    },
+    {
+        "degree": "BA",
+        "title": "African American Studies"
+    },
+    {
+        "degree": "BA",
+        "title": "Humanities"
+    },
+    {
+        "degree": "BA",
+        "title": "Anthropology"
+    },
+    {
+        "degree": "BA",
+        "title": "Behavioral Science"
+    },
+    {
+        "degree": "BA",
+        "title": "Organizational Studies"
+    },
+    {
+        "degree": "MA",
+        "title": "Applied Anthropology"
+    },
+    {
+        "degree": "BA",
+        "title": "Art"
+    },
+    {
+        "degree": "MA",
+        "title": "Art"
+    },
+    {
+        "degree": "BS",
+        "title": "Aviation"
+    },
+    {
+        "degree": "BA",
+        "title": "Biological Science"
+    },
+    {
+        "degree": "BS",
+        "title": "Biological Science"
+    },
+    {
+        "degree": "BS",
+        "title": "Ecology and Evolution"
+    },
+    {
+        "degree": "BS",
+        "title": "Marine Biology"
+    },
+    {
+        "degree": "MA",
+        "title": "Biological Sciences"
+    },
+    {
+        "degree": "MS",
+        "title": "Biological Sciences"
+    },
+    {
+        "degree": "BS",
+        "title": "Biomedical Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Biomedical Engineering"
+    },
+    {
+        "degree": "BS",
+        "title": "Business Administration"
+    },
+    {
+        "degree": "MS",
+        "title": "Accountancy"
+    },
+    {
+        "degree": "MS",
+        "title": "Taxation Special Session Program"
+    },
+    {
+        "degree": "MS",
+        "title": "Transportation Management Special Session Program"
+    },
+    {
+        "degree": "BS",
+        "title": "Chemical Engineering"
+    },
+    {
+        "degree": "BS",
+        "title": "Materials Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Chemical Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Materials Engineering"
+    },
+    {
+        "degree": "BA",
+        "title": "Chemistry"
+    },
+    {
+        "degree": "BS",
+        "title": "Chemistry"
+    },
+    {
+        "degree": "MA",
+        "title": "Chemistry"
+    },
+    {
+        "degree": "MS",
+        "title": "Chemistry"
+    },
+    {
+        "degree": "BA",
+        "title": "Mexican American Studies"
+    },
+    {
+        "degree": "MA",
+        "title": "Mexican American Studies"
+    },
+    {
+        "degree": "BA",
+        "title": "Child and Adolescent Development"
+    },
+    {
+        "degree": "MA",
+        "title": "Child and Adolescent Development"
+    },
+    {
+        "degree": "BS",
+        "title": "Civil Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Civil Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Data Analytics"
+    },
+    {
+        "degree": "MS",
+        "title": "Medical Product Development Management"
+    },
+    {
+        "degree": "BA",
+        "title": "Communication Studies"
+    },
+    {
+        "degree": "MA",
+        "title": "Communication Studies"
+    },
+    {
+        "degree": "BS",
+        "title": "Computer Engineering"
+    },
+    {
+        "degree": "BS",
+        "title": "Software Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Computer Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Software Engineering"
+    },
+    {
+        "degree": "BS",
+        "title": "Computer Science"
+    },
+    {
+        "degree": "MS",
+        "title": "Bioinformatics"
+    },
+    {
+        "degree": "MS",
+        "title": "Computer Science"
+    },
+    {
+        "degree": "BA",
+        "title": "Creative Arts"
+    },
+    {
+        "degree": "BA",
+        "title": "Dance"
+    },
+    {
+        "degree": "BS",
+        "title": "Industrial Design"
+    },
+    {
+        "degree": "BA",
+        "title": "Economics"
+    },
+    {
+        "degree": "BS",
+        "title": "Economics"
+    },
+    {
+        "degree": "MA",
+        "title": "Economics"
+    },
+    {
+        "degree": "BA",
+        "title": "Communicative Disorders and Sciences"
+    },
+    {
+        "degree": "MA",
+        "title": "Education"
+    },
+    {
+        "degree": "MA",
+        "title": "Educational Leadership"
+    },
+    {
+        "degree": "BS",
+        "title": "Electrical Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Electrical Engineering"
+    },
+    {
+        "degree": "BA",
+        "title": "English"
+    },
+    {
+        "degree": "MA",
+        "title": "English"
+    },
+    {
+        "degree": "BA",
+        "title": "Environmental Studies"
+    },
+    {
+        "degree": "BS",
+        "title": "Environmental Studies"
+    },
+    {
+        "degree": "BA",
+        "title": "Global Studies"
+    },
+    {
+        "degree": "MS",
+        "title": "Environmental Studies"
+    },
+    {
+        "degree": "BA",
+        "title": "RadioTelevisionFilm"
+    },
+    {
+        "degree": "BA",
+        "title": "Theatre Arts"
+    },
+    {
+        "degree": "BS",
+        "title": "General Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Engineering"
+    },
+    {
+        "degree": "BA",
+        "title": "Geography"
+    },
+    {
+        "degree": "MA",
+        "title": "Geography"
+    },
+    {
+        "degree": "BA",
+        "title": "Earth Science"
+    },
+    {
+        "degree": "BS",
+        "title": "Geology"
+    },
+    {
+        "degree": "MS",
+        "title": "Geology"
+    },
+    {
+        "degree": "BS",
+        "title": "Public Health"
+    },
+    {
+        "degree": "BS",
+        "title": "Recreation"
+    },
+    {
+        "degree": "MS",
+        "title": "Recreation"
+    },
+    {
+        "degree": "BA",
+        "title": "History"
+    },
+    {
+        "degree": "BA",
+        "title": "History and Social Science Teacher Preparation Double BA"
+    },
+    {
+        "degree": "MA",
+        "title": "History"
+    },
+    {
+        "degree": "BS",
+        "title": "Hospitality"
+    },
+    {
+        "degree": "BA",
+        "title": "Liberal Studies"
+    },
+    {
+        "degree": "BS",
+        "title": "Industrial and Systems Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Engineering Management"
+    },
+    {
+        "degree": "MS",
+        "title": "Human FactorsErgonomics"
+    },
+    {
+        "degree": "MS",
+        "title": "Industrial and Systems Engineering"
+    },
+    {
+        "degree": "MA",
+        "title": "Interdisciplinary Studies"
+    },
+    {
+        "degree": "MS",
+        "title": "Interdisciplinary Studies"
+    },
+    {
+        "degree": "BS",
+        "title": "Advertising"
+    },
+    {
+        "degree": "BS",
+        "title": "Journalism"
+    },
+    {
+        "degree": "BS",
+        "title": "Public Relations"
+    },
+    {
+        "degree": "MS",
+        "title": "Mass Communication"
+    },
+    {
+        "degree": "BS",
+        "title": "Justice Studies"
+    },
+    {
+        "degree": "BS",
+        "title": "Forensic Science"
+    },
+    {
+        "degree": "MS",
+        "title": "Justice Studies"
+    },
+    {
+        "degree": "MS",
+        "title": "Criminology"
+    },
+    {
+        "degree": "BS",
+        "title": "Kinesiology"
+    },
+    {
+        "degree": "BS",
+        "title": "Athletic Training Not Accepting Students"
+    },
+    {
+        "degree": "MA",
+        "title": "Kinesiology"
+    },
+    {
+        "degree": "BA",
+        "title": "Linguistics"
+    },
+    {
+        "degree": "MA",
+        "title": "Linguistics"
+    },
+    {
+        "degree": "MA",
+        "title": "Teaching English to Speakers of Other Languages"
+    },
+    {
+        "degree": "BA",
+        "title": "Mathematics"
+    },
+    {
+        "degree": "BS",
+        "title": "Applied Mathematics"
+    },
+    {
+        "degree": "MA",
+        "title": "Mathematics"
+    },
+    {
+        "degree": "MS",
+        "title": "Mathematics"
+    },
+    {
+        "degree": "MS",
+        "title": "Statistics"
+    },
+    {
+        "degree": "BS",
+        "title": "Mechanical Engineering"
+    },
+    {
+        "degree": "MS",
+        "title": "Mechanical Engineering"
+    },
+    {
+        "degree": "BS",
+        "title": "Meteorology"
+    },
+    {
+        "degree": "MS",
+        "title": "Meteorology"
+    },
+    {
+        "degree": "MS",
+        "title": "Marine Science"
+    },
+    {
+        "degree": "BA",
+        "title": "Music"
+    },
+    {
+        "degree": "MA",
+        "title": "Music"
+    },
+    {
+        "degree": "BS",
+        "title": "Nursing"
+    },
+    {
+        "degree": "MS",
+        "title": "Nursing"
+    },
+    {
+        "degree": "BS",
+        "title": "Nutritional Science"
+    },
+    {
+        "degree": "BS",
+        "title": "Packaging"
+    },
+    {
+        "degree": "MS",
+        "title": "Nutritional Science"
+    },
+    {
+        "degree": "MS",
+        "title": "Occupational Therapy"
+    },
+    {
+        "degree": "BA",
+        "title": "Philosophy"
+    },
+    {
+        "degree": "MA",
+        "title": "Philosophy"
+    },
+    {
+        "degree": "BA",
+        "title": "Physics"
+    },
+    {
+        "degree": "BS",
+        "title": "Physics"
+    },
+    {
+        "degree": "MS",
+        "title": "Physics"
+    },
+    {
+        "degree": "BA",
+        "title": "Political Science"
+    },
+    {
+        "degree": "BA",
+        "title": "Psychology"
+    },
+    {
+        "degree": "BS",
+        "title": "Psychology"
+    },
+    {
+        "degree": "MA",
+        "title": "Psychology"
+    },
+    {
+        "degree": "MS",
+        "title": "Psychology"
+    },
+    {
+        "degree": "BA",
+        "title": "Social Work"
+    },
+    {
+        "degree": "MA",
+        "title": "Science Education"
+    },
+    {
+        "degree": "MA",
+        "title": "Science Education with Single Subject Credential"
+    },
+    {
+        "degree": "BA",
+        "title": "Sociology"
+    },
+    {
+        "degree": "BA",
+        "title": "Social Science"
+    },
+    {
+        "degree": "MA",
+        "title": "Sociology"
+    },
+    {
+        "degree": "BS",
+        "title": "Industrial Technology"
+    },
+    {
+        "degree": "MS",
+        "title": "Quality Assurance Not Accepting Students"
+    },
+    {
+        "degree": "BA",
+        "title": "Special Major"
+    },
+    {
+        "degree": "BS",
+        "title": "Special Major"
+    },
+    {
+        "degree": "BA",
+        "title": "Chinese"
+    },
+    {
+        "degree": "BA",
+        "title": "French"
+    },
+    {
+        "degree": "BA",
+        "title": "Japanese"
+    },
+    {
+        "degree": "BA",
+        "title": "Spanish"
+    },
+    {
+        "degree": "MA",
+        "title": "Spanish"
+    }
+]

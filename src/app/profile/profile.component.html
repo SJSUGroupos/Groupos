@@ -113,7 +113,12 @@
 					</div>
 				</mat-form-field>
 				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Edit Major" value={{currentUser.major}} formControlName="major">
+					<input matInput placeholder="Edit Major" value={{currentUser.major}} formControlName="major" [matAutocomplete]="auto">
+					<mat-autocomplete #auto="matAutocomplete">
+						<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+							{{option}}
+						</mat-option>
+					</mat-autocomplete>
 					<div *ngIf="submitted && f.major.errors" class="invalid-feedback">
 						<div *ngIf="f.major.errors.required">Major is required</div>
 					</div>
@@ -124,6 +129,16 @@
 					<mat-error *ngIf="f.email.hasError('email')">Not an email</mat-error>
 				</mat-form-field>
 
+
+
+				<button #profileSubmit [disabled]="updateProfileForm.invalid || loading" mat-raised-button type='submit' style="display:none">Save</button>
+
+
+			</form>
+
+
+
+			<form class="example-form" [formGroup]="updateCourseForm" (ngSubmit)="onSubmit()" (keyup.enter)="$event.preventDefault()" (keydown.enter)="$event.preventDefault()" >
 				<h6>Current Coursework:</h6>
 				<mat-list-item *ngFor="let course of currentUser.coursework">
 					<p> {{course}}
@@ -131,17 +146,17 @@
 					</p>
 				</mat-list-item>
 				<mat-form-field class="example-full-width">
-					<input #courseToAdd (keyup.enter)="addClass(courseToAdd.value); courseToAdd.value=''" matInput placeholder="Add a course" type="text" formControlName="addCourse">
-					<mat-error *ngIf="f.addCourse.hasError('invalid')">Course is already listed</mat-error>
+					<input #courseToAdd (keyup.enter)="addClass(courseToAdd.value); courseToAdd.value=''" matInput placeholder="Add a course" type="text" formControlName="addCourse" [matAutocomplete]="autoCourse">
+					<mat-autocomplete #autoCourse="matAutocomplete">
+						<mat-option *ngFor="let option of filteredCourseOptions | async" [value]="option['label'] +' - '+ option['title']">
+							{{option['label'] +' - '+ option['title']}}
+						</mat-option>
+					</mat-autocomplete>
+					<mat-error *ngIf="c.addCourse.hasError('invalid')">Course is already listed</mat-error>
 				</mat-form-field>
 				<div class="form-group">
-					<button type="button" [disabled]="loading || f.addCourse.hasError('invalid')" mat-stroked-button (click)="addClass(courseToAdd.value); courseToAdd.value='';">Add Class</button>
+					<button type="button" [disabled]="loading || c.addCourse.hasError('invalid') || c.addCourse.hasError('match')" mat-stroked-button (click)="addClass(courseToAdd.value); courseToAdd.value='';">Add Class</button>
 				</div>
-
-
-				<button #profileSubmit [disabled]="updateProfileForm.invalid || loading" mat-raised-button type='submit' style="display:none">Save</button>
-
-
 			</form>
 
 

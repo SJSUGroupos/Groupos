@@ -8,13 +8,17 @@ import { Availabilities } from '../_models';
 import { TimeRange } from '../_models';
 import { UserService, AlertService, EventService } from '../_services';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import * as $ from 'jquery';
 import * as moment from 'moment';
+import {degreeList} from './degreeList';
+import {courseList} from '../courseList';
 
 const URL = 'users/avatar';
 
 function stringExistsInMem(arr: any): ValidatorFn {
-	return (control: AbstractControl): {[key: string]: any} | null => {
+	return (control: AbstractControl): {[key: string]: boolean} | null => {
 		if($.inArray($.trim(control.value), arr) >= 0) {
 			//alert(arr);
 			control.markAsTouched();
@@ -23,9 +27,42 @@ function stringExistsInMem(arr: any): ValidatorFn {
 		else {
 			return null;
 		}
-	};
+	}
 }
 
+function valueSelected(myArray: any[]): ValidatorFn {
+
+	return (c: AbstractControl): { [key: string]: boolean } | null => {
+		let selectboxValue = c.value;
+		let pickedOrNot = myArray.filter(alias => alias === selectboxValue);
+
+		if (pickedOrNot.length > 0) {
+			// everything's fine. return no error. therefore it's null.
+			return null;
+
+		} else {
+			//there's no matching selectboxvalue selected. so return match error.
+			return { 'match': true };
+		}
+	}
+}
+
+function courseSelected(myArray: any[]): ValidatorFn {
+
+	return (c: AbstractControl): { [key: string]: boolean } | null => {
+		let selectboxValue = c.value;
+		let pickedOrNot = myArray.filter(alias => alias.label+' - '+alias.title === selectboxValue);
+
+		if (pickedOrNot.length > 0) {
+			// everything's fine. return no error. therefore it's null.
+			return null;
+
+		} else {
+			//there's no matching selectboxvalue selected. so return match error.
+			return { 'match': true };
+		}
+	}
+}
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
@@ -35,11 +72,16 @@ export class ProfileComponent implements OnInit {
 	updateProfileForm: FormGroup;
 	updateAvatarForm: FormGroup;
 	updateAvailForm: FormGroup;
+	updateCourseForm: FormGroup;
 	currentUser: User;
 	users: User[] = [];
 	avail: Object;
 	hours: number[] = [];
 	minutes: number[] = [];
+	options: string[] = degreeList;
+	courseOptions: any[] = courseList;
+	filteredOptions: Observable<string[]>;
+	filteredCourseOptions: Observable<any[]>;
 
 	loading = false;
 	submitted = false;
@@ -68,9 +110,12 @@ export class ProfileComponent implements OnInit {
 		this.updateProfileForm = this.formBuilder.group({
 			firstName: [this.currentUser.firstName, Validators.required],
 			lastName: [this.currentUser.lastName, Validators.required],
-			major: [this.currentUser.major, Validators.required],
+			major: [this.currentUser.major, Validators.compose([ Validators.required, valueSelected(this.options) ]) ],
 			email: [this.currentUser.email, [Validators.required,Validators.email] ],
-			addCourse: ['', stringExistsInMem(this.currentUser.coursework)],
+		});
+
+		this.updateCourseForm = this.formBuilder.group({
+			addCourse: ['', Validators.compose([courseSelected(this.courseOptions), stringExistsInMem(this.currentUser.coursework)])],
 		});
 
 		this.updateAvatarForm = this.formBuilder.group({
@@ -88,13 +133,37 @@ export class ProfileComponent implements OnInit {
 			ePer: ['AM'], 
 			sPer: ['AM'], 
 		},{validator: this.availableTimeValidator});
+
+
+		this.filteredOptions = this.updateProfileForm.controls.major.valueChanges
+			.pipe(
+				startWith(''),
+				map(value => this._filter(value))
+			);
+
+		this.filteredCourseOptions = this.updateCourseForm.controls.addCourse.valueChanges
+			.pipe(
+				startWith(''),
+				map(value => this._courseFilter(value))
+			);
 	}
 
 	get f() { return this.updateProfileForm.controls; }
+	get c() { return this.updateCourseForm.controls; }
 	get a() { return this.updateAvatarForm.controls; }
 	get availForm() { return this.updateAvailForm.controls; }
 
 
+	private _filter(value: string): string[] {
+		const filterValue = value.toLowerCase();
+		return this.options.filter(option => option.toLowerCase().includes(filterValue));
+	}
+
+
+	private _courseFilter(value: string): any[] {
+		const filterValue = value.toLowerCase();
+		return this.courseOptions.filter(option => option.label.toLowerCase().includes(filterValue));
+	}
 
 	availableTimeValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
 		const start = control.get('startTime');
@@ -207,6 +276,9 @@ export class ProfileComponent implements OnInit {
 	test(event) { console.log(event);}
 
 	addClass(value: string) { 
+		if(this.c.addCourse.hasError('invalid') || this.c.addCourse.hasError('match')){
+			return;
+		}
 		value = $.trim(value); 
 		if(value ==''){
 			return;

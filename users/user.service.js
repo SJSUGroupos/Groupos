@@ -99,27 +99,13 @@ async function _delete(id) {
 }
 
 async function getUsersByTime(criteria) {
-	const crit = {"day": "monday", "time": 39834};
-	//const users = await User.find({ availabilities: { day: { $gte: time } } });
-	//const users = await User.find({ availabilities: { "monday.endTime": { $gte: test } } });
-	//return users;
-	//return await User.find({ availabilities: { "monday.endTime": { $lte: test } } });
-	/*return await User.find(
-		{ "availabilities.monday.endTime": 
-			{
-				$gte: 0
-			}
-
-		}
-
-	);*/
 	const query = 
 		{
-			["availabilities."+crit.day]:
+			["availabilities."+criteria.day]:
 			{
 				$elemMatch:
 				{
-					endTime: {$gte: crit.time}
+					endTime: {$gte: criteria.time}
 				}
 			}
 		};
