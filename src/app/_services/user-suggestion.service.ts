@@ -13,7 +13,7 @@ export class UserSuggestionService {
 
 
 	findUsers(startTime: number, endTime: number, day: string, cb?: (data: any[]) => void) : void {
-		this.userService.getUsersByTime({ time: startTime, day: day })
+		this.userService.getUsersByTime({ eventStartTime: startTime, eventEndTime: endTime, day: day })
 			.pipe(first())
 			.subscribe(
 				data => {

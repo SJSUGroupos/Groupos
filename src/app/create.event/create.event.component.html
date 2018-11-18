@@ -76,22 +76,22 @@
 	</div>
 </form>
 
+<div *ngIf="userSuggestions.length > 0" style="">
+	<h5 class="">User Suggestions</h5>
+	<div style="margin: 0 auto;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:flex-start;align-content:flex-start;">
+		<div *ngFor="let user of userSuggestions" style="text-align:center">
+			<mat-list>
+				<mat-list-item style="width:100px; height:100px; aligncenter">
+					<img matListAvatar src="{{user['avatar']}}" alt="{{user['firstName']}}"
+												 style="width:100px;height:100px; padding:10px; aligncenter">
+				</mat-list-item>
 
-<div style="margin: 0 auto;">
-	<h5 *ngIf="userSuggestions.length > 0" class="left-text">User Suggestions</h5>
-	<div *ngFor="let user of userSuggestions" style="text-align:center">
-		<mat-list>
-			<mat-list-item style="width:100px; height:100px; aligncenter">
-				<img matListAvatar src="{{user['avatar']}}" alt="{{user['firstName']}}"
-												style="width:100px;height:100px; padding:10px; aligncenter">
-			</mat-list-item>
-
-			<mat-list-item>
-				{{user['firstName']}} {{user['lastName']}}
-			</mat-list-item>
-		</mat-list>
+				<mat-list-item>
+					{{user['firstName']}} {{user['lastName']}}
+				</mat-list-item>
+			</mat-list>
+		</div>
 	</div>
 </div>
-
 
 <app-footer></app-footer>

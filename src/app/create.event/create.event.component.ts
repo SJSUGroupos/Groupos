@@ -33,6 +33,7 @@ export class CreateEventComponent implements OnInit {
 	filteredCourseOptions: Observable<any[]>;
 	formValidators: FormValidators = new FormValidators();
 	userSuggestions: any[] = [];
+	day: string = "";
 
 	constructor(
 		private formBuilder: FormBuilder,
@@ -58,8 +59,8 @@ export class CreateEventComponent implements OnInit {
 			eTHSent: ['1'],
 			eTMSent: ['00'],
 			ePer: ['AM'],
-			startTime: [+moment('01:00:00','HH:mm:ss')],
-			endTime: [+moment('01:00:00','HH:mm:ss')],
+			startTime: [1],
+			endTime: [1],
 		},{ validator: this.timeRangeValidator });
 
 		
@@ -146,6 +147,8 @@ export class CreateEventComponent implements OnInit {
 		//alert(event.value);
 		var date = moment(event.value);
 		this.f.eventDate.setValue(+date);
+		//var date = moment.unix(this.f.eventDate.value / 1000);
+		this.day = date.format('dddd').toLowerCase();
 	}
 
 	startTimeChange(startTimeH: string, startTimeM: string, period: string) {
@@ -161,12 +164,9 @@ export class CreateEventComponent implements OnInit {
 		var time = hours+mins/60;
 		this.f.startTime.setValue(time);
 
-		//alert(time);
-		var date = moment.unix(this.f.eventDate.value / 1000);
-		var day = date.format('dddd').toLowerCase();
-		//alert(day);
+		if(this.eventForm.hasError('invalidTimeRange')) return;
 
-		this.userSuggestionService.findUsers(this.f.startTime.value, this.f.endTime.value, day, (data) => {
+		this.userSuggestionService.findUsers(this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
 			this.userSuggestions = data;
 			//alert(JSON.stringify(this.userSuggestions));
 		});
@@ -183,8 +183,15 @@ export class CreateEventComponent implements OnInit {
 
 		var time = hours+mins/60;
 		this.f.endTime.setValue(time);
+		//alert(day);
 
-		alert(time);
+		if(this.eventForm.hasError('invalidTimeRange')) return;
+
+		this.userSuggestionService.findUsers(this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
+			this.userSuggestions = data;
+			//alert(JSON.stringify(this.userSuggestions));
+		});
+
 	}
 
 

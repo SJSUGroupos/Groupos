@@ -106,7 +106,8 @@ async function getUsersByTime(criteria) {
 			{
 				$elemMatch:
 				{
-					endTime: {$gte: criteria.time}
+					endTime: {$gte: criteria.eventStartTime},
+					startTime: {$lte: criteria.eventEndTime}
 				}
 			}
 		};
