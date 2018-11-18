@@ -7,7 +7,7 @@ const fs = require('fs');
 const dir = require('path').dirname(require.main.filename);
 // routes
 //router.post('/avatar', uploadAvatar);
-router.get('/usersbytime', getUsersByTime);
+router.put('/usersbytime', getUsersByTime);
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);

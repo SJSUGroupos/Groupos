@@ -1,30 +1,30 @@
 export class Availabilities {
 	monday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	tuesday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	wednesday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	thursday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	friday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	saturday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 	sunday: [{
-		startTime: Date,
-		endTime: Date
+		startTime: number,
+		endTime: number
 	}];
 }

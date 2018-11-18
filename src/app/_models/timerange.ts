@@ -1,4 +1,4 @@
 export class TimeRange {
-	startTime: Date;
-	endTime: Date;
+	startTime: number;
+	endTime: number;
 }

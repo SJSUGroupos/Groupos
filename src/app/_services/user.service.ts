@@ -1,12 +1,15 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { environment } from '../../environments/environment';
 import { User } from '../_models';
 
 @Injectable()
 export class UserService {
     constructor(private http: HttpClient) { }
+
+	getUsersByTime(criteria: any) {
+		return this.http.put<any[]>(`${environment.apiUrl}/users/usersbytime`, criteria);
+    }
 
 	uploadAvatar(filename: any) {
 		return this.http.post(`${environment.apiUrl}/users/avatar`, filename)

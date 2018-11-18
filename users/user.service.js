@@ -99,6 +99,7 @@ async function _delete(id) {
 }
 
 async function getUsersByTime(criteria) {
+	console.log(criteria);
 	const query = 
 		{
 			["availabilities."+criteria.day]:

@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import * as moment from 'moment';
 import {degreeList} from './degreeList';
 import {courseList} from '../courseList';
+import { DecToTimePipe } from '../_pipes/dec-to-time.pipe';
 
 const URL = 'users/avatar';
 
@@ -128,8 +129,8 @@ export class ProfileComponent implements OnInit {
 		});
 
 		this.updateAvailForm = this.formBuilder.group({
-			startTime: [+moment("01:00:00", "HH:mm:ss")],
-			endTime: [+moment("01:00:00", "HH:mm:ss")],
+			startTime: [1],
+			endTime: [1],
 			eTHSent: ['1'], 
 			eTMSent: ['00'], 
 			sTHSent: ['1'], 
@@ -305,6 +306,7 @@ export class ProfileComponent implements OnInit {
 		timeRange.startTime = this.availForm.startTime.value;
 		timeRange.endTime = this.availForm.endTime.value;
 		avail[day].push(timeRange);
+		this.avail = avail;
 		this.currentUser.availabilities = avail; 
 	}
 
@@ -325,8 +327,13 @@ export class ProfileComponent implements OnInit {
 	}
 
 	deleteTimeSlot(times, day) {
-		var arr = this.currentUser.availabilities[day];
-		arr.splice($.inArray(times, arr),1);
+		var arr = this.avail[day]; 
+		//arr.splice($.inArray(times, arr),1);
+		//alert (JSON.stringify(arr[0]));
+		//alert (JSON.stringify(times));
+		//alert(arr.findIndex(x => x == times));
+		arr.splice(arr.findIndex(x => x == times),1);
+		this.currentUser.availabilities[day] = this.avail[day];
 	}
 
 	private reloadUserData(cb?: () => void) {
@@ -386,13 +393,32 @@ export class ProfileComponent implements OnInit {
 		}
 	}
 
-	startTimeChange(startTimeH: string, startTimeM: string, periodS: string) {
-		var st = moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]);
-		this.availForm.startTime.setValue(+st);
+	startTimeChange(startTimeH: string, startTimeM: string, period: string) {
+		//var st = moment(startTimeH+':'+startTimeM+' '+periodS, ["h:mm A"]);
+		//	this.availForm.startTime.setValue(+st);
+		var hours = parseInt(startTimeH);
+		var mins = parseInt(startTimeM);
+		if(period == "PM"){
+			hours = hours + 12;
+		}
+
+		var time = hours+mins/60;
+		this.availForm.startTime.setValue(time);
+
 	}
 
 	endTimeChange(endTimeH, endTimeM, period) {
-		var et = moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]);
-		this.availForm.endTime.setValue(+et);
+		//var et = moment(endTimeH+':'+endTimeM+' '+period, ["h:mm A"]);
+		//this.availForm.endTime.setValue(+et);
+		var hours = parseInt(endTimeH);
+		var mins = parseInt(endTimeM);
+		if(period == "PM"){
+			hours = hours + 12;
+		}
+
+		var time = hours+mins/60;
+		this.availForm.endTime.setValue(time);
+
+
 	}
 }

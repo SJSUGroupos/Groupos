@@ -33,49 +33,49 @@
 						<h3 mat-subheader>Monday:</h3>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['monday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['tuesday'] != ''">
 						<p mat-subheader>Tuesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item  *ngFor="let times of avail['tuesday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['wednesday'] != ''">
 						<p mat-subheader>Wednesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['wednesday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['thursday'] != ''">
 						<p mat-subheader>Thursday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['thursday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['friday'] != ''">
 						<p mat-subheader>Friday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['friday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['saturday'] != ''">
 						<p mat-subheader>Saturday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['saturday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 					<div *ngIf="avail['sunday'] != ''">
 						<p mat-subheader>Sunday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['sunday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 						</mat-list-item>
 					</div>
 				</mat-list>
@@ -170,7 +170,7 @@
 						<h3 mat-subheader>Monday:</h3>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['monday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'monday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -178,7 +178,7 @@
 						<p mat-subheader>Tuesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['tuesday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'tuesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -186,7 +186,7 @@
 						<p mat-subheader>Wednesday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['wednesday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'wednesday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -194,7 +194,7 @@
 						<p mat-subheader>Thursday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['thursday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'thursday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -202,7 +202,7 @@
 						<p mat-subheader>Friday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['friday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'friday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -210,7 +210,7 @@
 						<p mat-subheader>Saturday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['saturday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'saturday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>
@@ -218,7 +218,7 @@
 						<p mat-subheader>Sunday:</p>
 						<mat-divider></mat-divider>
 						<mat-list-item *ngFor="let times of avail['sunday']">
-							<p mat-line >{{times.startTime | date : 'shortTime'}} - {{times.endTime | date : 'shortTime'}}
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
 							- <a (click)="deleteTimeSlot(times,'sunday')" class="text-danger">Delete</a></p>
 						</mat-list-item>
 					</div>

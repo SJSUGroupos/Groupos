@@ -17,7 +17,7 @@
 		<mat-card-content style="text-align:center;">
 			<hr>
 			<p mat-line>{{event.eventDate | date}}</p>
-			<p mat-line >{{event.eventStartTime | date : 'shortTime'}} - {{event.eventEndTime | date : 'shortTime'}}</p>
+			<p mat-line >{{event.eventStartTime | decToTime}} - {{event.eventEndTime | decToTime}}</p>
 			<hr>
 			<p> {{event.eventPlace}} </p>
 			<p> by {{event.creator['firstName']}} {{event.creator['lastName']}}</p>

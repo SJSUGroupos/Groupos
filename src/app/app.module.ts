@@ -27,6 +27,7 @@ import { ViewEventComponent } from './view-event/view-event.component';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { DecToTimePipe } from './_pipes/dec-to-time.pipe';
 
 @NgModule({
 	imports: [
@@ -55,6 +56,7 @@ import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-mome
 		HeaderComponent,
 		ViewEventComponent,
 		ViewUserEventsComponent,
+		DecToTimePipe,
 	],
 	providers: [
 		AuthGuard,

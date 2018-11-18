@@ -5,7 +5,13 @@
 	</mat-form-field>
 	<mat-error *ngIf="submitted && f.eventName.hasError('required')"></mat-error>
 	<mat-form-field class="example-full-width">
-		<input matInput placeholder="Course" formControlName="course">
+		<input matInput placeholder="Course" formControlName="course" [matAutocomplete]="autoCourse">
+		<mat-autocomplete #autoCourse="matAutocomplete">
+			<mat-option *ngFor="let option of filteredCourseOptions | async" [value]="option['label'] +' - '+ option['title']">
+				{{option['label'] +' - '+ option['title']}}
+			</mat-option>
+		</mat-autocomplete>
+		<mat-error *ngIf="f.course.hasError('match')">Enter a valid course</mat-error>
 	</mat-form-field>
 	<mat-form-field class="example-full-width">
 		<textarea matInput placeholder="Description" formControlName="description" ></textarea>
@@ -14,7 +20,7 @@
 		<input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a date" (dateInput)="changeFormDate($event)" (dateChange)="changeFormDate($event)" [ngClass]="{ 'is-invalid': submitted && f.eventDate.errors }" />
 		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 		<mat-datepicker #picker></mat-datepicker>
-	<mat-error *ngIf="f.eventDate.errors">{{getDateError()}}</mat-error>
+		<mat-error *ngIf="f.eventDate.errors">{{getDateError()}}</mat-error>
 	</mat-form-field>
 
 	<h5 mat-subheader class="left-text">Start Time</h5>
@@ -69,4 +75,23 @@
 		<button type="button" [routerLink]="['/']" mat-stroked-button>Cancel</button>
 	</div>
 </form>
+
+
+<div style="margin: 0 auto;">
+	<h5 *ngIf="userSuggestions.length > 0" class="left-text">User Suggestions</h5>
+	<div *ngFor="let user of userSuggestions" style="text-align:center">
+		<mat-list>
+			<mat-list-item style="width:100px; height:100px; aligncenter">
+				<img matListAvatar src="{{user['avatar']}}" alt="{{user['firstName']}}"
+												style="width:100px;height:100px; padding:10px; aligncenter">
+			</mat-list-item>
+
+			<mat-list-item>
+				{{user['firstName']}} {{user['lastName']}}
+			</mat-list-item>
+		</mat-list>
+	</div>
+</div>
+
+
 <app-footer></app-footer>

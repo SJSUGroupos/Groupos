@@ -16,7 +16,7 @@
 			<h6 mat-line> {{event.eventDate | date:"MM/dd/yyyy" }} </h6>
 		</mat-list-item>
 		<mat-list-item>
-			<p mat-line >{{event.eventStartTime | date : 'shortTime'}} - {{event.eventEndTime | date : 'shortTime'}}</p>
+			<p mat-line >{{event.eventStartTime | decToTime}} - {{event.eventEndTime | decToTime}}</p>
 		</mat-list-item>
 		<mat-list-item>
 			<h6 mat-line><i>Description</i></h6>

@@ -6,6 +6,7 @@ import { UserService } from '../_services';
 
 import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
+import { DecToTimePipe } from '../_pipes/dec-to-time.pipe';
 
 
 @Component({

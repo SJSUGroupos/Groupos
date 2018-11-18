@@ -7,6 +7,7 @@ import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
 import { Event_Subscriber } from '../_models';
 import { Location } from '@angular/common';
+import { DecToTimePipe } from '../_pipes/dec-to-time.pipe';
 
 
 @Component({
