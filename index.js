@@ -8,7 +8,7 @@ const errorHandler = require('_helpers/error-handler');
 const multer = require('multer')
 var upload = multer({ storage: multer.memoryStorage() })
 var router = express.Router();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000; //changed
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,5 +39,3 @@ app.use("*",function(req,res){
 app.listen(PORT,function(){
 	console.log(`Live at Port ${PORT}`);
 });
-
-

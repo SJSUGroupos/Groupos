@@ -5,6 +5,7 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { CreateEventComponent } from './create.event';
 import { ProfileComponent } from './profile';
+import { ViewProfileComponent } from './view-profile';
 import { FeedComponent } from './feed';
 import { ViewEventComponent } from './view-event';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'create', component: CreateEventComponent, canActivate: [AuthGuard] },
 	{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+	{ path: 'profile/:id', component: ViewProfileComponent, canActivate: [AuthGuard] },
 	{ path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
 	{ path: 'event/:id', component: ViewEventComponent, canActivate: [AuthGuard] },
 	{ path: 'myevents', component: ViewUserEventsComponent, canActivate: [AuthGuard] },
