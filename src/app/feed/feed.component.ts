@@ -22,7 +22,7 @@ export class FeedComponent implements OnInit {
 
     constructor(private userService: UserService,
         private eventService: EventService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     }
 
     ngOnInit() {

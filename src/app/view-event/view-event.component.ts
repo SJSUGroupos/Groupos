@@ -30,7 +30,7 @@ export class ViewEventComponent implements OnInit {
 		private alertService: AlertService,
 		private location: Location,
 		private route: ActivatedRoute) {
-		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 		//alert(JSON.stringify(this.currentUser));
 	}
 

@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
 		private cd: ChangeDetectorRef,
 		private ng2ImgMax: Ng2ImgMaxService,
 	) { 
-		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 		this.avail = (this.currentUser.availabilities);
 		this.hours = this.retRange(1,12,false);
 		this.minutes = this.retRange(0,59,true);
@@ -222,7 +222,7 @@ export class ProfileComponent implements OnInit {
 		obj.email = this.f.email.value;
 
 
-		userRef = JSON.parse(localStorage.getItem('currentUser'));
+		userRef = JSON.parse(sessionStorage.getItem('currentUser'));
 
 		if(JSON.stringify(userRef) === JSON.stringify(obj)) {
 			return;
@@ -311,7 +311,7 @@ export class ProfileComponent implements OnInit {
 	}
 
 	reset() { 
-		this.currentUser = JSON.parse(localStorage.getItem('currentUser')); 
+		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser')); 
 		this.avail = (this.currentUser.availabilities);
 		this.f.firstName.setValue(this.currentUser.firstName);
 		this.f.lastName.setValue(this.currentUser.lastName);
@@ -341,8 +341,8 @@ export class ProfileComponent implements OnInit {
 			.pipe(first())
 			.subscribe(
 				data => {
-					localStorage.setItem('currentUser', JSON.stringify(data));
-					this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+					sessionStorage.setItem('currentUser', JSON.stringify(data));
+					this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 					cb();
 				},
 				error => {
