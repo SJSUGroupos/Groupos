@@ -7,6 +7,9 @@ const fs = require('fs');
 const dir = require('path').dirname(require.main.filename);
 // routes
 //router.post('/avatar', uploadAvatar);
+router.put('/deleteInvite', deleteInvite);
+router.get('/getinvites/:id', getInvites);
+router.put('/sendinvite', sendInvite);
 router.put('/usersbytime', getUsersByTime);
 router.post('/authenticate', authenticate);
 router.post('/register', register);
@@ -39,6 +42,19 @@ router.post('/avatar', upload.single('avatar'), [
 
 });
 
+
+function sendInvite(req, res, next) {
+	userService.sendInvite(req.body)
+		.then(() => res.json({}))
+		.catch(err => next(err));
+}
+
+
+function getInvites(req, res, next) {
+	userService.getInvites(req.params.id)
+		.then(user => user ? res.json(user) : res.sendStatus(404))
+		.catch(err => next(err));
+}
 
 
 function getUsersByTime(req, res, next) {
@@ -94,6 +110,12 @@ function update(req, res, next) {
 
 function _delete(req, res, next) {
 	userService.delete(req.params.id)
+		.then(() => res.json({}))
+		.catch(err => next(err));
+}
+
+function deleteInvite(req, res, next) {
+	userService.deleteInvite(req.body)
 		.then(() => res.json({}))
 		.catch(err => next(err));
 }

@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { User } from '../_models';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Event_Subscriber } from '../_models';
-import { AlertService, EventService, UserSuggestionService } from '../_services';
+import { InviteService, AlertService, EventService, UserSuggestionService, UserService } from '../_services';
 import { Event } from '../_models';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -34,12 +34,16 @@ export class CreateEventComponent implements OnInit {
 	formValidators: FormValidators = new FormValidators();
 	userSuggestions: any[] = [];
 	day: string = "";
+	usersToInvite: string[] = [];
+	composedInvites: any[] = [];
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private eventService: EventService,
+		private userService: UserService,
 		private alertService: AlertService,
+		private inviteService: InviteService,
 		private userSuggestionService: UserSuggestionService) { 
 		this.hours = this.retRange(1,12,false);
 		this.minutes = this.retRange(0,59,true);
@@ -113,9 +117,20 @@ export class CreateEventComponent implements OnInit {
 			.subscribe(
 				data => {
 					this.alertService.success('Event creation successful', true);
-					this.router.navigate(['/']);
+					//alert(JSON.stringify(data));
+					this.composeInvites(data['eventId'], (invites) => {
+						//alert(JSON.stringify(invites));
+						this.sendInvites(invites, () => {
+							this.usersToInvite.forEach(usr => {
+								this.inviteService.sendMessage(usr+'.invite', {data: true})
+							});
+							this.router.navigate(['/']);
+						});
+					})
+
 				},
 				error => {
+					alert("error creating event");
 					this.alertService.error(error);
 					this.loading = false;
 				});
@@ -166,7 +181,7 @@ export class CreateEventComponent implements OnInit {
 
 		if(this.eventForm.hasError('invalidTimeRange')) return;
 
-		this.userSuggestionService.findUsers(this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
+		this.userSuggestionService.findUsers(this.currentUser._id, this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
 			this.userSuggestions = data;
 			//alert(JSON.stringify(this.userSuggestions));
 		});
@@ -187,7 +202,7 @@ export class CreateEventComponent implements OnInit {
 
 		if(this.eventForm.hasError('invalidTimeRange')) return;
 
-		this.userSuggestionService.findUsers(this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
+		this.userSuggestionService.findUsers(this.currentUser._id, this.f.startTime.value, this.f.endTime.value, this.day, (data) => {
 			this.userSuggestions = data;
 			//alert(JSON.stringify(this.userSuggestions));
 		});
@@ -217,4 +232,56 @@ export class CreateEventComponent implements OnInit {
 		return start.value > end.value ? { 'invalidTimeRange': true } : null;
 	};
 
+	inviteUser(userId: string): void {
+		//alert(userId);
+		var inviteCheck = this.usersToInvite.indexOf(userId);
+		if(inviteCheck > -1) {
+			this.usersToInvite.splice(inviteCheck, 1);
+		}
+		else {
+			this.usersToInvite.push(userId);
+		}
+	}
+
+	composeInvites(eventId: any, cb: (invites) => void ): void {
+		var composedInvites = [];
+		for(var i=0; i < this.usersToInvite.length; i++) {
+
+			composedInvites[i] = {
+				"userId": this.usersToInvite[i],
+				"invites": {
+					"senderId" : this.currentUser._id,
+					"firstName": this.currentUser.firstName,
+					"lastName": this.currentUser.lastName,
+					"avatar"  : this.currentUser.avatar,
+					"eventName": this.f.eventName.value,
+					"eventId"  : eventId,
+					"viewed"   : false,
+					"course": this.f.course.value,
+					"eventDate": this.f.eventDate.value,
+					"eventStartTime": this.f.startTime.value,
+					"eventEndTime": this.f.endTime.value
+				}
+			}
+
+		}
+		var obj = { "invites": composedInvites };
+		//alert(JSON.stringify(obj));
+		cb(composedInvites);
+		//cb(obj);
+	}
+
+	sendInvites(invites: any, cb: () => void): void {
+		//alert("inside sendInvites:"+JSON.stringify(invites));
+		this.userService.sendInvite(invites)
+		.pipe(first())
+		.subscribe(
+			data => {
+				cb();
+			},
+			error => {
+				//this.alertService.error(error);
+				cb();
+			});
+	}
 }

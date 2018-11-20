@@ -27,12 +27,22 @@ async function create(eventParam) {
     const event = new Event(eventParam);
 
     // save event
-    await event.save(function (err) {
+    await event.save(function (err, product) {
     if (err) {
 		console.log("error creating document");
 		return console.error(err);
 	}
+	else if (product) {
+		//console.log("new event info:");
+		//console.log(product);
+		//console.log(product['_id']);
+		//return { "eventId" : product['_id'] };
+	}
   });
+
+	var test = { "eventId" : event['_id'] };
+	console.log(test);
+	return test;
 }
 
 async function getByUserId({ id }) {
@@ -80,24 +90,7 @@ async function unsubscribe(id, userId) {
 
     // validate
     if (!event) throw 'Event not found';
-	//if (event.subscribers.indexOf(userInfo['id']) > -1) {
-	//	throw 'Already subscribed to this event'; 
-	//}
-	//console.log(event.subscribers);
-	
-	//console.log(userId['id']);
-/*
-	event.subscribers.find((o,i) => {
-		if(o.i === userId['id']) {
-			//console.log(event.subscribers);
-			event.subscribers.splice(i,1);
-			//console.log(event.subscribers);
-		}
-		else {
-			//throw 'You are not subscribed to this event'; 
-		}
-	});
-*/
+
 	var index = -1;
 	for (var i = 0; i < event.subscribers.length; i++) {
 		if(event.subscribers[i].id == userId.id) {

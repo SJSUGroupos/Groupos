@@ -17,8 +17,16 @@ module.exports = router;
 
 function createEvent(req, res, next) {
 	eventService.create(req.body)
-		.then(() => res.json({}))
-		.catch(err => next(err));
+		.then(eventId => {
+			console.log("here");
+			console.log('\n\n'+eventId);
+			console.log('still in create event');
+			eventId ? res.json(eventId) : res.sendStatus(404)
+		}) 
+		.catch(err => {
+			console.log("err");
+			next(err);
+		});
 }
 
 function getAll(req, res, next) {

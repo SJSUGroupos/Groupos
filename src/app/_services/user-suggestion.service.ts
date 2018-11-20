@@ -12,8 +12,8 @@ export class UserSuggestionService {
 	constructor(private userService: UserService) { }
 
 
-	findUsers(startTime: number, endTime: number, day: string, cb?: (data: any[]) => void) : void {
-		this.userService.getUsersByTime({ eventStartTime: startTime, eventEndTime: endTime, day: day })
+	findUsers(userId: string, startTime: number, endTime: number, day: string, cb?: (data: any[]) => void) : void {
+		this.userService.getUsersByTime({ userId: userId, eventStartTime: startTime, eventEndTime: endTime, day: day })
 			.pipe(first())
 			.subscribe(
 				data => {

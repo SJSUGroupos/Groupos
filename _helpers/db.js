@@ -12,5 +12,6 @@ db.once('open', function() {
 
 module.exports = {
 	User: require('../users/user.model'),
-	Event: require('../users/event.model')
+	Event: require('../users/event.model'),
+	Invites: require('../users/invites.model')
 };

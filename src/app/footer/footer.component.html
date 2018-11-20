@@ -1,11 +1,10 @@
 <div class="footer">
-  <mat-toolbar fxLayout="row"
-               fxLayoutAlign="center"
-               fxLayoutGap="40px">
+  <div class="mat-toolbar" style="">
     <a mat-button routerLink='/profile' routerLinkActive='active'><span class="fa fa-user"></span> Profile</a>
     <a mat-button routerLink='/feed' routerLinkActive='active'><span class="fa fa-calendar"></span> Feed</a>
     <a mat-button routerLink='/create' routerLinkActive='active'><span class="fa fa-plus-square"></span> Create Group</a>
     <a mat-button routerLink='/myevents' routerLinkActive='active'><span class="fa fa-star"></span> My Events</a>
+	<a mat-button routerLink='/invites' routerLinkActive='active' [ngClass]="{'invite': inviteRecv, 'mat-button': !inviteRecv }"><span class="fa fa-user-plus"></span> Invites</a>
     <a mat-button routerLink='/login' routerLinkActive='active'><span class="fa fa-power-off"></span> Log Out</a>
-  </mat-toolbar>
+  </div>
 </div>

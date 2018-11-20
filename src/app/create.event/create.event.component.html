@@ -89,6 +89,7 @@
 				<mat-list-item>
 					{{user['firstName']}} {{user['lastName']}}
 				</mat-list-item>
+				<mat-checkbox (change)="inviteUser(user['_id'])" >Invite</mat-checkbox>
 			</mat-list>
 		</div>
 	</div>

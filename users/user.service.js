@@ -3,10 +3,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
+const Invites = db.Invites;
 const fs = require('fs');
 const dir = require('path').dirname(require.main.filename);
 
 module.exports = {
+	deleteInvite,
 	uploadAvatar,
 	authenticate,
 	getAll,
@@ -14,7 +16,9 @@ module.exports = {
 	create,
 	update,
 	delete: _delete,
-	getUsersByTime
+	getUsersByTime,
+	sendInvite,
+	getInvites
 };
 
 async function uploadAvatar(data) {
@@ -109,8 +113,36 @@ async function getUsersByTime(criteria) {
 					endTime: {$gte: criteria.eventStartTime},
 					startTime: {$lte: criteria.eventEndTime}
 				}
-			}
+			}, 
+			'_id': { $ne: criteria.userId }
 		};
 	
 	return await User.find(query).select('-hash');
+}
+
+
+async function sendInvite(inviteData) {
+	console.log("inside sendInvite");
+	console.log(inviteData.length);
+	for(var i = 0; i < inviteData.length; i++) {
+		console.log(inviteData[i]);
+		//await Invites.updateOne({ userId: inviteData[i]['userId'] }, { $push: { invites: inviteData[i]['invites']} }, { upsert: true });
+		await Invites.updateOne({ userId: inviteData[i]['userId'], 'invites.eventId': {$ne: inviteData[i]['invites']['eventId']}}, { $push: { invites: inviteData[i]['invites']} }, { upsert: true });
+
+	}
+}
+
+async function getInvites(id) {
+	//return await Invites.findById(id).select('-hash');
+	//return await Invites.find({ userId: id }).select({"invites": 1});
+	var arr = await Invites.find({ userId: id }).select({"invites": 1});
+	return arr[0]['invites'];
+
+}
+
+
+async function deleteInvite(inviteData) {
+
+	return await Invites.updateOne({ userId: inviteData['userId'] }, { $pull: { invites: { eventId: inviteData['eventId'] } } });
+
 }

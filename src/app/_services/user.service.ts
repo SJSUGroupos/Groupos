@@ -7,6 +7,14 @@ import { User } from '../_models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
+    getInvites(id: string) {
+		return this.http.get(`${environment.apiUrl}/users/getinvites/` + id);
+    }
+
+	sendInvite(data: any) {
+		return this.http.put<any[]>(`${environment.apiUrl}/users/sendinvite`, data);
+    }
+
 	getUsersByTime(criteria: any) {
 		return this.http.put<any[]>(`${environment.apiUrl}/users/usersbytime`, criteria);
     }
@@ -37,5 +45,9 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/users/` + id);
+    }
+
+    deleteInvite(inviteData: any) {
+		return this.http.put<any>(`${environment.apiUrl}/users/deleteInvite`, inviteData);
     }
 }

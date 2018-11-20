@@ -1,0 +1,33 @@
+<div class="container"
+	 fxLayout="column"
+  fxLayoutGap="15px">
+
+	<div fxFlex>
+		<h2>My Event Invitations</h2>
+	</div>
+
+	<mat-card *ngFor="let invite of invites">
+		<mat-card-title>
+			<h2> {{invite['eventName'] | uppercase}} </h2>
+		</mat-card-title>
+		<mat-card-subtitle>
+			<h5>{{invite['course']}}</h5>
+		</mat-card-subtitle>
+		<mat-card-content style="text-align:center;">
+			<p>Event Creator:</p> 
+			<mat-list>	
+				<mat-list-item style="width:100px; height:100px;margin: 0 auto;display:block; ">
+					<img matListAvatar src="{{invite['avatar']}}" alt="{{invite['firstName']}}" style="width:100px;height:100px; padding:10px;">
+				</mat-list-item>
+			</mat-list>
+			<p>{{invite['firstName']}} {{invite['lastName']}}</p>
+		</mat-card-content>
+
+		<div>
+			<button [disabled]="loading == true" mat-button (click)="subscribe(invite['eventId'])">JOIN</button>
+			<button [disabled]="loading == true" mat-button (click)="deleteInvite(invite['eventId'])">DELETE</button>
+		</div>
+
+	</mat-card>
+</div>
+<app-footer></app-footer>

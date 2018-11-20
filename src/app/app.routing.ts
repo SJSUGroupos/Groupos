@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile';
 import { FeedComponent } from './feed';
 import { ViewEventComponent } from './view-event';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
+import { InvitesComponent } from './invites/invites.component';
 import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
 	{ path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
 	{ path: 'event/:id', component: ViewEventComponent, canActivate: [AuthGuard] },
 	{ path: 'myevents', component: ViewUserEventsComponent, canActivate: [AuthGuard] },
+	{ path: 'invites', component: InvitesComponent, canActivate: [AuthGuard] },
 
 
 	// otherwise redirect to home
