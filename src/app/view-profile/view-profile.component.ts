@@ -22,6 +22,7 @@ export class ViewProfileComponent implements OnInit {
 	userId: string;
 	firstName: string;
 	lastName: string;
+	email: string;
 	// avatar: string;
 	avail: Object;
 	major: String;
@@ -47,6 +48,7 @@ export class ViewProfileComponent implements OnInit {
 			this.selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
 			this.firstName = this.selectedUser.firstName;
 			this.lastName = this.selectedUser.lastName;
+			this.email = this.selectedUser.email;
 			this.major = this.selectedUser.major;
 			this.coursework = this.selectedUser.coursework;
 			this.avail = this.selectedUser.availabilities;
