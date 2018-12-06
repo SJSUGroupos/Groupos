@@ -1,57 +1,100 @@
 <div class="container"
 	 fxLayout="column"
-  fxLayoutAlign="center center"
-  fxLayoutGap="10px">
+  fxLayoutGap="10px"
+  fxLayoutAlign.xs="start center"
+  fxLayoutAlign.sm="start center"
+  fxLayoutAlign.gt-sm="center center"
+	style="z-index=1">
 
-	<h3><i>Event</i></h3>
+	<h2>{{selectedUser.firstName}} {{selectedUser.lastName}}</h2>
 
-	<mat-list *ngIf="event">
-		<mat-list-item>
-			<h1 mat-line> {{event.eventName | uppercase}} </h1>
-		</mat-list-item>
-		<mat-list-item>
-			<h5 mat-line> {{event.eventCourse}} </h5>
-		</mat-list-item>
-		<mat-list-item>
-			<h6 mat-line> {{event.eventDate | date:"MM/dd/yyyy" }} </h6>
-		</mat-list-item>
-		<mat-list-item>
-			<p mat-line >{{event.eventStartTime | decToTime}} - {{event.eventEndTime | decToTime}}</p>
-		</mat-list-item>
-		<mat-list-item>
-			<h6 mat-line><i>Description</i></h6>
-			<p mat-line> {{event.description}} </p>
-			<hr>
-			<p mat-line> {{event.eventPlace}} </p>
-		</mat-list-item>
-		<mat-list-item>
-			<!-->Change image to creator's avatar -> creator must be changed to :User<-->
-			<div mat-card-avatar src="" style="aligncenter"></div>
-			<p> by {{event.creator['firstName']}} {{event.creator['lastName']}}</p>
-		</mat-list-item>
-		<h6> <i><u>Subscribers</u></i> </h6>
-		<div *ngFor="let user of currentSubscribers" style="text-align:center">
-
-			<mat-list-item style="width:100px; height:100px; aligncenter">
-				<img matListAvatar src={{user.avatar}} alt={{user.firstName}}
-				  style="width:100px;height:100px; padding:10px; aligncenter">
-			</mat-list-item>
-
-			<mat-list-item>
-				{{user.firstName}} {{user.lastName}}
-			</mat-list-item>
-		</div>
-	</mat-list>
-
+	<mat-tab-group fxLayout="column"
+				fxLayoutAlign="space-evenly center">
+		<mat-tab label="Profile" style="">
+			<mat-list>
+				<mat-list-item style="width:100px; height:100px; aligncenter">
+					<img matListAvatar src={{selectedUser.avatar}} alt={{selectedUser.firstName}}
+					 		 style="width:100px;height:100px; padding:10px; aligncenter">
+				</mat-list-item>
+				<mat-list-item>
+					<h3>{{selectedUser.firstName}} {{selectedUser.lastName}}</h3>
+				</mat-list-item>
+				<mat-list-item>
+					<h6 mat-line>Email</h6>
+					<p mat-line> {{selectedUser.email}} </p>
+				</mat-list-item>
+				<mat-list-item>
+					<h6 mat-line>Major</h6>
+					<p mat-line> {{selectedUser.major}} </p>
+				</mat-list-item>
+				<mat-list-item>
+					<h6 mat-line>Classes</h6>
+					<p mat-line *ngFor="let course of selectedUser.coursework"> {{course}} </p>
+				</mat-list-item>
+				<h6>Availability</h6>
+				<mat-list>
+					<div *ngIf="avail['monday'] != ''">
+						<h3 mat-subheader>Monday:</h3>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['monday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['tuesday'] != ''">
+						<p mat-subheader>Tuesday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item  *ngFor="let times of avail['tuesday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['wednesday'] != ''">
+						<p mat-subheader>Wednesday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['wednesday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['thursday'] != ''">
+						<p mat-subheader>Thursday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['thursday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['friday'] != ''">
+						<p mat-subheader>Friday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['friday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['saturday'] != ''">
+						<p mat-subheader>Saturday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['saturday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+					<div *ngIf="avail['sunday'] != ''">
+						<p mat-subheader>Sunday:</p>
+						<mat-divider></mat-divider>
+						<mat-list-item *ngFor="let times of avail['sunday']">
+							<p mat-line >{{times.startTime | decToTime}} - {{times.endTime | decToTime}}
+						</mat-list-item>
+					</div>
+				</mat-list>
+			</mat-list>
+		</mat-tab>
+		<!-- <mat-list>
+	  <mat-list-item fxLayoutAlign="center" style="width:100px;height:100px">
+	  <img matListAvatar src={{selectedUser.avatar}} alt={{selectedUser.firstName}} style="width:100px;height:100px">
+	  </mat-list-item>
+	  </mat-list> -->
+	</mat-tab-group>
 	<div fxFlex fxLayout="row"
 			 fxLayoutAlign="center"
 	fxLayoutGap="10px">
-		<button *ngIf="userIsCreator" [disabled]="loading == true" mat-button (click)="deleteEvent(eventId)">DELETE</button>
-		<button *ngIf="subscribed && !userIsCreator" [disabled]="loading == true" mat-button (click)="unsubscribe()">LEAVE</button>
-		<button *ngIf="!subscribed && !userIsCreator" [disabled]="loading == true" mat-button (click)="subscribe()">JOIN</button>
 		<button mat-button (click)="goBack()">BACK</button>
 	</div>
-
 </div>
-
 <app-footer></app-footer>
