@@ -24,7 +24,7 @@ const appRoutes: Routes = [
 	{ path: 'event/:id', component: ViewEventComponent, canActivate: [AuthGuard] },
 	{ path: 'myevents', component: ViewUserEventsComponent, canActivate: [AuthGuard] },
 	{ path: 'invites', component: InvitesComponent, canActivate: [AuthGuard] },
-
+	{ path: 'editevent/:id', component: EditEventComponent, canActivate: [AuthGuard] },
 
 	// otherwise redirect to home
 	{ path: '**', redirectTo: '' }

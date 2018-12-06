@@ -25,6 +25,7 @@ import { FeedComponent } from './feed';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { ViewEventComponent } from './view-event/view-event.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
@@ -53,6 +54,7 @@ import { InvitesComponent } from './invites/invites.component';
 		RegisterComponent,
 		CreateEventComponent,
 		ProfileComponent,
+		EditEventComponent,
 		ViewProfileComponent,
 		FeedComponent,
 		FooterComponent,

@@ -1,0 +1,28 @@
+.event-name {
+  color: rgb(0, 83, 164);
+  font-size: 40px;
+  background-color: #bbd6f369;
+}
+
+.event-course {
+  color: #495057;
+  font-size: 20px;
+}
+
+.event-date {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.event-description {
+  font-size: 1.2pc!important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: wrap;
+}
+
+.event-place {
+
+}

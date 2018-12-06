@@ -27,6 +27,7 @@ export class ViewProfileComponent implements OnInit {
 	major: String;
 	coursework: [String];
 	loading = false;
+	email: string;
 
 	constructor(private router: ActivatedRoute,
 		private userService: UserService,
@@ -47,6 +48,7 @@ export class ViewProfileComponent implements OnInit {
 			this.selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
 			this.firstName = this.selectedUser.firstName;
 			this.lastName = this.selectedUser.lastName;
+			this.email = this.selectedUser.email;
 			this.major = this.selectedUser.major;
 			this.coursework = this.selectedUser.coursework;
 			this.avail = this.selectedUser.availabilities;

@@ -1,0 +1,79 @@
+<h2>Edit Event</h2>
+<form [formGroup]="updatedForm" (ngSubmit)="onSubmit()"
+			style="width:60%;margin:0 auto;" *ngIf="event">
+
+	<mat-form-field class="example-full-width">
+		<input matInput placeholder="Event Name" value="{{event.eventName}}"
+					 formControlName="eventName" [ngClass]="{ 'is-invalid': submitted && f.eventName.errors }">
+	</mat-form-field>
+	<mat-error *ngIf="submitted && f.eventName.hasError('required')"></mat-error>
+	<mat-form-field class="example-full-width">
+		<input matInput placeholder="Course" value="{{event.eventCourse}}" formControlName="course">
+	</mat-form-field>
+	<mat-form-field class="example-full-width">
+		<textarea matInput placeholder="Description" value="{{event.description}}" formControlName="description" ></textarea>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choose a date"
+	 				 (dateInput)="changeFormDate($event)" (dateChange)="changeFormDate($event)" [ngClass]="{ 'is-invalid': submitted && f.eventDate.errors }" />
+		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		<mat-datepicker #picker></mat-datepicker>
+	<mat-error *ngIf="f.eventDate.errors">{{getDateError()}}</mat-error>
+	</mat-form-field>
+
+
+	<h5 mat-subheader class="left-text">Start Time</h5>
+	<div style="display:flex:flex-direction:row;">
+		<mat-form-field style="width:30%;">
+			<mat-select #startTimeH value="1" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTHSent">
+				<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<div style="display:inline"> : </div>
+		<mat-form-field style="width:30%;">
+			<mat-select #startTimeM value="00" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sTMSent">
+				<mat-option *ngFor="let min of minutes" value="{{min}}">{{min}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field style="width:15%;margin-left:10px;">
+			<mat-select #periodS value="AM" (selectionChange)="startTimeChange(startTimeH.value,startTimeM.value,periodS.value)" formControlName="sPer">
+				<mat-option value="AM">AM</mat-option>
+				<mat-option value="PM">PM</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+
+	<h5 mat-subheader class="left-text">End Time</h5>
+	<div style="display:flex:flex-direction:row;">
+		<mat-form-field style="width:30%;">
+			<mat-select #endTimeH value="1" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="eTHSent">
+				<mat-option *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<div style="display:inline;"> : </div>
+		<mat-form-field style="width:30%;">
+			<mat-select #endTimeM value="00" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="eTMSent">
+				<mat-option *ngFor="let min of minutes" value="{{min}}">{{min}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field style="width:15%;margin-left:10px;">
+			<mat-select #periodE value="AM" (selectionChange)="endTimeChange(endTimeH.value,endTimeM.value,periodE.value)" formControlName="ePer">
+				<mat-option value="AM">AM</mat-option>
+				<mat-option value="PM">PM</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<span *ngIf="updatedForm.hasError('invalidTimeRange')" style="text-align:center;color:red;">Start time must be before end time</span>
+	<section style="margin-bottom:20px">
+		<mat-checkbox formControlName="public">Public</mat-checkbox>
+	</section>
+	<div class="form-group" fxLayoutGap="10px">
+		<button [disabled]="loading || updatedForm.invalid" mat-stroked-button >Update</button>
+		<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		<button type="button" (onClick)="goBack()" mat-stroked-button>Cancel</button>
+	</div>
+</form>
+
+<app-footer></app-footer>

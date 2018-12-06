@@ -7,7 +7,6 @@ import { AlertService, EventService } from '../_services';
 import { Event } from '../_models';
 import { Event_Subscriber } from '../_models';
 import { Location } from '@angular/common';
-import { DecToTimePipe } from '../_pipes/dec-to-time.pipe';
 
 
 @Component({
@@ -21,6 +20,7 @@ export class ViewEventComponent implements OnInit {
 	currentUser: User;
 	currentSubscribers: Event_Subscriber[];
 	eventId: string;
+	selectedEvent: Event;
 	loading = false;
 	subscribed = false;
 	userIsCreator = false;
@@ -30,7 +30,7 @@ export class ViewEventComponent implements OnInit {
 		private alertService: AlertService,
 		private location: Location,
 		private route: ActivatedRoute) {
-		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		//alert(JSON.stringify(this.currentUser));
 	}
 
@@ -119,6 +119,21 @@ export class ViewEventComponent implements OnInit {
 					this.goBack();
 				});
 
+	}
+
+	onSelect(event: Event) {
+		this.selectedEvent = event;
+	}
+
+	editEvent(eventId: string) {
+		//this.loading = true;
+		//this.eventService.delete(eventId)
+			//.pipe(first())
+			//.subscribe(
+				//data => {
+					//this.loadEventData(() => { this.alertService.success('Event Deleted'); this.loading = false;  });
+					//this.goBack();
+				//});
 	}
 
 }
