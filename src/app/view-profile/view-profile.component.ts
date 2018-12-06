@@ -6,6 +6,7 @@ import { ActivatedRoute, Params, ParamMap, Router } from '@angular/router';
 import { User } from '../_models';
 import { UserService } from '../_services';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { DecToTimePipe } from '../_pipes/dec-to-time.pipe';
 import * as $ from 'jquery';
 import * as moment from 'moment';
 
