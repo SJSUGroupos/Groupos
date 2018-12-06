@@ -10,6 +10,7 @@ import { FeedComponent } from './feed';
 import { ViewEventComponent } from './view-event';
 import { ViewUserEventsComponent } from './view-user-events/view-user-events.component';
 import { InvitesComponent } from './invites/invites.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
