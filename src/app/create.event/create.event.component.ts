@@ -47,7 +47,7 @@ export class CreateEventComponent implements OnInit {
 		private userSuggestionService: UserSuggestionService) { 
 		this.hours = this.retRange(1,12,false);
 		this.minutes = this.retRange(0,59,true);
-		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	ngOnInit() {
@@ -122,7 +122,7 @@ export class CreateEventComponent implements OnInit {
 						//alert(JSON.stringify(invites));
 						this.sendInvites(invites, () => {
 							this.usersToInvite.forEach(usr => {
-								this.inviteService.sendMessage('invite', { recvId: usr, data: true })
+								this.inviteService.sendMessage(usr+'.invite', {data: true})
 							});
 							this.router.navigate(['/']);
 						});

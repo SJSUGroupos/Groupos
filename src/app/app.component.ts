@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 	
 	inviteStatus() {
-		var inv = sessionStorage.getItem('newInvite');
+		var inv = localStorage.getItem('newInvite');
 		if (inv == "true") {
 			return true;
 		}

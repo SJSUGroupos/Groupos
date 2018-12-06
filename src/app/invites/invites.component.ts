@@ -31,7 +31,7 @@ export class InvitesComponent implements OnInit {
 		private inviteService: InviteService,
 		private location: Location,
 		private route: ActivatedRoute) {
-		this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		this.inviteService.reset();
 	}
 

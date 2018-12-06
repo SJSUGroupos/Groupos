@@ -35,16 +35,16 @@ angular.module('angular-login.mock', ['ngMockE2E'])
   version: '0.2.0'
 })
 .run(function ($httpBackend, $log, loginExampleData) {
-  var userStorage = angular.fromJson(sessionStorage.getItem('userStorage')),
-      emailStorage = angular.fromJson(sessionStorage.getItem('emailStorage')),
-      tokenStorage = angular.fromJson(sessionStorage.getItem('tokenStorage')) || {},
-      loginExample = angular.fromJson(sessionStorage.getItem('loginExample'));
+  var userStorage = angular.fromJson(localStorage.getItem('userStorage')),
+      emailStorage = angular.fromJson(localStorage.getItem('emailStorage')),
+      tokenStorage = angular.fromJson(localStorage.getItem('tokenStorage')) || {},
+      loginExample = angular.fromJson(localStorage.getItem('loginExample'));
 
-  // Check and corrects old sessionStorage values, backward-compatibility!
+  // Check and corrects old localStorage values, backward-compatibility!
   if (!loginExample || loginExample.version !== loginExampleData.version) {
     userStorage = null;
     tokenStorage = {};
-    sessionStorage.setItem('loginExample', angular.toJson(loginExampleData));
+    localStorage.setItem('loginExample', angular.toJson(loginExampleData));
   }
 
   if (userStorage === null || emailStorage === null) {
@@ -56,8 +56,8 @@ angular.module('angular-login.mock', ['ngMockE2E'])
       'john.dott@myemail.com': 'johnm',
       'bitter.s@provider.com': 'sandrab'
     };
-    sessionStorage.setItem('userStorage', angular.toJson(userStorage));
-    sessionStorage.setItem('emailStorage', angular.toJson(emailStorage));
+    localStorage.setItem('userStorage', angular.toJson(userStorage));
+    localStorage.setItem('emailStorage', angular.toJson(emailStorage));
   }
 
   /**
@@ -89,8 +89,8 @@ angular.module('angular-login.mock', ['ngMockE2E'])
       newToken = randomUUID();
       user.tokens.push(newToken);
       tokenStorage[newToken] = postData.username;
-      sessionStorage.setItem('userStorage', angular.toJson(userStorage));
-      sessionStorage.setItem('tokenStorage', angular.toJson(tokenStorage));
+      localStorage.setItem('userStorage', angular.toJson(userStorage));
+      localStorage.setItem('tokenStorage', angular.toJson(tokenStorage));
       return [200, { name: user.name, userRole: user.userRole, token: newToken }, {}];
     } else {
       return [401, 'wrong combination username/password', {}];
@@ -108,8 +108,8 @@ angular.module('angular-login.mock', ['ngMockE2E'])
         // Update userStorage AND tokenStorage
         userTokens.splice(userTokens.indexOf(queryToken));
         delete tokenStorage[queryToken];
-        sessionStorage.setItem('userStorage', angular.toJson(userStorage));
-        sessionStorage.setItem('tokenStorage', angular.toJson(tokenStorage));
+        localStorage.setItem('userStorage', angular.toJson(userStorage));
+        localStorage.setItem('tokenStorage', angular.toJson(tokenStorage));
         return [200, {}, {}];
       } else {
         return [401, 'auth token invalid or expired', {}];
@@ -163,8 +163,8 @@ angular.module('angular-login.mock', ['ngMockE2E'])
 
       userStorage[newUser.username] = newUser;
       emailStorage[newUser.email] = newUser.username;
-      sessionStorage.setItem('userStorage', angular.toJson(userStorage));
-      sessionStorage.setItem('emailStorage', angular.toJson(emailStorage));
+      localStorage.setItem('userStorage', angular.toJson(userStorage));
+      localStorage.setItem('emailStorage', angular.toJson(emailStorage));
       return [201, { valid: true, creationDate: Date.now() }, {}];
     }
   });

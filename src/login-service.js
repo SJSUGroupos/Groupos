@@ -1,6 +1,6 @@
 angular.module('loginService', ['ui.router'])
 .provider('loginService', function () {
-  var userToken = sessionStorage.getItem('userToken'),
+  var userToken = localStorage.getItem('userToken'),
       errorState = 'app.error',
       logoutState = 'app.home';
 
@@ -19,9 +19,9 @@ angular.module('loginService', ['ui.router'])
 
     var setToken = function (token) {
       if (!token) {
-        sessionStorage.removeItem('userToken');
+        localStorage.removeItem('userToken');
       } else {
-        sessionStorage.setItem('userToken', token);
+        localStorage.setItem('userToken', token);
       }
       setHeaders(token);
     };

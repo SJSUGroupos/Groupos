@@ -22,11 +22,11 @@ export class InviteService {
 	currentUser: User;
 
 	constructor() {
-		this.socket = socketIo(`${environment.apiUrl}`,{'force new connection': true});
+		this.socket = socketIo(`${environment.apiUrl}`);
 		this.onConnect();
 		this.socket.on('invite', (res) => {
 			//this.observer.next(res.data);
-			sessionStorage.setItem('newInvite', "true");
+			localStorage.setItem('newInvite', "true");
 			this.obs.forEach(o => o.next(res.data));
 		});
 	}
@@ -49,8 +49,8 @@ export class InviteService {
 
 	onConnect() : void {
 		this.socket.on('connect', (data) => {
-			if(sessionStorage.getItem('currentUser') != null) {
-				this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+			if(localStorage.getItem('currentUser') != null) {
+				this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 				//alert(this.currentUser['_id']);
 				this.socket.emit("clientId", { id: this.currentUser['_id'] });
 			}
@@ -65,7 +65,7 @@ export class InviteService {
 	}
 
 	reset() : void {
-		sessionStorage.setItem('newInvite', "false");
+		localStorage.setItem('newInvite', "false");
 		this.obs.forEach(o => o.next(false));
 
 	}

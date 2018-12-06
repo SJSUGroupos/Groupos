@@ -44,7 +44,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 	}
 
 	inviteStatus(): boolean {
-		var inv = sessionStorage.getItem('newInvite');
+		var inv = localStorage.getItem('newInvite');
 		if (inv == "true") {
 			return true;
 		}

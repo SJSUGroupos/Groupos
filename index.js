@@ -52,58 +52,50 @@ io.on('connection', socket => {
   sockets.add(socket);
   console.log(`Socket ${socket.id} added`);
 
-	socket.on('clientId', data => {
-		console.log('recv clientId event');
-		console.log(data);
-		clients[data['id']] = socket.id;
-		console.log(clients);
-		socket.on('invite', data => {
-			console.log('recieved: '+data);
-			console.log(data['recvId']);
-			console.log(clients[data['recvId']]);
-			if(clients[data['recvId']]) {
-				console.log("got here");
-				var recvSocket = clients[data['recvId']];
-				//recvSocket.emit('invite', data);
-				io.to(recvSocket).emit('invite', data);
+  socket.on('clientId', data => {
+	console.log('recv clientId event');
+    console.log(data);
+	clients[data['id']] = socket.id;
+	  console.log(clients);
+	  socket.on(data['id']+'.invite', data => {
+		  console.log('recv');
+		  socket.emit('invite', data);
+	  });
 
-			}
-		});
-
-		//socket.emit(data['id'], { invite: 'new invite'});
-		//socket.emit('invite', { data: 'new invite'});
-	});
+	  //socket.emit(data['id'], { invite: 'new invite'});
+	  //socket.emit('invite', { data: 'new invite'});
+  });
 
 
-	socket.on('disconnect', () => {
-		console.log(`Deleting socket: ${socket.id}`);
-
-		sockets.delete(socket);
-		console.log(`Remaining sockets: ${sockets.size}`);
-	});
+  socket.on('disconnect', () => {
+    console.log(`Deleting socket: ${socket.id}`);
+	
+    sockets.delete(socket);
+    console.log(`Remaining sockets: ${sockets.size}`);
+  });
 
 });
 
 function startTimer() {
-	//Simulate stock data received by the server that needs 
-	//to be pushed to clients
-	timerId = setInterval(() => {
-		if (!sockets.size) {
-			clearInterval(timerId);
-			timerId = null;
-			console.log(`Timer stopped`);
-		}
-		let value = ((Math.random() * 50) + 1).toFixed(2);
-		//See comment above about using a "room" to emit to an entire
-		//group of sockets if appropriate for your scenario
-		//This example tracks each socket and emits to each one
-		for (const s of sockets) {
-			//console.log(`Emitting value: ${value}`);
-			s.emit('data', { data: value });
-			//s.emit('invite', { data: 'new invite'});
-		}
+  //Simulate stock data received by the server that needs 
+  //to be pushed to clients
+  timerId = setInterval(() => {
+    if (!sockets.size) {
+      clearInterval(timerId);
+      timerId = null;
+      console.log(`Timer stopped`);
+    }
+    let value = ((Math.random() * 50) + 1).toFixed(2);
+    //See comment above about using a "room" to emit to an entire
+    //group of sockets if appropriate for your scenario
+    //This example tracks each socket and emits to each one
+    for (const s of sockets) {
+      //console.log(`Emitting value: ${value}`);
+      s.emit('data', { data: value });
+	  //s.emit('invite', { data: 'new invite'});
+    }
 
-	}, 2000);
+  }, 2000);
 }
 
 
