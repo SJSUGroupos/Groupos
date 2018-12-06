@@ -30,8 +30,8 @@
 			<p> by {{event.creator['firstName']}} {{event.creator['lastName']}}</p>
 		</mat-list-item>
 		<h6> <i><u>Subscribers</u></i> </h6>
-		<div *ngFor="let user of currentSubscribers" style="text-align:center">
-
+		<div *ngFor="let user of currentSubscribers" style="text-align:center" [routerLink]="['/profile', user.id]">
+			<!-- <div *ngIf="user.id == currentUser._id" [routerLink]="['/profile']"></div> -->
 			<mat-list-item style="width:100px; height:100px; aligncenter">
 				<img matListAvatar src={{user.avatar}} alt={{user.firstName}}
 				  style="width:100px;height:100px; padding:10px; aligncenter">

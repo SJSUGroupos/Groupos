@@ -20,6 +20,7 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { CreateEventComponent } from './create.event';
 import { ProfileComponent } from './profile';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { FeedComponent } from './feed';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
@@ -52,6 +53,7 @@ import { InvitesComponent } from './invites/invites.component';
 		RegisterComponent,
 		CreateEventComponent,
 		ProfileComponent,
+		ViewProfileComponent,
 		FeedComponent,
 		FooterComponent,
 		HeaderComponent,
